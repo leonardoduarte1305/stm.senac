@@ -1,0 +1,33 @@
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side">
+        <mat-nav-list class="nav-list">
+            <a mat-list-item routerLink="/"><i class="material-icons">home</i>Home</a>
+        </mat-nav-list>
+
+
+        <mat-nav-list class="nav-list">
+            <a mat-list-item routerLink="/"><i class="material-icons">person</i>Usuarios</a>
+        </mat-nav-list>
+
+        <mat-nav-list class="nav-list">
+            <a mat-list-item routerLink="/veiculos"><i class="material-icons">directions_car</i>Veiculos</a>
+        </mat-nav-list>
+
+
+        <mat-nav-list class="nav-list">
+            <a mat-list-item routerLink="/"><i class="material-icons">home_work</i>Sedes</a>
+        </mat-nav-list>
+
+
+    </mat-drawer>
+
+    <div class="sidenav-content">
+        <button class="btn" mat-icon-button (click)="drawer.toggle()">
+            <mat-icon class="btn_icon">more_vert</mat-icon>
+        </button>
+        <router-outlet>
+
+        </router-outlet>
+    </div>
+
+</mat-drawer-container>

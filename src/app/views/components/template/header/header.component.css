@@ -1,0 +1,11 @@
+.header{
+    background-color: chocolate;
+    height: 10%;
+    display: flex;
+    align-items: center;
+
+
+}
+img{
+    width: 150px;
+}

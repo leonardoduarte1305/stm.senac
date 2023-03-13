@@ -1,0 +1,18 @@
+mat-card{
+    width: 80%;
+    height: 50%;
+    margin: 1rem  auto 0 auto;
+    
+}
+.table th{
+border-bottom: 2px solid white;
+
+}
+.box-header{
+    margin-bottom: 5em;
+}
+.box-header mat-card-title{
+    color: chocolate;
+    
+    font-size: 2em;
+}
