@@ -23,6 +23,12 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { VeiculoCreateComponent } from './views/components/veiculos/veiculo-create/veiculo-create.component';
+import { SedeCreateComponent } from './views/components/sedes/sede-create/sede-create.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { InfoComponent } from './views/components/template/info/info.component';
+import { MotoristasComponent } from './views/components/motorista/motoristas/motoristas.component';
+import { MotoristaCreateComponent } from './views/components/motorista/motorista-create/motorista-create.component';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +40,11 @@ import { VeiculoCreateComponent } from './views/components/veiculos/veiculo-crea
     VeiculosComponent,
     SedesComponent,
     UsuariosComponent,
-    VeiculoCreateComponent
+    VeiculoCreateComponent,
+    SedeCreateComponent,
+    InfoComponent,
+    MotoristasComponent,
+    MotoristaCreateComponent
 
   ],
   imports: [
@@ -50,7 +60,8 @@ import { VeiculoCreateComponent } from './views/components/veiculos/veiculo-crea
     MatCardModule,
     MatMenuModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
 
   ],
   providers: [],

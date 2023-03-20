@@ -1,7 +1,10 @@
-.conatiner{
+.container{
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+}
+::ng-deep .mat-mdc-paginator-container {
+    background-color: rgb(37, 37, 37);
 }
 .bt-create {
     width: 80%;

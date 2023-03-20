@@ -1,0 +1,21 @@
+<header>
+    <h1>INSERÇÃO DE MOTORISTA</h1>
+</header>
+<form action="">
+    <div class="box-input">
+        <label for="">Nome</label>
+        <input [(ngModel)]="motorista.nome" type="text" name="nome" id="" placeholder="insira o nome do motorista">
+    </div>
+    <div class="box-input">
+        <label for="">Categoria da Carteira</label>
+        <input [(ngModel)]="motorista.categoriaCarteira" type="text" name="categoriaCarteira" id="" placeholder="inseira a categoria da carteira">
+    </div>
+    <div class="box-input">
+        <label for="">Email</label>
+        <input [(ngModel)]="motorista.email" type="email" name="email" id="" placeholder="inseira o email do motorista">
+    </div>
+    <div class="buttons">
+        <button (click)="create()" class="btn-cadastrar">CADASTRAR</button>
+        <button (click)="cancelar()" class="btn-cancelar">CANCELAR</button>
+    </div>
+</form>

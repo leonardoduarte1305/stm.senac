@@ -1,37 +1,37 @@
 <header>
-
     <h1>INSERÇÃO DE VEICULO</h1>
 </header>
 
 <form action="">
+
     <div class="box-input">
         <label for="">Modelo</label>
-        <input type="text" name="" id="">
+        <input [(ngModel)]="veiculo.modelo" type="text" name="modelo" id="" placeholder="insira o modelo do veiculo">
     </div>
-    <div  class="box-input">
+    <div class="box-input">
         <label for="">Marca</label>
-        <input type="email" name="" id="">
+        <input [(ngModel)]="veiculo.marca" type="text" name="marca" id="" placeholder="inseira a marac do veículo">
     </div>
-    <div  class="box-input">
+    <div class="box-input">
         <label for="">Placa</label>
-        <input type="text" name="" id="">
+        <input [(ngModel)]="veiculo.placa" type="text" name="placa" id="" placeholder="inseira a placa do veículo"
+            onkeyup="this.value = this.value.toUpperCase()">
     </div>
-    <div  class="box-input">
+    <div class="box-input">
         <label for="">Ano</label>
-        <input type="number" name="" id="">
+        <input [(ngModel)]="veiculo.ano" type="number" name="ano" id="" placeholder="ano do veiculo">
     </div>
-    <div  class="box-input">
+    <div class="box-input">
         <label for="">Renavam</label>
-        <input type="number" name="" id="">
+        <input [(ngModel)]="veiculo.renavan" type="number" name="renavan" id="" placeholder="Renavam do veículo">
     </div>
-    <div  class="box-input">
+    <div class="box-input">
         <label for="">Tamanho</label>
-        <select name="" id="">
-            <option value="">Grande</option>
-            <option value="">Médio</option>
-            <option value="">Pequeno</option>
-        </select>
+        <input [(ngModel)]="veiculo.tamanho" type="text" name="tamanho" id=""
+            placeholder="Descreva o tamanho do veículo">
+
     </div>
 
-<button>CADASTRAR</button>
+    <button (click)="create()" class="btn-cadastrar">CADASTRAR</button>
+    <button (click)="cancelar() " class="btn-cancelar">CANCELAR</button>
 </form>

@@ -1,23 +1,30 @@
-.container{
-    height: 90%;
-   
+.container {
+    height: 92%;
+    background-color: rgb(43, 43, 48);
+    
+
 }
-i{
+
+i {
+   
     margin-right: 1rem;
 }
-.btn{
+
+.btn {
     background-color: transparent;
     border: none;
-    
+
 }
-.btn_icon{
+
+.btn_icon {
     color: white;
     font-size: 2em;
     margin: 10px;
     cursor: pointer;
     padding: 10px;
 }
-.bt{
+
+.bt {
     background-color: transparent;
     border: none;
     font-size: 1em;
@@ -25,12 +32,16 @@ i{
     padding: 10px;
     color: white;
 }
-.btn_icon:hover{
+
+.btn_icon:hover {
     background-color: rgba(128, 128, 128, 0.596);
     border-radius: 50%;
-    
+
     box-shadow: 0px 0px 20px gray;
 }
-mat-drawer{
-    background-color: rgb(32, 32, 32);
+
+mat-drawer {
+    background-color: rgb(202, 88, 0);
+    width: 15%;
+
 }

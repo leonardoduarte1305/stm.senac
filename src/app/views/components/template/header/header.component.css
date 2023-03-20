@@ -1,11 +1,26 @@
 .header{
-    background-color: chocolate;
-    height: 10%;
+    background-color: white;
+    height: 8%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
 
 }
 img{
-    width: 150px;
+    width: 200px;
+    height: 80px;
+    margin-top: auto;
+    
+}
+.header button{
+font-size: 1em;
+background-color: transparent;
+border: none;
+
+}
+.header button:hover{
+    color: chocolate;
+    cursor: pointer;
+    
 }

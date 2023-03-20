@@ -1,0 +1,11 @@
+button {
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: .8em;
+}
+
+button:hover {
+    color: chocolate;
+    cursor: pointer;
+}

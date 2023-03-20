@@ -14,7 +14,7 @@ export class VeiculosComponent implements AfterViewInit {
 
 veiculos: Veiculo[]=[];
 
-  displayedColumns: string[] = ['modelo', 'marca', 'placa', 'ano','renavam','tamanho'];
+  displayedColumns: string[] = ['modelo', 'marca', 'placa', 'ano','renavan','tamanho'];
   dataSource = new MatTableDataSource<Veiculo>(this.veiculos);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -28,6 +28,7 @@ veiculos: Veiculo[]=[];
 
   ngAfterViewInit() {
     this.findAll();
+
   }
 
 findAll():void{
@@ -35,6 +36,7 @@ this.service.findAll().subscribe((resposta)=>{
   this.veiculos= resposta;
   this. dataSource = new MatTableDataSource<Veiculo>(this.veiculos);
   this.dataSource.paginator = this.paginator;
+  console.log(resposta);
 })
 }
 
