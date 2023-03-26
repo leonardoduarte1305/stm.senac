@@ -10,7 +10,8 @@ import { MotoristaService } from 'src/app/services/motorista.service';
 })
 export class MotoristaCreateComponent {
 
-
+  
+  
   motorista: Motorista = {
     nome: "",
     categoriaCarteira: "",
@@ -23,11 +24,14 @@ export class MotoristaCreateComponent {
   ) { }
 
   create(): void {
+    console.log(this.motorista)
     this.servico.create(this.motorista).subscribe((resposta) => {
       this.router.navigate(['motoristas']);
+      this.servico.message('Motorista Salvo');
     })
   }
-  cancelar():void{
+  cancelar(): void {
     this.router.navigate(['motoristas']);
   }
+
 }

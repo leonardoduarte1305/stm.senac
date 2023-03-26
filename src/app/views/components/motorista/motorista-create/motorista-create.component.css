@@ -19,7 +19,7 @@ form {
     margin-top: 2em;
 }
 
-.box-input input {
+.box-input input, select {
     border: 1px solid transparent;
     background-color: rgb(59, 59, 59);
     color: white;

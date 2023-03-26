@@ -14,7 +14,7 @@ export class VeiculosComponent implements AfterViewInit {
 
 veiculos: Veiculo[]=[];
 
-  displayedColumns: string[] = ['modelo', 'marca', 'placa', 'ano','renavan','tamanho'];
+  displayedColumns: string[] = ['modelo', 'marca', 'placa', 'ano','renavan','tamanho', 'action'];
   dataSource = new MatTableDataSource<Veiculo>(this.veiculos);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

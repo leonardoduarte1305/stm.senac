@@ -1,0 +1,173 @@
+form {
+    width: 80%;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+}
+
+.box-info {
+    display: flex;
+
+}
+
+.box-info div {
+    display: flex;
+    flex-direction: column;
+    margin: 2em;
+}
+
+.box-info .data {
+    width: 10%;
+}
+
+.box-info .motorista,
+.veiculo {
+    width: 100%;
+}
+
+.box-info input,
+select {
+    border: 1px solid transparent;
+    background-color: rgb(59, 59, 59);
+    color: white;
+    font-size: 1.5em;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 5px 5px 10px rgb(26, 26, 26);
+}
+ 
+.box-material {
+    display: flex;
+
+}
+
+.box-material div {
+    display: flex;
+    flex-direction: column;
+    margin: 2em;
+
+}
+
+.box-material .qtd {
+    width: 10%;
+}
+
+.box-material .material,
+.setor {
+    width: 100%;
+
+}
+
+.box-material input {
+    border: 1px solid transparent;
+    background-color: rgb(59, 59, 59);
+    color: white;
+    font-size: 1.5em;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 5px 5px 10px rgb(26, 26, 26);
+}
+
+.box {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.233);
+    padding: 10px;
+    border-radius: 15px;
+    flex-direction: column;
+    width: 100%;
+}
+
+.destinatario {
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-mdc-table {
+    width: 100%;
+    max-height: 150px;
+    overflow: auto;
+}
+
+.bt-adicionarMaterial {
+    font-size: 2em;
+    font-weight: bold;
+    border: none;
+    height: 40px;
+    width: 100px;
+    color: black;
+    margin-top: 48px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+
+.bt-adicionarDestino {
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px;
+    width: 20%;
+    border-radius: 10px;
+    margin-top: 1em;
+
+}
+
+
+
+.buttons {
+    margin-top: 5em;
+    display: flex;
+    justify-content: center;
+}
+
+.buttons button {
+    font-size: 1.5em;
+    padding: 10px;
+    margin: 1em;
+    border-radius: 10px;
+    width: 30%;
+    transition: ease-in-out 0.6s;
+    border: 2px solid white;
+    font-weight: 400;
+    background-color: transparent;
+    color: white;
+}
+
+.buttons .bt-adicionarViagem:hover {
+    cursor: pointer;
+    background-color: white;
+    color: rgb(0, 255, 0);
+    box-shadow: 0px 0px 20px white;
+
+}
+
+.buttons .bt-cancelar:hover {
+    cursor: pointer;
+    background-color: white;
+    color: red;
+    box-shadow: 0px 0px 20px white;
+}
+
+header {
+    text-align: center;
+    color: chocolate;
+
+
+}
+
+header h1 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.bt-adicionarDestino {
+    background-color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.bt-adicionarDestino:hover,
+.bt-adicionarMaterial:hover {
+    cursor: pointer;
+    background-color: chocolate;
+}

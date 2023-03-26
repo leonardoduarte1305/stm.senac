@@ -6,19 +6,19 @@
 
 
         <mat-nav-list class="nav-list">
-            <a mat-list-item routerLink="/"><i class="material-icons">person</i>Usuarios</a>
+            <a mat-list-item routerLink="/itinerarios"><i class="material-icons">share_location</i>Itinerário</a>
         </mat-nav-list>
 
-        <mat-nav-list class="nav-list">
+        <mat-nav-list class="nav-list" *ngIf="show">
             <a mat-list-item routerLink="/veiculos"><i class="material-icons">directions_car</i>Veiculos</a>
         </mat-nav-list>
 
 
-        <mat-nav-list class="nav-list">
+        <mat-nav-list class="nav-list" *ngIf="show">
             <a mat-list-item routerLink="/sedes"><i class="material-icons">home_work</i>Sedes</a>
         </mat-nav-list>
 
-        <mat-nav-list class="nav-list">
+        <mat-nav-list class="nav-list" *ngIf="show">
             <a mat-list-item routerLink="/motoristas"><i class="material-icons">assignment_ind</i>Motoristas</a>
         </mat-nav-list>
 

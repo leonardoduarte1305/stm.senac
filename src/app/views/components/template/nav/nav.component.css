@@ -1,19 +1,17 @@
 .container {
     height: 92%;
-    background-color: rgb(43, 43, 48);
-    
+    background-color: rgb(44, 49, 54);
+
 
 }
 
 i {
-   
     margin-right: 1rem;
 }
 
 .btn {
     background-color: transparent;
     border: none;
-
 }
 
 .btn_icon {
@@ -41,7 +39,6 @@ i {
 }
 
 mat-drawer {
-    background-color: rgb(202, 88, 0);
+    background-color: chocolate;
     width: 15%;
-
 }

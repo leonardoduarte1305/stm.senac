@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -19,15 +19,24 @@ import { VeiculosComponent } from './views/components/veiculos/veiculos.componen
 import { MatCardModule } from '@angular/material/card';
 import { SedesComponent } from './views/components/sedes/sedes.component';
 import { UsuariosComponent } from './views/components/usuarios/usuarios.component';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { VeiculoCreateComponent } from './views/components/veiculos/veiculo-create/veiculo-create.component';
 import { SedeCreateComponent } from './views/components/sedes/sede-create/sede-create.component';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { InfoComponent } from './views/components/template/info/info.component';
 import { MotoristasComponent } from './views/components/motorista/motoristas/motoristas.component';
 import { MotoristaCreateComponent } from './views/components/motorista/motorista-create/motorista-create.component';
+import { ItinerariosComponent } from './views/components/itinerario/itinerarios/itinerarios.component';
+import { ItinerarioCreateComponent } from './views/components/itinerario/itinerario-create/itinerario-create.component';
+import { ItinerarioUpdateComponent } from './views/components/itinerario/itinerario-update/itinerario-update.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+
+
+
 
 
 @NgModule({
@@ -44,7 +53,10 @@ import { MotoristaCreateComponent } from './views/components/motorista/motorista
     SedeCreateComponent,
     InfoComponent,
     MotoristasComponent,
-    MotoristaCreateComponent
+    MotoristaCreateComponent,
+    ItinerariosComponent,
+    ItinerarioCreateComponent,
+    ItinerarioUpdateComponent
 
   ],
   imports: [
@@ -54,6 +66,7 @@ import { MotoristaCreateComponent } from './views/components/motorista/motorista
     MatToolbarModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,
@@ -61,7 +74,9 @@ import { MotoristaCreateComponent } from './views/components/motorista/motorista
     MatMenuModule,
     MatTableModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule,
+    MatFormFieldModule
 
   ],
   providers: [],

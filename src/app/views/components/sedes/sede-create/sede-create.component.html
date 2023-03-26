@@ -1,33 +1,77 @@
 <form action="">
-        <section>
-    <div class="box-input">
-        <label for="">Nome</label>
-        <input type="text" name="" id="">
+    <header>
+        <h1>CADASTRO DE SEDE</h1>
+    </header>
+    <section class="container-inputs">
+        <div class="box-input">
+            <label for="">Nome</label>
+            <input [(ngModel)]="sede.nome" type="text" name="nome" id="" placeholder="Insira um nome de identificação">
+        </div>
+        <div class="box-input">
+            <label for="">Rua</label>
+            <input [(ngModel)]="sede.rua" type="text" name="rua" id="" placeholder="rua">
+        </div>
+        <div class="box-input-numero">
+            <label for="">Número</label>
+            <input [(ngModel)]="sede.numero" type="number" name="numero" id="" placeholder="numero">
+        </div>
+    </section>
+    <section class="container-inputs">
+
+        <div class="box-input-cep">
+            <label for="">CEP</label>
+            <input [(ngModel)]="sede.cep" type="number" name="cep" id="cep" placeholder="00000-000"  oninput="mascara(this, 'cep')" >
+        </div>
+        <div class="box-input">
+            <label for="">Cidade</label>
+            <input [(ngModel)]="sede.cidade" type="text" name="cidade" id="" placeholder="cidade"  data-mask="00/00/0000">
+        </div>
+        <div class="box-input-uf">
+            <label for="">UF</label>
+            <select [(ngModel)]="sede.uf" name="uf" id="">
+                <option value="">Selecione</option>
+                <option value="AC">AC</option>
+                <option value="AL">AL</option>
+                <option value="AP">AP</option>
+                <option value="AM">AM</option>
+                <option value="BA">BA</option>
+                <option value="CE">CE</option>
+                <option value="DF">DF</option>
+                <option value="ES">ES</option>
+                <option value="GO">GO</option>
+                <option value="MA">MA</option>
+                <option value="MS">MS</option>
+                <option value="MT">MT</option>
+                <option value="MG">MG</option>
+                <option value="PA">PA</option>
+                <option value="PB">PB</option>
+                <option value="PR">PR</option>
+                <option value="PE">PE</option>
+                <option value="PI">PI</option>
+                <option value="RJ">RJ</option>
+                <option value="RN">RN</option>
+                <option value="RS">RS</option>
+                <option value="RO">RO</option>
+                <option value="RR">RR</option>
+                <option value="SC">SC</option>
+                <option value="SP">SP</option>
+                <option value="SE">SE</option>
+                <option value="TO">TO</option>
+            </select>
+        </div>
+
+
+    </section>
+    <section class="container-inputs">
+
+        <div class="box-input">
+            <label for="">Observações</label>
+            <textarea [(ngModel)]="sede.observacao" name="observacao" id="" cols="30" rows="5">insira a descrição da sede caso desejar...</textarea>
+        </div>
+    </section>
+    <div class="buttons">
+        <button class="bt-cadastrar" (click)="create()">CADASTRAR</button>
+        <button class="bt-cancelar" (click)="navigationToSedes()">CANCELAR</button>
+
     </div>
-    <div  class="box-input">
-        <label for="">Rua</label>
-        <input type="text" name="" id="">
-    </div>
-    <div  class="box-input">
-        <label for="">Número</label>
-        <input type="number" name="" id="">
-    </div>
-    <div  class="box-input">
-        <label for="">CEP</label>
-        <input type="number" name="" id="">
-    </div>
-    <div  class="box-input">
-        <label for="">Cidade</label>
-        <input type="text" name="" id="">
-    </div>
-    <div  class="box-input">
-        <label for="">UF</label>
-        <input type="text" name="" id="">
-    </div>
-    <div  class="box-input">
-        <label for="">Observações</label>
-       <textarea name="" id="" cols="30" rows="10"></textarea>
-    </div>
-</section>
-    <button>CADASTRAR</button>
 </form>

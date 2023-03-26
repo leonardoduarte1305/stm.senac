@@ -2,11 +2,14 @@
     <h1>INSERÇÃO DE VEICULO</h1>
 </header>
 
+
 <form action="">
 
     <div class="box-input">
         <label for="">Modelo</label>
-        <input [(ngModel)]="veiculo.modelo" type="text" name="modelo" id="" placeholder="insira o modelo do veiculo">
+        <input [(ngModel)]="veiculo.modelo" type="text" [formControl]="modelo" required name="modelo" id=""
+          matInput placeholder="insira o modelo do veiculo">
+        <mat-error  *ngIf="modelo.invalid">{{validationModelo()}}</mat-error>
     </div>
     <div class="box-input">
         <label for="">Marca</label>
@@ -15,7 +18,7 @@
     <div class="box-input">
         <label for="">Placa</label>
         <input [(ngModel)]="veiculo.placa" type="text" name="placa" id="" placeholder="inseira a placa do veículo"
-            onkeyup="this.value = this.value.toUpperCase()">
+            onkeyup="this.value = this.value.toUpperCase()" maxlength="7">
     </div>
     <div class="box-input">
         <label for="">Ano</label>

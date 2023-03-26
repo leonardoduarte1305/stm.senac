@@ -8,7 +8,15 @@
     </div>
     <div class="box-input">
         <label for="">Categoria da Carteira</label>
-        <input [(ngModel)]="motorista.categoriaCarteira" type="text" name="categoriaCarteira" id="" placeholder="inseira a categoria da carteira">
+        <select [(ngModel)]="motorista.categoriaCarteira" name="categoriaCarteira" id="categoriaCarteira" >
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="AB">AB</option>
+        </select>
+
     </div>
     <div class="box-input">
         <label for="">Email</label>

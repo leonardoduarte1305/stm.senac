@@ -1,4 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::ng-deep .barr {
+    background-color: rgb(65, 252, 134);
+    color: white;
+}
+.teste {
+    background-color:red;
+    color: white;
+}
+.erro{
+    color: red;
+    font-size: .9em;
+}
+::ng-deep .barr .mat-dialog-container {
+   background-color: blueviolet;
+}

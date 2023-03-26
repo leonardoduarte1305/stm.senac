@@ -1,0 +1,88 @@
+<main>
+    <header>
+        
+            <h1>CADASTRO DE ITINERÁRIO</h1>
+        
+    </header>
+    <form action="">
+        <section class="box-info">
+            <h3></h3>
+            <div class="motorista">
+                <label for="">Mototrista</label>
+                <select name="" id="">
+                    <option value="">Marea</option>
+                </select>
+            </div>
+            <div class="veiculo">
+                <label for="">Veículo</label>
+                <select name="" id="">
+                    <option value="">Marea</option>
+                </select>
+            </div>
+            <div class="data">
+                <label for="">Data da Viagem</label>
+                <input type="date">
+            </div>
+        </section>
+
+
+        <section class="box">
+
+            <section class="box-material">
+                <div class="material">
+                    <label for="">Material</label>
+                    <input type="text">
+                </div>
+                <div class="qtd">
+                    <label for="">QTD</label>
+                    <input type="number">
+                </div>
+                <div class="setor">
+                    <label  for="">Setor destinatario</label>
+                    <input onkeyup="this.value = this.value.toUpperCase()"  type="text">
+                </div>
+                <button class="bt-adicionarMaterial" (click)="msg()">+</button>
+
+            </section>
+
+            <mat-table [dataSource]="dataSource" class="table">
+                <!-- Position Column -->
+                <ng-container matColumnDef="Material">
+                    <mat-header-cell *matHeaderCellDef> Material </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.Material}} </mat-cell>
+                </ng-container>
+
+                <!-- Name Column -->
+                <ng-container matColumnDef="QTD">
+                    <mat-header-cell *matHeaderCellDef> QTD </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.QTD}} </mat-cell>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="SetorDestinatario">
+                    <mat-header-cell *matHeaderCellDef> Setor Destinatario </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.SetorDestinatario}} </mat-cell>
+                </ng-container>
+
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+
+            <div class="destinatario">
+                <label for="">Destinatario</label>
+                <select name="" id="">
+                    <option value="">Marea</option>
+                </select>
+            </div>
+
+        </section>
+
+        <button class="bt-adicionarDestino" >Adicionar Destino no Itinerario</button>
+        <div class="buttons">
+            <button class="bt-adicionarViagem">AGENDAR VIAGEM</button>
+            <button class="bt-cancelar" (click)="navigationToItinerarios()">CANCELAR</button>
+
+        </div>
+    </form>
+</main>
