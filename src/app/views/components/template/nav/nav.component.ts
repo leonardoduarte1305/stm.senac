@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class NavComponent {
 
-  show: Boolean = false;
+  show: Boolean = true;
 
 
   

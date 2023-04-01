@@ -3,17 +3,18 @@
 </header>
 
 
-<form action="">
+<form  action="">
 
     <div class="box-input">
         <label for="">Modelo</label>
         <input [(ngModel)]="veiculo.modelo" type="text" [formControl]="modelo" required name="modelo" id=""
           matInput placeholder="insira o modelo do veiculo">
-        <mat-error  *ngIf="modelo.invalid">{{validationModelo()}}</mat-error>
+        <span></span>
     </div>
     <div class="box-input">
         <label for="">Marca</label>
-        <input [(ngModel)]="veiculo.marca" type="text" name="marca" id="" placeholder="inseira a marac do veículo">
+        <input [(ngModel)]="veiculo.marca" [formControl]="marca" required type="text" name="marca" id="" placeholder="inseira a marac do veículo">
+        <span ></span>
     </div>
     <div class="box-input">
         <label for="">Placa</label>

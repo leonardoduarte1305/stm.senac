@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Veiculo } from 'src/app/models/veiculo';
 import { VeiculoService } from 'src/app/services/veiculo.service';
+import { SnackBarComponent } from '../../template/snack-bar/snack-bar.component';
 
 
 
@@ -17,6 +19,7 @@ export class VeiculoCreateComponent implements OnInit {
 
 
   veiculo: Veiculo = {
+    id:null!,
     modelo: "",
     marca: "",
     placa: "",
@@ -26,6 +29,7 @@ export class VeiculoCreateComponent implements OnInit {
   }
 
   modelo = new FormControl('', [Validators.required, Validators.nullValidator]);
+  marca = new FormControl('', [Validators.required, Validators.nullValidator]);
 
 
 
@@ -34,19 +38,21 @@ export class VeiculoCreateComponent implements OnInit {
   }
   constructor(
     private router: Router,
-    private service: VeiculoService
+    private service: VeiculoService,
+    private stick : MatSnackBar
   ) {
 
   }
   create(): void {
     let x = document.getElementsByTagName('input');
     if (this.veiculo.modelo.trim() === "" || this.veiculo.marca.trim() == "") {
-      this.service.message('Todos os campos devem ser preenchidos');
-      for (let i = 0; x.length > i; i++) {
+      this.service.message('Deve preencher todos os campos obrigatorios');
+      for (let i = 0; x.length-1 > i; i++) {
         x[i].style.borderBottomColor = 'red';
+   
       }
     }else{
-      for (let i = 0; x.length > i; i++) {
+      for (let i = 0; x.length-1 > i; i++) {
         x[i].style.borderBottomColor = 'green';
       }
     }
@@ -69,5 +75,13 @@ export class VeiculoCreateComponent implements OnInit {
       return 'o campo modelo é obrigatorio';
     }
     return false
+  }
+
+  open(){
+    this.stick.openFromComponent(SnackBarComponent,{
+      duration:1000,
+      horizontalPosition:'center',
+      verticalPosition:'top'
+    })
   }
 }

@@ -10,20 +10,22 @@
 
 .bt-create button {
     width: 20%;
-    padding: 10px;
-    background-color: white;
+    padding: 15px;
+    background-color: chocolate;
     border-radius: 10px;
-    color: rgb(248, 248, 248);
-    border: 2px solid white;
+   
+    border: none;
     transition: ease-in-out 0.5s;
-    font-weight: bold;
+    font-size: 1.2em;
     color: black;
+    font-weight: bold;
 }
 
 .bt-create h1 {
-    font-size: 2rem;
-    color: chocolate;
-    
+    font-size: 3em;
+    color: white;
+    font-weight: bold;
+
 }
 
 .bt-create button:hover {
@@ -45,11 +47,7 @@ table {
     width: 100%;
 }
 
-::ng-deep .mat-mdc-paginator-container {
-    background-color: rgb(37, 37, 37);
 
-
-}
 
 ::ng-deep .mat-mdc-option .mdc-list-item__primary-text {
     color: chocolate;
@@ -66,9 +64,17 @@ table {
 
 }
 
-mat-select {
-    background-color: aquamarine;
-}
-#edit{
+
+#edit {
     color: white;
+}
+
+table {
+background-color: rgba(0, 0, 0, 0.103);
+}
+i{
+    background-color: rgb(40, 180, 59);
+    padding: 2px;
+    border-radius: 50%;
+
 }

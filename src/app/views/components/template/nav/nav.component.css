@@ -1,8 +1,35 @@
 .container {
-    height: 92%;
-    background-color: rgb(44, 49, 54);
+    height: 100%;
+    background-color: #292D36;
 
 
+}
+
+header {
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0.5em;
+
+}
+
+header div {
+display: flex;
+align-items: center;
+    
+}
+header div h1{
+    font-size: 1em;
+    color: chocolate;
+    font-weight: 600;
+
+}
+header div i{
+margin-left: 5px;
+margin-bottom: 15px;
+    font-size: 5em;
+    color: #3f4453;
 }
 
 i {
@@ -39,6 +66,6 @@ i {
 }
 
 mat-drawer {
-    background-color: chocolate;
+    background-color: #1A1D24;
     width: 15%;
 }

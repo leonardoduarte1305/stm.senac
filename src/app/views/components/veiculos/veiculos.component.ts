@@ -41,7 +41,7 @@ this.service.findAll().subscribe((resposta)=>{
 }
 
 navigateToCreate():void{
-this.router.navigate(['veiculo/create'])
+this.router.navigate(['veiculos/create'])
 }
 }
 

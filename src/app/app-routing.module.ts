@@ -22,7 +22,7 @@ const routes: Routes = [
     component: VeiculosComponent
   },
   {
-    path: "veiculo/create",
+    path: "veiculos/create",
     component: VeiculoCreateComponent
   },
 

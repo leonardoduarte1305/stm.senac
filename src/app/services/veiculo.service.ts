@@ -24,6 +24,10 @@ export class VeiculoService {
     return this.http.post<Veiculo>(url, veiculo);
 
   }
+  update(veiculo: Veiculo): Observable<Veiculo> {
+    const url = this.baseUrl + '/veiculos/' + veiculo.id;
+    return this.http.put<Veiculo>(url, veiculo);
+  }
 
   message(msg: String): void {
 
@@ -31,7 +35,7 @@ export class VeiculoService {
       horizontalPosition: 'end',
       verticalPosition: 'top',
       duration: 3000,
-      panelClass:['barr']
+      panelClass: ['barr']
 
     })
   }

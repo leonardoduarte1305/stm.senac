@@ -2,6 +2,7 @@
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+    font-family: 'Poppins', sans-serif;
 }
 .bt-create {
     width: 80%;
@@ -13,29 +14,33 @@
 
 }
 
+
 .bt-create button {
     width: 20%;
-    padding: 10px;
-    background-color: white;
+    padding: 15px;
+    background-color: chocolate;
     border-radius: 10px;
     color: rgb(248, 248, 248);
-    border: 2px solid white;
+    border: none;
     transition: ease-in-out 0.5s;
-    font-weight: bold;
+ font-size: 1.2em;
     color: black;
+    font-weight: bold;
 }
 
 .bt-create h1 {
-    font-size: 2rem;
-    color: chocolate;
+
+    font-size: 3em;
+    color: white;
+    font-weight: bold;
     
 }
 
 .bt-create button:hover {
     background-color: chocolate;
-    color: black;
+    color: white;
     box-shadow: 0px 0px 10px chocolate;
     cursor: pointer;
-    border-color: chocolate;
-    color: white;
+    
+
 }

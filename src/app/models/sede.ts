@@ -1,4 +1,5 @@
 export interface Sede {
+    id: Number,
     rua: String,
     numero: Number,
     cep: String,

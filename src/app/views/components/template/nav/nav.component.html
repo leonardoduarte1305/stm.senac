@@ -1,5 +1,15 @@
 <mat-drawer-container class="container" autosize>
+    <header>
+        <button class="btn" mat-icon-button (click)="drawer.toggle()">
+            <mat-icon class="btn_icon">more_vert</mat-icon>
+        </button>
+        <div>
+            <h1>ADMIN</h1>
+            <i class="material-icons">account_circle</i>
+        </div>
+    </header>
     <mat-drawer #drawer class="sidenav" mode="side">
+        <img src="assets/imgs/Group 46.png" alt="">
         <mat-nav-list class="nav-list">
             <a mat-list-item routerLink="/"><i class="material-icons">home</i>Home</a>
         </mat-nav-list>
@@ -23,12 +33,10 @@
         </mat-nav-list>
 
 
-    </mat-drawer>
 
+    </mat-drawer>
     <div class="sidenav-content">
-        <button class="btn" mat-icon-button (click)="drawer.toggle()">
-            <mat-icon class="btn_icon">more_vert</mat-icon>
-        </button>
+
         <router-outlet>
 
         </router-outlet>

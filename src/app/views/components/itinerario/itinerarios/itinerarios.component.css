@@ -1,18 +1,40 @@
-div{
+
+.bt-create {
     width: 80%;
+
     margin-left: auto;
     margin-right: auto;
-
-    display: flex;
-}
-.box{
-    display: flex;
+    margin-bottom: 2em;
     flex-direction: column;
-    width: 80%;
-    margin: 2em;
-    
+
 }
-div input{
-    padding: 10px;
-    border-radius: 5px;
+
+.bt-create button {
+
+    width: 20%;
+    padding: 15px;
+    background-color: chocolate;
+    border-radius: 10px;
+   
+    border: none;
+    transition: ease-in-out 0.5s;
+    font-size: 1.2em;
+    color: black;
+    font-weight: bold;
+}
+
+.bt-create h1 {
+    font-size: 3em;
+    color: white;
+    font-weight: bold;
+
+}
+
+.bt-create button:hover {
+    background-color: chocolate;
+    color: black;
+    box-shadow: 0px 0px 10px chocolate;
+    cursor: pointer;
+    border-color: chocolate;
+    color: white;
 }

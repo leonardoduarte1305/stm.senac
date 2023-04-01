@@ -16,9 +16,10 @@ export class SedeCreateComponent {
   }
 
   sede: Sede = {
+    id:null!,
     rua: "",
     numero: null!,
-    cep: "",
+    cep: null!,
     cidade: "",
     uf: "",
     nome: "",
@@ -36,11 +37,11 @@ export class SedeCreateComponent {
   }
 
   create(): void {
-    this.message("Sede salva!")
+  
     console.log(this.sede)
     this.service.create(this.sede).subscribe((resposta) => {
-      this.message("Sede salva!")
       this.router.navigate(['sedes'])
+      this.message("Sede salva!")
     })
   }
 

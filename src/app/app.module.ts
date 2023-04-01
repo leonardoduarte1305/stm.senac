@@ -33,6 +33,7 @@ import { ItinerarioCreateComponent } from './views/components/itinerario/itinera
 import { ItinerarioUpdateComponent } from './views/components/itinerario/itinerario-update/itinerario-update.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { SnackBarComponent } from './views/components/template/snack-bar/snack-bar.component';
 
 
 
@@ -56,7 +57,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MotoristaCreateComponent,
     ItinerariosComponent,
     ItinerarioCreateComponent,
-    ItinerarioUpdateComponent
+    ItinerarioUpdateComponent,
+    SnackBarComponent
 
   ],
   imports: [
