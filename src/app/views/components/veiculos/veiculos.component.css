@@ -43,11 +43,6 @@ div {
     margin-right: auto;
 }
 
-table {
-    width: 100%;
-}
-
-
 
 ::ng-deep .mat-mdc-option .mdc-list-item__primary-text {
     color: chocolate;
@@ -70,11 +65,6 @@ table {
 }
 
 table {
-background-color: rgba(0, 0, 0, 0.103);
-}
-i{
-    background-color: rgb(40, 180, 59);
-    padding: 2px;
-    border-radius: 50%;
-
-}
+    background-color: rgba(0, 0, 0, 0.103);
+    }
+    

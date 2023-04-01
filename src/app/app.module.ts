@@ -34,6 +34,10 @@ import { ItinerarioUpdateComponent } from './views/components/itinerario/itinera
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { SnackBarComponent } from './views/components/template/snack-bar/snack-bar.component';
+import { VeiculoUpdateComponent } from './views/components/veiculos/veiculo-update/veiculo-update.component';
+import { MotoristaUpdateComponent } from './views/components/motorista/motorista-update/motorista-update.component';
+import { SedeUpdateComponent } from './views/components/sedes/sede-update/sede-update.component';
+
 
 
 
@@ -58,7 +62,10 @@ import { SnackBarComponent } from './views/components/template/snack-bar/snack-b
     ItinerariosComponent,
     ItinerarioCreateComponent,
     ItinerarioUpdateComponent,
-    SnackBarComponent
+    SnackBarComponent,
+    VeiculoUpdateComponent,
+    MotoristaUpdateComponent,
+    SedeUpdateComponent
 
   ],
   imports: [

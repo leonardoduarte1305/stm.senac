@@ -1,0 +1,41 @@
+<header>
+    <h1>ATUALIZAÇÃO DE VEICULO</h1>
+</header>
+
+
+<form  action="">
+
+    <div class="box-input">
+        <label for="">Modelo</label>
+        <input [(ngModel)]="veiculo.modelo" type="text"  required name="modelo" id=""
+          matInput placeholder="insira o modelo do veiculo">
+        <span></span>
+    </div>
+    <div class="box-input">
+        <label for="">Marca</label>
+        <input [(ngModel)]="veiculo.marca" required type="text" name="marca" id="" placeholder="inseira a marac do veículo">
+        <span ></span>
+    </div>
+    <div class="box-input">
+        <label for="">Placa</label>
+        <input [(ngModel)]="veiculo.placa" type="text" name="placa" id="" placeholder="inseira a placa do veículo"
+            onkeyup="this.value = this.value.toUpperCase()" maxlength="7">
+    </div>
+    <div class="box-input">
+        <label for="">Ano</label>
+        <input [(ngModel)]="veiculo.ano" type="number" name="ano" id="" placeholder="ano do veiculo">
+    </div>
+    <div class="box-input">
+        <label for="">Renavam</label>
+        <input [(ngModel)]="veiculo.renavan" type="number" name="renavan" id="" placeholder="Renavam do veículo">
+    </div>
+    <div class="box-input">
+        <label for="">Tamanho</label>
+        <input [(ngModel)]="veiculo.tamanho" type="text" name="tamanho" id=""
+            placeholder="Descreva o tamanho do veículo">
+
+    </div>
+
+    <button class="btn-cadastrar">ATUALIZAR</button>
+    <button (click)="cancelar() " class="btn-cancelar">CANCELAR</button>
+</form>

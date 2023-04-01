@@ -10,6 +10,9 @@ import { SedeCreateComponent } from './views/components/sedes/sede-create/sede-c
 import { SedesComponent } from './views/components/sedes/sedes.component';
 import { VeiculoCreateComponent } from './views/components/veiculos/veiculo-create/veiculo-create.component';
 import { VeiculosComponent } from './views/components/veiculos/veiculos.component';
+import { MotoristaUpdateComponent } from './views/components/motorista/motorista-update/motorista-update.component';
+import { VeiculoUpdateComponent } from './views/components/veiculos/veiculo-update/veiculo-update.component';
+import { SedeUpdateComponent } from './views/components/sedes/sede-update/sede-update.component';
 
 
 const routes: Routes = [
@@ -55,8 +58,25 @@ const routes: Routes = [
   },
 
   {
-    path: "itinerarios/update",
+    path: "itinerarios/update/:id",
     component: ItinerarioUpdateComponent
+  },
+
+  {
+    path: "motoristas/update/:id",
+    component: MotoristaUpdateComponent
+  }
+  ,
+
+  {
+    path: "veiculos/update/:id",
+    component: VeiculoUpdateComponent
+  }
+  ,
+
+  {
+    path: "sedes/update/:id",
+    component: SedeUpdateComponent
   }
 
 

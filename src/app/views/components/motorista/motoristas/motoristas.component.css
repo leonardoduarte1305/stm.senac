@@ -4,7 +4,7 @@
     margin-right: auto;
 }
 ::ng-deep .mat-mdc-paginator-container {
-    background-color: rgb(37, 37, 37);
+
 }
 .bt-create {
     width: 80%;
@@ -46,3 +46,8 @@
     border-color: chocolate;
     color: white;
 }
+
+table {
+    background-color: rgba(0, 0, 0, 0.103);
+    }
+    

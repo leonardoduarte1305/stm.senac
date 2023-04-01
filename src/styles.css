@@ -45,3 +45,23 @@ textarea {
 
 
 }
+.delet i{
+    background-color: red;
+    padding: 2px;
+    border-radius: 50%;
+    color: white;
+    margin-left: 20px;
+
+}
+.up i{
+    background-color: rgb(40, 180, 59);
+    padding: 2px;
+    border-radius: 50%;
+    color: white;
+
+}
+
+table {
+    background-color: rgba(0, 0, 0, 0.103);
+    }
+    

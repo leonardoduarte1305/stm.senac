@@ -1,0 +1,29 @@
+<header>
+    <h1>ATUALIZAÇÃO DE MOTORISTA</h1>
+</header>
+<form action="">
+    <div class="box-input">
+        <label for="">Nome</label>
+        <input [(ngModel)]="motorista.nome" type="text" name="nome" id="" placeholder="insira o nome do motorista">
+    </div>
+    <div class="box-input">
+        <label for="">Categoria da Carteira</label>
+        <select [(ngModel)]="motorista.categoriaCarteira" name="categoriaCarteira" id="categoriaCarteira" >
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="AB">AB</option>
+        </select>
+
+    </div>
+    <div class="box-input">
+        <label for="">Email</label>
+        <input [(ngModel)]="motorista.email" type="email" name="email" id="" placeholder="inseira o email do motorista">
+    </div>
+    <div class="buttons">
+        <button  class="btn-cadastrar">ATUALIZAR</button>
+        <button (click)="cancelar()" class="btn-cancelar">CANCELAR</button>
+    </div>
+</form>

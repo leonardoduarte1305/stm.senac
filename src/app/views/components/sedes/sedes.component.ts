@@ -17,7 +17,7 @@ export class SedesComponent implements AfterViewInit {
 
   sedes: Sede[] = [];
 
-  displayedColumns: string[] = ['rua', 'numero', 'cep', 'cidade', 'uf', 'nome', 'observacao'];
+  displayedColumns: string[] = ['rua', 'numero', 'cep', 'cidade', 'uf', 'nome', 'observacao','action'];
   dataSource = new MatTableDataSource<Sede>(this.sedes);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
