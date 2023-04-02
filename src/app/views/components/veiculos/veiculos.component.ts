@@ -43,6 +43,11 @@ this.service.findAll().subscribe((resposta)=>{
 navigateToCreate():void{
 this.router.navigate(['veiculos/create'])
 }
+delet():void{
+  this.service.delet(14);
+  alert("excluido")
+  
+}
 }
 
 

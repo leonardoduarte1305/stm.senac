@@ -1,5 +1,4 @@
 export interface Material {
-    material: String,
-    qts: Number,
-    setor: String
+    nome: String,
+    descricao: String
 }

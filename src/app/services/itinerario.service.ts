@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Itinerario } from '../models/itinerario';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,9 +10,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ItinerarioService {
 
   constructor(
+    private http: HttpClient,
     private snack: MatSnackBar
   ) { }
-
+  baseUrl: String = "http://localhost:8080";
 
   mensagem(msg: String) {
     this.snack.open(`${msg}`,'Ok',{
@@ -19,6 +23,9 @@ export class ItinerarioService {
     }
     )
   }
-
+  findAll(): Observable<Itinerario[]> {
+    const url = this.baseUrl + '/viagens'
+    return this.http.get<Itinerario[]>(url);
+  }
 
 }

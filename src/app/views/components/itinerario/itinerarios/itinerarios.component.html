@@ -1,8 +1,17 @@
-
-<header  class="bt-create">
+<header class="bt-create">
     <h1>ITINERARIOS</h1>
     <button (click)="navigationToCreate()">Criar Itinerário</button>
 </header>
 
+<div class="test">
 
+    <button  (click)="findAll()">LISTAR</button>
+    <ul>
+        <li *ngFor="let s of itinerarios" (click)="getId(s)">
+            <h4> destinos: {{s.destinos}}</h4>
+            <p> status: {{s.encerrado}}</p>
+            <p> status: {{s.id}}</p>
+        </li>
+    </ul>
 
+</div>

@@ -68,4 +68,13 @@ i {
 mat-drawer {
     background-color: #1A1D24;
     width: 15%;
+
+}
+.info{
+    height: 55%;
+    
+
+    margin-left: 10px;
+    display: flex;
+align-items: flex-end;
 }

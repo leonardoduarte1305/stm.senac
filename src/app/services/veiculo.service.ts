@@ -28,6 +28,10 @@ export class VeiculoService {
     const url = this.baseUrl + '/veiculos/' + veiculo.id;
     return this.http.put<Veiculo>(url, veiculo);
   }
+  delet(id:Number): Observable<any> {
+    const url = this.baseUrl + '/veiculos/' + id;
+    return this.http.delete(url);
+  }
 
   message(msg: String): void {
 
