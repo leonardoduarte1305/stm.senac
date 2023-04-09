@@ -70,6 +70,13 @@ mat-drawer {
     width: 15%;
 
 }
+
+@media (max-width:500px) {
+    mat-drawer{
+        width: 35%;
+    }
+
+}
 .info{
     height: 55%;
     

@@ -6,8 +6,12 @@ export interface Itinerario {
     motoristaId: Number,
     veiculoId: Number,
     destinos: Destino[],
-    dataTimeSaida: String,
-    dateTimeVolta: String,
+    datetimeSaida: String,
+    datetimeVolta: String,
     encerrado:String,
-    status:String
+    status:{
+        confirmacao:string
+    },
+    motorista:string,
+    veiculo:string
 }

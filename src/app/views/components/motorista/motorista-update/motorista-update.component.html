@@ -9,12 +9,7 @@
     <div class="box-input">
         <label for="">Categoria da Carteira</label>
         <select [(ngModel)]="motorista.categoriaCarteira" name="categoriaCarteira" id="categoriaCarteira" >
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-            <option value="E">E</option>
-            <option value="AB">AB</option>
+            <option *ngFor="let carteira of categoriasCarteira" value="{{carteira}}">{{carteira}}</option>
         </select>
 
     </div>
@@ -23,7 +18,7 @@
         <input [(ngModel)]="motorista.email" type="email" name="email" id="" placeholder="inseira o email do motorista">
     </div>
     <div class="buttons">
-        <button  class="btn-cadastrar">ATUALIZAR</button>
+        <button class="btn-cadastrar" (click)="update()">ATUALIZAR</button>
         <button (click)="cancelar()" class="btn-cancelar">CANCELAR</button>
     </div>
 </form>

@@ -14,14 +14,14 @@ export class MotoristasComponent implements AfterViewInit {
 
   motoristas: Motorista[] = [];
 
-  displayedColumns: string[] = ['nome', 'categoriaCarteira', 'email', 'action'];
+  displayedColumns: string[] = ['id', 'nome', 'categoriaCarteira', 'email', 'action'];
   dataSource = new MatTableDataSource<Motorista>(this.motoristas);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private servive: MotoristaService,
-    private router:Router
+    private router: Router
 
   ) { }
 
@@ -37,7 +37,19 @@ export class MotoristasComponent implements AfterViewInit {
       console.log(resposta);
     })
   }
-  navigationToCreate():void{
-  this.router.navigate(['motoristas/create']);
+  navigationToCreate(): void {
+    this.router.navigate(['motoristas/create']);
+  }
+
+  delet(id: any): void {
+    if (confirm("Deseja excluir o motorista") == false) {
+      this.servive.message("Nenhuma alteração feita")
+    } else {
+
+      this.servive.delet(id).subscribe(resposta => {
+        this.findAll();
+        this.servive.message("Motorista excliuso")
+      })
+    }
   }
 }

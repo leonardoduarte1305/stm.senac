@@ -45,23 +45,30 @@ textarea {
 
 
 }
-.delet i{
-    background-color: red;
+
+.delet i {
+    background-color: transparent;
     padding: 2px;
     border-radius: 50%;
-    color: white;
+    color: chocolate;
     margin-left: 20px;
+    font-size: 2em;
 
 }
-.up i{
-    background-color: rgb(40, 180, 59);
+
+.up i {
+    background-color: transparent;
     padding: 2px;
     border-radius: 50%;
-    color: white;
-
+    color: rgb(0, 157, 219);
+    font-size: 2em;
 }
 
+.up i:hover, .delet i:hover{
+    cursor: pointer;
+    transition: ease-in-out 0.4s;
+    background-color: white;
+}
 table {
     background-color: rgba(0, 0, 0, 0.103);
-    }
-    
+}

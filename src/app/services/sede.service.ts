@@ -25,6 +25,19 @@ export class SedeService {
     const url = this.baseUrl + '/sedes';
     return this.http.post<Sede>(url, sede);
   }
+  findById(id: any): Observable<Sede> {
+    const url = this.baseUrl + "/sedes/" + id;
+    return this.http.get<Sede>(url);
+  }
+  update(sede: Sede): Observable<Sede> {
+    const url = this.baseUrl + '/sedes/' + sede.id;
+    return this.http.put<Sede>(url, sede);
+  }
 
 
+
+  delet(id: any): Observable<Sede> {
+    const url = this.baseUrl + '/sedes/' + id;
+    return this.http.delete<Sede>(url)
+  }
 }

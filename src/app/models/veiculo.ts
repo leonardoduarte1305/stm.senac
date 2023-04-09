@@ -1,9 +1,9 @@
 export interface Veiculo{
     id:Number;
     modelo: String;
-    marca: String;
+    marca: string;
     placa: String;
     ano:String;
-    renavan:String;
+    renavan:string;
     tamanho:String;
 }

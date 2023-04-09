@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Sede } from 'src/app/models/sede';
@@ -17,7 +18,7 @@ export class SedesComponent implements AfterViewInit {
 
   sedes: Sede[] = [];
 
-  displayedColumns: string[] = ['rua', 'numero', 'cep', 'cidade', 'uf', 'nome', 'observacao','action'];
+  displayedColumns: string[] = ['id', 'nome', 'numero', 'cep', 'cidade', 'uf', 'rua', 'observacao', 'action'];
   dataSource = new MatTableDataSource<Sede>(this.sedes);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -25,9 +26,10 @@ export class SedesComponent implements AfterViewInit {
 
   constructor(
     private router: Router,
-    private service: SedeService
+    private service: SedeService,
+    private snack: MatSnackBar
   ) { }
-  
+
   ngAfterViewInit() {
     this.findAll();
   }
@@ -46,6 +48,25 @@ export class SedesComponent implements AfterViewInit {
   navigateToCreate(): void {
     this.router.navigate(['sede/create'])
   }
+  delet(id: any): void {
+    if (confirm("deseja excluir a sede") == true) {
 
+      this.service.delet(id).subscribe(resposta => {
+        this.findAll();
+        this.message("Sede excluida com sucesso")
+      })
+    } else {
+      this.message("Nenhuma alteração feita")
+    }
+  }
 
+  message(msg: String): void {
+    this.snack.open(`${msg}`, 'OK', {
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      duration: 3000,
+      panelClass: ["barr"]
+
+    })
+  }
 }

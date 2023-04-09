@@ -1,17 +1,28 @@
 <header class="bt-create">
-    <h1>ITINERARIOS</h1>
-    <button (click)="navigationToCreate()">Criar Itinerário</button>
+    <h1>VIAGENS</h1>
+    <button (click)="navigationToCreate()">Criar Viagem</button>
 </header>
 
 <div class="test">
 
-    <button  (click)="findAll()">LISTAR</button>
     <ul>
-        <li *ngFor="let s of itinerarios" (click)="getId(s)">
-            <h4> destinos: {{s.destinos}}</h4>
-            <p> status: {{s.encerrado}}</p>
-            <p> status: {{s.id}}</p>
+        <li *ngFor="let viagens of itinerarios">
+            <!--colocar local de saida no lugar do id-->
+            <!--Arrumar posição das informações dispostas-->
+            <!--realizar update-->
+            <h3> ViagemID: {{viagens.id}}</h3>
+            <p> destinos: {{viagens.destinos.length}}</p>
+            <p> Andamento: {{viagens.encerrado}}</p>
+            <p> status: {{viagens.status.confirmacao}}</p>
+            <p> Data Saida: {{viagens.datetimeSaida}}</p>
+            <p> Data Volta: {{viagens.datetimeVolta}}</p>
+            <p> Nome do Motorista: {{viagens.motorista}}</p>
+            <p> Veículo: {{viagens.veiculo}}</p>
+
+            <button>ATUALIZAR</button>
+            <button (click)="getId(viagens)">EXCLUIR</button>
         </li>
+
     </ul>
 
 </div>

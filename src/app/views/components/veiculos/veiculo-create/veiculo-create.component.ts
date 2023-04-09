@@ -19,7 +19,7 @@ export class VeiculoCreateComponent implements OnInit {
 
 
   veiculo: Veiculo = {
-    id:null!,
+    id: null!,
     modelo: "",
     marca: "",
     placa: "",
@@ -39,49 +39,104 @@ export class VeiculoCreateComponent implements OnInit {
   constructor(
     private router: Router,
     private service: VeiculoService,
-    private stick : MatSnackBar
+    private stick: MatSnackBar
   ) {
 
   }
   create(): void {
-    let x = document.getElementsByTagName('input');
-    if (this.veiculo.modelo.trim() === "" || this.veiculo.marca.trim() == "") {
-      this.service.message('Deve preencher todos os campos obrigatorios');
-      for (let i = 0; x.length-1 > i; i++) {
-        x[i].style.borderBottomColor = 'red';
-   
-      }
-    }else{
-      for (let i = 0; x.length-1 > i; i++) {
-        x[i].style.borderBottomColor = 'green';
-      }
-    }
+    /*    
+        let x = document.getElementsByTagName('input');
+        if (this.veiculo.modelo.trim() === "" || this.veiculo.marca.trim() == "") {
+          this.service.message('Deve preencher todos os campos obrigatorios');
+          for (let i = 0; x.length - 1 > i; i++) {
+            x[i].style.borderBottomColor = 'red';
+    
+          }
+        } else {
+          for (let i = 0; x.length - 1 > i; i++) {
+            x[i].style.borderBottomColor = 'green';
+          }
+        }
+    */
+    if (this.validarRenavam(this.veiculo.renavan) === true) {
 
-
-    console.log(this.veiculo)
-    this.service.create(this.veiculo).subscribe((resposta) => {
-      this.router.navigate(['veiculos'])
-      this.service.message("Veículo Criado!")
+      console.log(this.veiculo)
+      this.service.create(this.veiculo).subscribe((resposta) => {
+        this.router.navigate(['veiculos'])
+        this.service.message("Veículo Criado!")
+      }
+      )
     }
-    )
   }
   cancelar(): void {
     this.router.navigate(['veiculos']);
   }
 
 
-  validationModelo() {
-    if (this.modelo.invalid) {
-      return 'o campo modelo é obrigatorio';
-    }
-    return false
-  }
 
-  open(){
-    this.stick.openFromComponent(SnackBarComponent,{
-      duration:1000,
-      horizontalPosition:'center',
-      verticalPosition:'top'
+  open() {
+    this.stick.openFromComponent(SnackBarComponent, {
+      duration: 1000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
     })
   }
+
+  validarRenavam(renavan: string): boolean {
+    const renavamRegex = /^[0-9]{11}$/;
+  
+    return renavamRegex.test(renavan);
+  }
+
+  carBrands: string[] = [
+    "Acura",
+    "Alfa Romeo",
+    "Aston Martin",
+    "Audi",
+    "Bentley",
+    "BMW",
+    "Bugatti",
+    "Buick",
+    "Cadillac",
+    "Chevrolet",
+    "Chrysler",
+    "Citroen",
+    "Dodge",
+    "Ferrari",
+    "Fiat",
+    "Ford",
+    "GMC",
+    "Honda",
+    "Hyundai",
+    "Infiniti",
+    "Jaguar",
+    "Jeep",
+    "Kia",
+    "Lamborghini",
+    "Land Rover",
+    "Lexus",
+    "Lincoln",
+    "Lotus",
+    "Maserati",
+    "Mazda",
+    "McLaren",
+    "Mercedes-Benz",
+    "Mini",
+    "Mitsubishi",
+    "Nissan",
+    "Opel",
+    "Peugeot",
+    "Porsche",
+    "Ram",
+    "Renault",
+    "Rolls-Royce",
+    "Saab",
+    "Subaru",
+    "Suzuki",
+    "Tesla",
+    "Toyota",
+    "Volkswagen",
+    "Volvo"
+  ];
+
 }

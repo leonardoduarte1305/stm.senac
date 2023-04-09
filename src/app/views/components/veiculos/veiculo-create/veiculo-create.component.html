@@ -6,14 +6,15 @@
 <form  action="">
 
     <div class="box-input">
-        <label for="">Modelo</label>
-        <input [(ngModel)]="veiculo.modelo" type="text" [formControl]="modelo" required name="modelo" id=""
-          matInput placeholder="insira o modelo do veiculo">
+        <label for="">Marca</label>
+        <select name="marca" id="marca" [(ngModel)]="veiculo.marca" >
+            <option  *ngFor="let s of carBrands" value="{{s}}" >{{s}}</option>
+        </select>
         <span></span>
     </div>
     <div class="box-input">
-        <label for="">Marca</label>
-        <input [(ngModel)]="veiculo.marca" [formControl]="marca" required type="text" name="marca" id="" placeholder="inseira a marac do veículo">
+        <label for="">Modelo</label>
+        <input [(ngModel)]="veiculo.modelo" required type="text" name="modelo" id="" placeholder="inseira o modelo do veículo">
         <span ></span>
     </div>
     <div class="box-input">
@@ -27,7 +28,8 @@
     </div>
     <div class="box-input">
         <label for="">Renavam</label>
-        <input [(ngModel)]="veiculo.renavan" type="number" name="renavan" id="" placeholder="Renavam do veículo">
+        <input [(ngModel)]="veiculo.renavan" type="text" name="renavan" id="" placeholder="Renavam do veículo" maxlength="11">
+        <span  *ngIf="veiculo.renavan && !validarRenavam(veiculo.renavan)">O renavem deve conter 11 números</span>
     </div>
     <div class="box-input">
         <label for="">Tamanho</label>

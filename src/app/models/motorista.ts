@@ -1,6 +1,6 @@
 export interface Motorista {
- 
-    nome: String,
+    id: number
+    nome: string,
     categoriaCarteira: String,
     email: String
 }

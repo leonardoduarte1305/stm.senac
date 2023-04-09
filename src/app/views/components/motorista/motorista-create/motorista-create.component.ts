@@ -13,6 +13,7 @@ export class MotoristaCreateComponent {
   
   
   motorista: Motorista = {
+    id:null!,
     nome: "",
     categoriaCarteira: "",
     email: ""
@@ -33,5 +34,17 @@ export class MotoristaCreateComponent {
   cancelar(): void {
     this.router.navigate(['motoristas']);
   }
+
+   categoriasCarteira: string[] = [
+    'A', // Moto
+    'B', // Carro
+    'C', // Caminhão
+    'D', // Ônibus
+    'E', // Carreta
+    'AB', // Carro e Moto
+    'AC', // Ônibus e Caminhão
+    'AD', // Ônibus e Carreta
+    'AE', // Carreta com mais de 6 eixos
+  ];
 
 }

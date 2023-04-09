@@ -37,7 +37,8 @@ import { SnackBarComponent } from './views/components/template/snack-bar/snack-b
 import { VeiculoUpdateComponent } from './views/components/veiculos/veiculo-update/veiculo-update.component';
 import { MotoristaUpdateComponent } from './views/components/motorista/motorista-update/motorista-update.component';
 import { SedeUpdateComponent } from './views/components/sedes/sede-update/sede-update.component';
-
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { DiaLogExcluirComponent } from './views/components/template/info/dia-log-excluir/dia-log-excluir.component';
 
 
 
@@ -65,7 +66,8 @@ import { SedeUpdateComponent } from './views/components/sedes/sede-update/sede-u
     SnackBarComponent,
     VeiculoUpdateComponent,
     MotoristaUpdateComponent,
-    SedeUpdateComponent
+    SedeUpdateComponent,
+    DiaLogExcluirComponent
 
   ],
   imports: [
@@ -85,7 +87,8 @@ import { SedeUpdateComponent } from './views/components/sedes/sede-update/sede-u
     MatPaginatorModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatTooltipModule
 
   ],
   providers: [],

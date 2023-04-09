@@ -11,6 +11,7 @@ export class VeiculoService {
   //Colocar url base
   baseUrl: String = "http://localhost:8080";
 
+  
   constructor(private http: HttpClient,
     private snack: MatSnackBar
   ) { }
@@ -18,6 +19,10 @@ export class VeiculoService {
     const url = this.baseUrl + '/veiculos';
     return this.http.get<Veiculo[]>(url);
 
+  }
+  findbyId(id:any):Observable<Veiculo>{
+    const url = this.baseUrl+'/veiculos/'+id;
+    return this.http.get<Veiculo>(url);
   }
   create(veiculo: Veiculo): Observable<Veiculo> {
     const url = this.baseUrl + '/veiculos';
