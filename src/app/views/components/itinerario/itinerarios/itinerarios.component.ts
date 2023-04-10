@@ -28,31 +28,46 @@ export class ItinerariosComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.findAll()
+    this.findAll();
+
 
   }
   navigationToCreate(): void {
     this.router.navigate(['itinerarios/create'])
   }
 
-  findAll() {
+  findAll():void {
+    
     this.service.findAll().subscribe((resposta) => {
       this.itinerarios = resposta;
       for (let i = 0; i < this.itinerarios.length; i++) {
         this.serviceMotorista.findById(this.itinerarios[i].motoristaId).subscribe(resposta => {
           this.itinerarios[i].motorista = resposta.nome;
-        
+
         })
         this.serviceVeiculo.findbyId(this.itinerarios[i].veiculoId).subscribe(resposta => {
           this.itinerarios[i].veiculo = resposta.marca;
         })
         console.log(this.itinerarios[i].motoristaId);
 
-
       }
-
-
+      
     })
+   
+
+  }
+  confirmacao():void{
+    let x = document.getElementsByTagName("h5")
+    for (let i = 0; i < this.itinerarios.length; i++) {
+
+      if (this.itinerarios[i].status.confirmacao === "CONFIRMADO") {
+        x[i].style.backgroundColor = "green"
+      } else {
+
+
+        console.log(this.itinerarios[i].status.confirmacao);
+      }
+    }
   }
 
   getId(s: Itinerario) {
@@ -63,4 +78,6 @@ export class ItinerariosComponent implements OnInit {
     })
 
   }
+
+
 }

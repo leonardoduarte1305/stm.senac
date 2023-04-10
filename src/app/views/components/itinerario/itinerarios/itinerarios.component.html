@@ -5,21 +5,50 @@
 
 <div class="test">
 
+
     <ul>
         <li *ngFor="let viagens of itinerarios">
             <!--colocar local de saida no lugar do id-->
             <!--Arrumar posição das informações dispostas-->
             <!--realizar update-->
             <h3> ViagemID: {{viagens.id}}</h3>
-            <p> destinos: {{viagens.destinos.length}}</p>
-            <p> Andamento: {{viagens.encerrado}}</p>
-            <p> status: {{viagens.status.confirmacao}}</p>
-            <p> Data Saida: {{viagens.datetimeSaida}}</p>
-            <p> Data Volta: {{viagens.datetimeVolta}}</p>
-            <p> Nome do Motorista: {{viagens.motorista}}</p>
-            <p> Veículo: {{viagens.veiculo}}</p>
+            <section class="container">
+                <div class="card">
+                    <h4>Total de destinos:</h4>
+                    <p> {{viagens.destinos.length}}</p>
+                </div>
 
-            <button>ATUALIZAR</button>
+                <div class="card">
+                    <h4>Andamento:</h4>
+                    <p> {{viagens.encerrado}}</p>
+                </div>
+                <div class="card">
+                    <h4>status: </h4>
+                    <div class="span">
+                        <p> {{viagens.status.confirmacao}} </p>
+                        <h5 class="status"> </h5>
+                    </div>
+
+                </div>
+                <div class="card">
+                    <h4>Data Saida:</h4>
+                    <p> {{viagens.datetimeSaida}}</p>
+                </div>
+                <div class="card">
+                    <h4>Data Volta:</h4>
+                    <p> {{viagens.datetimeVolta}}</p>
+                </div>
+                <div class="card">
+                    <h4>Nome Motorista</h4>
+                    <p> {{viagens.motorista}}</p>
+                </div>
+                <div class="card">
+                    <h4>Veiculo</h4>
+                    <p> {{viagens.veiculo}}</p>
+                </div>
+            </section>
+
+            <button (click)="confirmacao()">EDITAR</button>
             <button (click)="getId(viagens)">EXCLUIR</button>
         </li>
 

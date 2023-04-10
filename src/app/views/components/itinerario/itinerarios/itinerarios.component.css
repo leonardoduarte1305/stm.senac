@@ -44,6 +44,7 @@ display: flex;
 align-items: center;
 flex-direction: column;
 justify-content: center;
+
 }
 
 .test button{
@@ -78,4 +79,27 @@ li:hover{
 h3{
     color: chocolate;
     font-weight: bold;
+}
+.container{
+    display: flex;
+}
+.container .card{
+    margin: 2em;
+}
+.container .card h4{
+    font-weight: bold;
+    color: rgb(117, 117, 117);
+}
+.status{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: yellow;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+.span{
+    display: flex;
+    
+    align-items: center;
 }
