@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Motorista } from 'src/app/models/motorista';
 import { MotoristaService } from 'src/app/services/motorista.service';
@@ -8,12 +9,12 @@ import { MotoristaService } from 'src/app/services/motorista.service';
   templateUrl: './motorista-create.component.html',
   styleUrls: ['./motorista-create.component.css']
 })
-export class MotoristaCreateComponent {
+export class MotoristaCreateComponent implements OnInit {
 
-  
-  
+  motoristaForm!: FormGroup;
+
   motorista: Motorista = {
-    id:null!,
+    id: null!,
     nome: "",
     categoriaCarteira: "",
     email: ""
@@ -24,7 +25,30 @@ export class MotoristaCreateComponent {
     private servico: MotoristaService
   ) { }
 
+  ngOnInit(): void {
+    this.motoristaForm = new FormGroup({
+      id: new FormControl(''),
+      nome: new FormControl('',[Validators.required, Validators.pattern(/\S/)]),
+      categoriaCarteira: new FormControl('',[Validators.required]),
+      email: new FormControl('',[Validators.email,Validators.required, Validators.pattern(/\S/)]),
+
+    })
+  }
+  get nome(){
+    return this.motoristaForm.get('nome')!;
+  }
+  get categoriaCarteira(){
+    return this.motoristaForm.get('categoriaCarteira')!;
+  }
+  get email(){
+    return this.motoristaForm.get('email')!;
+  }
+
   create(): void {
+    if(this.motoristaForm.invalid){
+      console.log("Nada feito")
+      return;
+    }
     console.log(this.motorista)
     this.servico.create(this.motorista).subscribe((resposta) => {
       this.router.navigate(['motoristas']);
@@ -35,7 +59,8 @@ export class MotoristaCreateComponent {
     this.router.navigate(['motoristas']);
   }
 
-   categoriasCarteira: string[] = [
+  categoriasCarteira: string[] = [
+    '',
     'A', // Moto
     'B', // Carro
     'C', // Caminhão
@@ -47,4 +72,7 @@ export class MotoristaCreateComponent {
     'AE', // Carreta com mais de 6 eixos
   ];
 
+  submit() {
+
+  }
 }

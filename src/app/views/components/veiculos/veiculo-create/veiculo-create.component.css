@@ -49,6 +49,8 @@ form button {
     font-weight: bold;
     background-color: chocolate;
     color: black;
+    
+
 }
 
 .btn-cadastrar:hover {
@@ -72,10 +74,10 @@ form button {
 
 select {
     border: none;
-   
+
     width: 104%;
     color: white;
-    border:none;
+    border: none;
     font-size: 1.5em;
 }
 
@@ -97,4 +99,37 @@ header h1 {
 
 .btn-cancelar:hover {
     color: red;
+}
+
+@media (width<1300px) {
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    form div {
+        width: 100%;
+    }
+
+    form button {
+        width: 80%;
+    }
+
+}
+
+.error {
+    color: yellow;
+    display: flex;
+    align-items: center;
+}
+
+.error i {
+    margin-right: 10px;
+}
+
+textarea {
+    resize: none;
+    height: 55px;
 }

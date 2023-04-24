@@ -45,6 +45,7 @@ import { DiaLogExcluirComponent } from './views/components/template/info/dia-log
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -89,7 +90,6 @@ import { DiaLogExcluirComponent } from './views/components/template/info/dia-log
     MatSnackBarModule,
     MatFormFieldModule,
     MatTooltipModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]

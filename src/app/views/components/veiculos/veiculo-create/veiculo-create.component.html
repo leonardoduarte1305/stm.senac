@@ -3,38 +3,40 @@
 </header>
 
 
-<form  action="">
+<form  action="" (ngSubmit)="submit()" [formGroup]="veiculoForm" #formDir="ngForm">
 
     <div class="box-input">
         <label for="">Marca</label>
-        <select name="marca" id="marca" [(ngModel)]="veiculo.marca" >
+        <select name="marca" id="marca" [(ngModel)]="veiculo.marca" formControlName="marca">
             <option  *ngFor="let s of carBrands" value="{{s}}" >{{s}}</option>
         </select>
-        <span></span>
+        <span *ngIf="marca.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> O campo nome não pode ser nulo</span>
     </div>
     <div class="box-input">
         <label for="">Modelo</label>
-        <input [(ngModel)]="veiculo.modelo" required type="text" name="modelo" id="" placeholder="inseira o modelo do veículo">
-        <span ></span>
+        <input [(ngModel)]="veiculo.modelo" required type="text" name="modelo" id="" placeholder="inseira o modelo do veículo"  formControlName="modelo" maxlength="50">
+        <span *ngIf="modelo.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> O campo nome não pode ser nulo</span>
     </div>
     <div class="box-input">
         <label for="">Placa</label>
         <input [(ngModel)]="veiculo.placa" type="text" name="placa" id="" placeholder="inseira a placa do veículo"
-            onkeyup="this.value = this.value.toUpperCase()" maxlength="7">
+            onkeyup="this.value = this.value.toUpperCase()" maxlength="7"  formControlName="placa">
+            <span *ngIf="placa.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> Digite uma placa valida nos padroes do mercosul</span>
     </div>
     <div class="box-input">
         <label for="">Ano</label>
-        <input [(ngModel)]="veiculo.ano" type="number" name="ano" id="" placeholder="ano do veiculo">
+        <input [(ngModel)]="veiculo.ano" type="number" name="ano" id="" placeholder="ano do veiculo"  formControlName="ano">
+        <span *ngIf="ano.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> Insira um ano válido</span>
     </div>
     <div class="box-input">
         <label for="">Renavam</label>
-        <input [(ngModel)]="veiculo.renavan" type="text" name="renavan" id="" placeholder="Renavam do veículo" maxlength="11">
-        <span  *ngIf="veiculo.renavan && !validarRenavam(veiculo.renavan)">O renavem deve conter 11 números</span>
+        <input [(ngModel)]="veiculo.renavan" type="text" name="renavan" id="" placeholder="Renavam do veículo" maxlength="11"  formControlName="renavam">
+        <span  *ngIf="renavam.invalid && formDir.submitted " class="error"><i class="material-icons" >priority_high</i>  O renavem deve conter 11 números</span>
     </div>
     <div class="box-input">
         <label for="">Tamanho</label>
         <input [(ngModel)]="veiculo.tamanho" type="text" name="tamanho" id=""
-            placeholder="Descreva o tamanho do veículo">
+            placeholder="Descreva o tamanho do veículo" formControlName="tamanho">
 
     </div>
 

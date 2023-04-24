@@ -1,21 +1,23 @@
 <header>
     <h1>INSERÇÃO DE MOTORISTA</h1>
 </header>
-<form action="">
+<form action="" (ngSubmit)="submit()" [formGroup]="motoristaForm" #formDir="ngForm">
     <div class="box-input">
         <label for="">Nome</label>
-        <input [(ngModel)]="motorista.nome" type="text" name="nome" id="" placeholder="insira o nome do motorista">
+        <input [(ngModel)]="motorista.nome" type="text" name="nome" id="" placeholder="insira o nome do motorista" formControlName="nome" maxlength="100">
+        <span *ngIf="nome.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> O campo nome não pode ser nulo</span>
     </div>
     <div class="box-input">
         <label for="">Categoria da Carteira</label>
-        <select [(ngModel)]="motorista.categoriaCarteira" name="categoriaCarteira" id="categoriaCarteira" >
+        <select [(ngModel)]="motorista.categoriaCarteira" name="categoriaCarteira" id="categoriaCarteira" formControlName="categoriaCarteira" >
             <option *ngFor="let carteira of categoriasCarteira" value="{{carteira}}">{{carteira}}</option>
         </select>
-
+        <span *ngIf="categoriaCarteira.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> Selecione uma categoria de carteira</span>
     </div>
     <div class="box-input">
         <label for="">Email</label>
-        <input [(ngModel)]="motorista.email" type="email" name="email" id="" placeholder="inseira o email do motorista">
+        <input [(ngModel)]="motorista.email" type="email" name="email" id="" placeholder="inseira o email do motorista" formControlName="email" maxlength="100">
+        <span *ngIf="email.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> Digite um email valido</span>
     </div>
     <div class="buttons">
         <button (click)="create()" class="btn-cadastrar">CADASTRAR</button>

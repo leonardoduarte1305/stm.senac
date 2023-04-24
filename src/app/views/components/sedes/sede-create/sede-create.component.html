@@ -1,34 +1,43 @@
-<form action="">
+<form (ngSubmit)="submit()" [formGroup]="sedeForm" #formDir="ngForm">
     <header>
         <h1>CADASTRO DE SEDE</h1>
     </header>
     <section class="container-inputs">
-        <div class="box-input">
+        <div class="box-input-nome">
             <label for="">Nome</label>
-            <input [(ngModel)]="sede.nome" type="text" name="nome" id="" placeholder="Insira um nome de identificação">
-        </div>
-        <div class="box-input">
-            <label for="">Rua</label>
-            <input [(ngModel)]="sede.rua" type="text" name="rua" id="" placeholder="rua">
-        </div>
-        <div class="box-input-numero">
-            <label for="">Número</label>
-            <input [(ngModel)]="sede.numero" type="number" name="numero" id="" placeholder="numero">
+            <input  maxlength="60" [(ngModel)]="sede.nome" type="text" name="nome" id="" placeholder="Insira um nome de identificação" formControlName="nome">
+            <span *ngIf="nome.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> O campo nome não pode ser nulo</span>
         </div>
     </section>
     <section class="container-inputs">
-
+        <div class="box-input">
+            <label for="">Rua</label>
+            <input maxlength="100"  [(ngModel)]="sede.rua" type="text" name="rua" id="" placeholder="rua" formControlName="rua">
+          <!---  <span *ngIf="rua.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> O nome da rua é obrigatorio</span><!-->
+            <span *ngIf="rua.errors?.['required'] && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> O nome da rua é obrigatorio</span>
+            <span *ngIf="rua.errors?.['pattern'] && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> não pode conter apenas espaços em branco</span>
+        </div>
+        <div class="box-input-numero">
+            <label for="">Número</label>
+            <input [(ngModel)]="sede.numero" type="number" name="numero" id="" placeholder="numero" formControlName="numero" >
+            <span *ngIf="numero.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> O número é obrigatorio</span>
+        </div>
         <div class="box-input-cep">
             <label for="">CEP</label>
-            <input [(ngModel)]="sede.cep" type="text" name="cep" id="cep" placeholder="00000-000">
+            <input [(ngModel)]="sede.cep" type="text" name="cep" id="cep" placeholder="00000-000" formControlName="cep" (input)="sede.cep = formatCEP($event)" maxlength="8">
+            <span *ngIf="cepValidacao  &&  formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> O número é obrigatorio</span>
         </div>
+        
+    </section>
+    <section class="container-inputs">
         <div class="box-input">
             <label for="">Cidade</label>
-            <input [(ngModel)]="sede.cidade" type="text" name="cidade" id="" placeholder="cidade"  data-mask="00/00/0000">
+            <input maxlength="80" [(ngModel)]="sede.cidade" type="text" name="cidade" id="" placeholder="cidade" formControlName="cidade">
+            <span *ngIf="cidade.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> A cidade é obrigatorio</span>
         </div>
         <div class="box-input-uf">
             <label for="">UF</label>
-            <select [(ngModel)]="sede.uf" name="uf" id="">
+            <select [(ngModel)]="sede.uf" name="uf" id="" formControlName="uf">
                 <option value="">Selecione</option>
                 <option value="AC">AC</option>
                 <option value="AL">AL</option>
@@ -58,15 +67,15 @@
                 <option value="SE">SE</option>
                 <option value="TO">TO</option>
             </select>
+            <span *ngIf="uf.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> Selecione um Estado</span>
         </div>
-
 
     </section>
     <section class="container-inputs">
 
         <div class="box-input">
             <label for="">Observações</label>
-            <textarea [(ngModel)]="sede.observacao" name="observacao" id="" cols="30" rows="5">insira a descrição da sede caso desejar...</textarea>
+            <textarea [(ngModel)]="sede.observacao" name="observacao" id="" cols="30" rows="5" placeholder="Insira uma observação caso desejar" formControlName="observacao" maxlength="100"></textarea>
         </div>
     </section>
     <div class="buttons">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Veiculo } from 'src/app/models/veiculo';
@@ -16,7 +16,9 @@ import { SnackBarComponent } from '../../template/snack-bar/snack-bar.component'
 })
 export class VeiculoCreateComponent implements OnInit {
 
-
+  veiculoForm!: FormGroup;
+  
+  placaPattern =/^[a-zA-Z]{3}\d[a-zA-Z0-9][a-zA-Z0-9]?\d{2}$/;
 
   veiculo: Veiculo = {
     id: null!,
@@ -28,14 +30,49 @@ export class VeiculoCreateComponent implements OnInit {
     tamanho: ""
   }
 
-  modelo = new FormControl('', [Validators.required, Validators.nullValidator]);
-  marca = new FormControl('', [Validators.required, Validators.nullValidator]);
-
+data=new Date;
 
 
   ngOnInit(): void {
-
+    this.veiculoForm = new FormGroup({
+      id: new FormControl(null!),
+      modelo:new FormControl('',[Validators.required, Validators.pattern(/\S/)]),
+      marca:new FormControl('',[Validators.required, Validators.pattern(/\S/)]),
+      placa:new FormControl('',[Validators.required,Validators.pattern(this.placaPattern), Validators.pattern(/\S/)]),
+      ano:new FormControl('',[Validators.required,Validators.pattern(/^\d{4}$/),Validators.min(1900),Validators.max(this.data.getFullYear()+1), Validators.pattern(/\S/)]),
+      renavam:new FormControl('',[Validators.required,Validators.minLength(11), Validators.pattern(/\S/),Validators.pattern(/^\d{11}$/)]),
+      tamanho:new FormControl(''),
+    })
   }
+
+
+  get modelo(){
+    return this.veiculoForm.get('modelo')!;
+  }
+
+  
+  get marca(){
+    return this.veiculoForm.get('marca')!;
+  }
+
+  get placa(){
+    return this.veiculoForm.get('placa')!;
+  }
+
+  get ano(){
+
+    return this.veiculoForm.get('ano')!;
+  }
+
+  get renavam(){
+    return this.veiculoForm.get('renavam')!;
+  }
+
+  get tamanho(){
+    return this.veiculoForm.get('tamanho')!;
+  }
+
+
   constructor(
     private router: Router,
     private service: VeiculoService,
@@ -44,6 +81,9 @@ export class VeiculoCreateComponent implements OnInit {
 
   }
   create(): void {
+    if(this.veiculoForm.invalid){
+      return;
+    }
     /*    
         let x = document.getElementsByTagName('input');
         if (this.veiculo.modelo.trim() === "" || this.veiculo.marca.trim() == "") {
@@ -84,11 +124,13 @@ export class VeiculoCreateComponent implements OnInit {
 
   validarRenavam(renavan: string): boolean {
     const renavamRegex = /^[0-9]{11}$/;
-  
+
     return renavamRegex.test(renavan);
   }
 
   carBrands: string[] = [
+
+    
     "Acura",
     "Alfa Romeo",
     "Aston Martin",
@@ -139,4 +181,7 @@ export class VeiculoCreateComponent implements OnInit {
     "Volvo"
   ];
 
+  submit() {
+
+  }
 }
