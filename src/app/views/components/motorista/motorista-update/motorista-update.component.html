@@ -8,7 +8,7 @@
     </div>
     <div class="box-input">
         <label for="">Categoria da Carteira</label>
-        <select [(ngModel)]="motorista.categoriaCarteira" name="categoriaCarteira" id="categoriaCarteira" >
+        <select [(ngModel)]="motorista.carteira" name="categoriaCarteira" id="categoriaCarteira" >
             <option *ngFor="let carteira of categoriasCarteira" value="{{carteira}}">{{carteira}}</option>
         </select>
 

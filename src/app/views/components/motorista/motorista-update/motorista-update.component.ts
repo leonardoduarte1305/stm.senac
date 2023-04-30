@@ -15,7 +15,7 @@ export class MotoristaUpdateComponent implements OnInit {
   motorista: Motorista = {
     id: null!,
     nome: "",
-    categoriaCarteira: "",
+    carteira: "",
     email: ""
   }
 

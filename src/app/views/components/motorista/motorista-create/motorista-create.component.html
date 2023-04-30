@@ -9,10 +9,10 @@
     </div>
     <div class="box-input">
         <label for="">Categoria da Carteira</label>
-        <select [(ngModel)]="motorista.categoriaCarteira" name="categoriaCarteira" id="categoriaCarteira" formControlName="categoriaCarteira" >
+        <select [(ngModel)]="motorista.carteira" name="categoriaCarteira" id="categoriaCarteira" formControlName="carteira" >
             <option *ngFor="let carteira of categoriasCarteira" value="{{carteira}}">{{carteira}}</option>
         </select>
-        <span *ngIf="categoriaCarteira.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> Selecione uma categoria de carteira</span>
+        <span *ngIf="carteira.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> Selecione uma categoria de carteira</span>
     </div>
     <div class="box-input">
         <label for="">Email</label>

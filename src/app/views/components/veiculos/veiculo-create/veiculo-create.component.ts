@@ -17,8 +17,9 @@ import { SnackBarComponent } from '../../template/snack-bar/snack-bar.component'
 export class VeiculoCreateComponent implements OnInit {
 
   veiculoForm!: FormGroup;
-  
-  placaPattern =/^[a-zA-Z]{3}\d[a-zA-Z0-9][a-zA-Z0-9]?\d{2}$/;
+
+  //PADRÃO PARA ACEITAR A PLACA ANTIGA E NOVA DO MERCOSUL
+  //placaPattern = /^[a-zA-Z]{3}\d[a-zA-Z0-9][a-zA-Z0-9]?\d{2}$/;
 
   veiculo: Veiculo = {
     id: null!,
@@ -30,45 +31,49 @@ export class VeiculoCreateComponent implements OnInit {
     tamanho: ""
   }
 
-data=new Date;
+  data = new Date;
 
 
   ngOnInit(): void {
+
     this.veiculoForm = new FormGroup({
       id: new FormControl(null!),
-      modelo:new FormControl('',[Validators.required, Validators.pattern(/\S/)]),
-      marca:new FormControl('',[Validators.required, Validators.pattern(/\S/)]),
-      placa:new FormControl('',[Validators.required,Validators.pattern(this.placaPattern), Validators.pattern(/\S/)]),
-      ano:new FormControl('',[Validators.required,Validators.pattern(/^\d{4}$/),Validators.min(1900),Validators.max(this.data.getFullYear()+1), Validators.pattern(/\S/)]),
-      renavam:new FormControl('',[Validators.required,Validators.minLength(11), Validators.pattern(/\S/),Validators.pattern(/^\d{11}$/)]),
-      tamanho:new FormControl(''),
+      modelo: new FormControl('', [Validators.required, Validators.pattern(/\S/)]),
+      marca: new FormControl('', [Validators.required, Validators.pattern(/\S/)]),
+      placa: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z]{3}\d{4}$/), Validators.pattern(/\S/)]),
+      ano: new FormControl('', [Validators.required, Validators.pattern(/^\d{4}$/), Validators.min(1900), Validators.max(this.data.getFullYear() + 1), Validators.pattern(/\S/)]),
+      renavam: new FormControl('', [Validators.required, Validators.minLength(11), Validators.pattern(/\S/), Validators.pattern(/^\d{11}$/)]),
+      tamanho: new FormControl(''),
     })
   }
 
 
-  get modelo(){
+  get modelo() {
     return this.veiculoForm.get('modelo')!;
   }
 
-  
-  get marca(){
+
+  get marca() {
     return this.veiculoForm.get('marca')!;
   }
 
-  get placa(){
+  get placa() {
     return this.veiculoForm.get('placa')!;
   }
 
-  get ano(){
+  get ano() {
+    console.log(this.veiculoForm.get('ano')?.value)
+    
 
     return this.veiculoForm.get('ano')!;
+    
   }
 
-  get renavam(){
+  get renavam() {
     return this.veiculoForm.get('renavam')!;
   }
 
-  get tamanho(){
+  get tamanho() {
     return this.veiculoForm.get('tamanho')!;
   }
 
@@ -81,7 +86,7 @@ data=new Date;
 
   }
   create(): void {
-    if(this.veiculoForm.invalid){
+    if (this.veiculoForm.invalid) {
       return;
     }
     /*    
@@ -130,7 +135,7 @@ data=new Date;
 
   carBrands: string[] = [
 
-    
+
     "Acura",
     "Alfa Romeo",
     "Aston Martin",
@@ -183,5 +188,11 @@ data=new Date;
 
   submit() {
 
+  }
+  limitarInput(event: any) {
+    const input = event.target;
+    if (input.value.length > 4) {
+      input.value = input.value.slice(0, 4);
+    }
   }
 }

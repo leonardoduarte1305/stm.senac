@@ -1,6 +1,6 @@
 export interface Motorista {
     id: number
     nome: string,
-    categoriaCarteira: String,
+    carteira: String,
     email: String
 }

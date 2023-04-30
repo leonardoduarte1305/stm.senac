@@ -14,7 +14,7 @@ export class MotoristasComponent implements AfterViewInit {
 
   motoristas: Motorista[] = [];
 
-  displayedColumns: string[] = ['id', 'nome', 'categoriaCarteira', 'email', 'action'];
+  displayedColumns: string[] = ['id', 'nome', 'carteira', 'email', 'action'];
   dataSource = new MatTableDataSource<Motorista>(this.motoristas);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

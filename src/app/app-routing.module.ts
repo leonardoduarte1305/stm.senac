@@ -28,8 +28,6 @@ const routes: Routes = [
     path: "veiculos/create",
     component: VeiculoCreateComponent
   },
-
-
   {
     path: "sedes",
     component: SedesComponent

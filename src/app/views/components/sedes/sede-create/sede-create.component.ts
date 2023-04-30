@@ -81,11 +81,10 @@ export class SedeCreateComponent implements OnInit {
   }
 
   create(): void {
-    if (this.sedeForm.invalid) {
-      return
-    }
-    this.cepValidacao = false;
+  
     console.log(this.sede)
+
+    this.cepValidacao = false;
     this.service.create(this.sede).subscribe((resposta) => {
       this.router.navigate(['sedes'])
       this.message("Sede salva!")
@@ -107,7 +106,10 @@ export class SedeCreateComponent implements OnInit {
 
 
   submit() {
-    console.log("Enviado formulario")
+    if (this.sedeForm.invalid) {
+      return
+    }
+    this.create()
   }
 
 

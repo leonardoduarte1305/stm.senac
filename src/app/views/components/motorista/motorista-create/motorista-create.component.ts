@@ -16,7 +16,7 @@ export class MotoristaCreateComponent implements OnInit {
   motorista: Motorista = {
     id: null!,
     nome: "",
-    categoriaCarteira: "",
+    carteira: "",
     email: ""
   }
 
@@ -29,7 +29,7 @@ export class MotoristaCreateComponent implements OnInit {
     this.motoristaForm = new FormGroup({
       id: new FormControl(''),
       nome: new FormControl('',[Validators.required, Validators.pattern(/\S/)]),
-      categoriaCarteira: new FormControl('',[Validators.required]),
+      carteira: new FormControl('',[Validators.required]),
       email: new FormControl('',[Validators.email,Validators.required, Validators.pattern(/\S/)]),
 
     })
@@ -37,8 +37,8 @@ export class MotoristaCreateComponent implements OnInit {
   get nome(){
     return this.motoristaForm.get('nome')!;
   }
-  get categoriaCarteira(){
-    return this.motoristaForm.get('categoriaCarteira')!;
+  get carteira(){
+    return this.motoristaForm.get('carteira')!;
   }
   get email(){
     return this.motoristaForm.get('email')!;
