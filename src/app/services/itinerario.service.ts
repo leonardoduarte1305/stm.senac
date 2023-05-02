@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Itinerario } from '../models/itinerario';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Viagem } from '../models/viagem';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class ItinerarioService {
   delet(id: any): Observable<Itinerario> {
     const url = this.baseUrl + '/viagens/' + id;
     return this.http.delete<Itinerario>(url);
+  }
+  create(viagem: Viagem): Observable<Viagem> {
+    const url = this.baseUrl + "/viagens";
+    return this.http.post<Viagem>(url, viagem)
   }
 }

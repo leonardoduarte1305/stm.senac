@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './views/components/home/home.component';
 import { VeiculosComponent } from './views/components/veiculos/veiculos.component';
+import { LoginComponent } from './views/components/login/login.component';
 import { MatCardModule } from '@angular/material/card';
 import { SedesComponent } from './views/components/sedes/sedes.component';
 import { UsuariosComponent } from './views/components/usuarios/usuarios.component';
@@ -68,7 +69,8 @@ import { DiaLogExcluirComponent } from './views/components/template/info/dia-log
     VeiculoUpdateComponent,
     MotoristaUpdateComponent,
     SedeUpdateComponent,
-    DiaLogExcluirComponent
+    DiaLogExcluirComponent,
+    LoginComponent
 
   ],
   imports: [

@@ -58,7 +58,6 @@ export class MotoristaCreateComponent implements OnInit {
   cancelar(): void {
     this.router.navigate(['motoristas']);
   }
-
   categoriasCarteira: string[] = [
     '',
     'A', // Moto

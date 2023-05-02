@@ -1,11 +1,9 @@
-import { Destino } from "./destino";
-
 
 export interface Itinerario {
     id: Number,
     motoristaId: Number,
     veiculoId: Number,
-    destinos: Destino[],
+    destinos: Number[],
     datetimeSaida: String,
     datetimeVolta: String,
     encerrado:String,
@@ -14,4 +12,5 @@ export interface Itinerario {
     },
     motorista:string,
     veiculo:string
+    sedeOrigemId:Number
 }

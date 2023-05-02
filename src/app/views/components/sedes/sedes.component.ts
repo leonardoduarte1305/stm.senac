@@ -1,11 +1,21 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Inject, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Sede } from 'src/app/models/sede';
 import { SedeService } from 'src/app/services/sede.service';
+import { OnInit } from '@angular/core';
 
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
+
+
+export interface DialogData {
+  idSubscrib: any;
+  name: string;
+
+}
 
 
 
@@ -18,6 +28,7 @@ export class SedesComponent implements AfterViewInit {
 
   sedes: Sede[] = [];
 
+
   displayedColumns: string[] = ['id', 'nome', 'numero', 'cep', 'cidade', 'uf', 'rua', 'observacao', 'action'];
   dataSource = new MatTableDataSource<Sede>(this.sedes);
 
@@ -27,8 +38,22 @@ export class SedesComponent implements AfterViewInit {
   constructor(
     private router: Router,
     private service: SedeService,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
+    public dialog: MatDialog
   ) { }
+
+  idSubscrib!: any;
+  name!: string;
+  openDialog(id: any): void {
+    this.idSubscrib = id;
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      data: { name: this.name, idSubscrib: this.idSubscrib },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.idSubscrib = result;
+    });
+  }
 
   ngAfterViewInit() {
     this.findAll();
@@ -66,6 +91,65 @@ export class SedesComponent implements AfterViewInit {
       verticalPosition: 'top',
       duration: 3000,
       panelClass: ["barr"]
+
+    })
+  }
+  takeId(id: any): void {
+
+
+  }
+
+
+}
+
+
+
+
+
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: './dialog-overview-example-dialog.html',
+  styleUrls: ['./sedes.component.css']
+})
+
+export class DialogOverviewExampleDialog implements OnInit {
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+
+    private router: Router,
+    private service: SedeService,
+    private snack: MatSnackBar,
+    public dialog: MatDialog
+
+
+  ) { }
+  nomeSede!: String;
+  ngOnInit(): void {
+    this.pegarNomeSede();
+  }
+
+  onNoClick(): void {
+
+    this.dialogRef.close();
+  }
+
+  pegarNomeSede() {
+    this.service.findById(this.data.idSubscrib).subscribe((resposta) => {
+      this.nomeSede = resposta.nome;
+    })
+  }
+
+  email!: any;
+  emailValido!: string;
+  inscrever(): void {
+
+
+    this.email = document.getElementById("email");
+    this.emailValido = this.email.value;
+    console.log(this.emailValido + " id " + this.data.idSubscrib)
+    this.service.inscrever(this.data.idSubscrib, this.emailValido).subscribe((resposta) => {
 
     })
   }

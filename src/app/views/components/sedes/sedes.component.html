@@ -1,6 +1,6 @@
 <header class="bt-create">
     <h1>SEDES</h1>
-    <button (click)="navigateToCreate()">CRIAR SEDE</button>
+    <button (click)="navigateToCreate()">INSERIR SEDE</button>
 </header>
 
 <div class="conatiner">
@@ -53,6 +53,9 @@
                 </a>
                 <a class="delet">
                     <i id="edit" class="material-icons" matTooltip="Excluir" (click)="delet(element.id)">delete</i>
+                </a>
+                <a class="subscrib">
+                    <i id="edit" class="material-icons" matTooltip="inscrever-se" (click)="openDialog(element.id)">transcribe</i>
                 </a>
             </td>
         </ng-container>

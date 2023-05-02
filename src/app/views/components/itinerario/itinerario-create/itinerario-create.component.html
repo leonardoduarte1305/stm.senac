@@ -1,88 +1,83 @@
 <main>
     <header>
-        
-            <h1>CADASTRO DE VIAGEN</h1>
-        
+        <h1>INSERÇÃO DE VIAGEM</h1>
     </header>
-    <form action="">
-        <section class="box-info">
-            <h3></h3>
-            <div class="motorista">
-                <label for="">Mototrista</label>
-                <select name="" id="">
-                    <option value="">Marea</option>
+    <form action="" (ngSubmit)="create()" [formGroup]="viagemForm" #formDir="ngForm">
+        <section class="container-divs">
+            <div>
+                <label for="">Origem</label>
+                <select [(ngModel)]="viagem.sede" name="sede"  id="" formControlName="sede">
+                    <option *ngFor="let sede of sedes" value="{{sede.id}}">{{sede.nome}}</option>
                 </select>
             </div>
-            <div class="veiculo">
+        </section>
+        <section class="container-divs">
+            <div>
+                <label for="">Data de Saida</label>
+                <input name="datetimeSaida" formControlName="datetimeSaida" [(ngModel)]="dtSaida"
+                    type="datetime-local">
+            </div>
+            <div>
+                <label for="">Data de Volta</label>
+                <input name="datetimeVolta" formControlName="datetimeVolta" [(ngModel)]="dtVolta"
+                    type="datetime-local">
+            </div>
+        </section>
+        <section class="container-divs">
+            <div>
                 <label for="">Veículo</label>
-                <select name="" id="">
-                    <option value="">Marea</option>
+                <select [(ngModel)]="viagem.veiculoId" name="veiculoId" id="" formControlName="veiculoId">
+                    <option *ngFor="let veiculo of veiculos" value="{{veiculo.id}}">{{veiculo.modelo}}</option>
                 </select>
             </div>
-            <div class="data">
-                <label for="">Data da Viagem</label>
-                <input type="date">
+            <div>
+                <label for="">Motorista</label>
+                <select [(ngModel)]="viagem.motoristaId" name="motoristaId" id="" formControlName="motoristaId">
+                    <option *ngFor="let motorista of motoristas" value="{{motorista.id}}">{{motorista.nome}}</option>
+                </select>
+            </div>
+
+        </section>
+        <h3>INSERIR MATERIAL EM UM DESTINO</h3>
+        <section class="container-divs">
+            <div>
+                <label for="">Material</label>
+                <select name="" id="">
+                    <option value=""></option>
+                </select>
+            </div>
+            <div>
+                <label for="">QTD</label>
+                <input type="number">
+            </div>
+            <div>
+                <label for="">Setor Destinatario</label>
+                <select name="" id="">
+                    <option value=""></option>
+                </select>
+            </div>
+            <div class="btn-adicionar-material-div">
+                <button>+</button>
             </div>
         </section>
-
-
-        <section class="box">
-
-            <section class="box-material">
-                <div class="material">
-                    <label for="">Material</label>
-                    <input type="text">
-                </div>
-                <div class="qtd">
-                    <label for="">QTD</label>
-                    <input type="number">
-                </div>
-                <div class="setor">
-                    <label  for="">Setor destinatario</label>
-                    <input onkeyup="this.value = this.value.toUpperCase()"  type="text">
-                </div>
-                <button class="bt-adicionarMaterial" (click)="msg()">+</button>
-
-            </section>
-
-            <mat-table [dataSource]="dataSource" class="table">
-                <!-- Position Column -->
-                <ng-container matColumnDef="Material">
-                    <mat-header-cell *matHeaderCellDef> Material </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.Material}} </mat-cell>
-                </ng-container>
-
-                <!-- Name Column -->
-                <ng-container matColumnDef="QTD">
-                    <mat-header-cell *matHeaderCellDef> QTD </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.QTD}} </mat-cell>
-                </ng-container>
-
-                <!-- Weight Column -->
-                <ng-container matColumnDef="SetorDestinatario">
-                    <mat-header-cell *matHeaderCellDef> Setor Destinatario </mat-header-cell>
-                    <mat-cell *matCellDef="let element"> {{element.SetorDestinatario}} </mat-cell>
-                </ng-container>
-
-
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </mat-table>
-
-            <div class="destinatario">
+        <section class="container-divs">
+            <div>
                 <label for="">Destinatario</label>
-                <select name="" id="">
-                    <option value="">Marea</option>
+                <select name="destinos" id="" >
+                    <option *ngFor="let sede of sedes" value="{{sede.id}}">{{sede.nome}}</option>
                 </select>
             </div>
-
         </section>
-
-        <button class="bt-adicionarDestino" >Adicionar Destino no Itinerario</button>
-        <div class="buttons">
-            <button class="bt-adicionarViagem">AGENDAR VIAGEM</button>
-            <button class="bt-cancelar" (click)="navigationToItinerarios()">CANCELAR</button>
+        <section class="container-divs">
+            <div class="btn-adicionar-parada-div">
+                <button>ADICIONAR PARADA</button>
+            </div>
+        </section>
+        <div class="div-buttons">
+            <button class="btn-cadastrar" (click)="create()">CRIAR VIAGEM</button>
+            <button class="btn-cancelar" (click)="navigationToItinerarios()">CANCELAR</button>
 
         </div>
     </form>
+
 </main>
