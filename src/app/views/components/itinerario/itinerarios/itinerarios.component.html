@@ -11,46 +11,63 @@
             <!--colocar local de saida no lugar do id-->
             <!--Arrumar posição das informações dispostas-->
             <!--realizar update-->
-            <h3> ViagemID: {{viagens.id}}</h3>
+            <h3> ViagemID: {{viagens.id}} Origem: {{viagens.nomeSede}}</h3>
+            <button class="btn-pdf" (click)="pdf(viagens.id)" matTooltip="Download"> <i id="edit"
+                    class="material-icons">download</i> PDF</button>
             <section class="container">
-                <div class="card">
-                    <h4>Total de destinos:</h4>
-                    <p> {{viagens.destinos.length}}</p>
-                </div>
 
-                <div class="card">
-                    <h4>Andamento:</h4>
-                    <p> {{viagens.encerrado}}</p>
-                </div>
-                <div class="card">
-                    <h4>status: </h4>
-                    <div class="span">
-                        <p> {{viagens.status.confirmacao}} </p>
-                        <h5  class="status"> </h5>
-                    </div>
+                <table>
+                    <tr>
+                        <th>Total de destinos</th>
+                        <th>Andamento</th>
+                        <th>Status</th>
+                        <th>Data Saida</th>
+                        <th>Data Volta</th>
+                        <th>Motorista</th>
+                        <th>Veículo</th>
+                    </tr>
+                    <tr>
+                        <td>
+           
+                            <p> {{viagens.destinos.length}}</p>
+                        </td>
+                        <td>
 
-                </div>
-                <div class="card">
-                    <h4>Data Saida:</h4>
-                    <p> {{viagens.datetimeSaida}}</p>
-                </div>
-                <div class="card">
-                    <h4>Data Volta:</h4>
-                    <p> {{viagens.datetimeVolta}}</p>
-                </div>
-                <div class="card">
-                    <h4>Nome Motorista</h4>
-                    <p> {{viagens.motorista}}</p>
-                </div>
-                <div class="card">
-                    <h4>Veiculo</h4>
-                    <p> {{viagens.veiculo}}</p>
-          
-                </div>
+                            <p> {{viagens.encerrado}}</p>
+                        </td>
+                        <td>
+               
+                            <div class="span">
+                                <p> {{viagens.status.confirmacao}} </p>
+                                <h5 class="status"> </h5>
+                            </div>
+                        </td>
+                        <td>
+               
+                            <p> {{viagens.datetimeSaida}}</p>
+                        </td>
+                        <td>
+                   
+                            <p> {{viagens.datetimeVolta}}</p>
+                        </td>
+                        <td>
+                
+                            <p> {{viagens.motorista}}</p>
+                        </td>
+                        <td>
+                      
+                            <p> {{viagens.veiculo}}</p>
+                        </td>
+                    </tr>
+
+                </table>
+
             </section>
+            <div class="btn">
+                <button (click)="confirmacao()">EDITAR</button>
+                <button (click)="getId(viagens)">EXCLUIR</button>
 
-            <button (click)="confirmacao()">EDITAR</button>
-            <button (click)="getId(viagens)">EXCLUIR</button>
+            </div>
         </li>
 
     </ul>

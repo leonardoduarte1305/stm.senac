@@ -103,10 +103,6 @@ export class SedesComponent implements AfterViewInit {
 }
 
 
-
-
-
-
 @Component({
   selector: 'dialog-overview-example-dialog',
   templateUrl: './dialog-overview-example-dialog.html',
@@ -144,13 +140,26 @@ export class DialogOverviewExampleDialog implements OnInit {
   email!: any;
   emailValido!: string;
   inscrever(): void {
-
+    var e: string[];
 
     this.email = document.getElementById("email");
     this.emailValido = this.email.value;
     console.log(this.emailValido + " id " + this.data.idSubscrib)
-    this.service.inscrever(this.data.idSubscrib, this.emailValido).subscribe((resposta) => {
+    e = [this.emailValido];
+
+    this.service.inscrever(this.data.idSubscrib, e).subscribe((resposta) => {
+      this.message("Foi inscrito na sede"+resposta)
+    })
+  }
+  message(msg: String): void {
+    this.snack.open(`${msg}`, 'OK', {
+      horizontalPosition: 'end',
+      verticalPosition: 'top',
+      duration: 3000,
+      panelClass: ["barr"]
 
     })
   }
+
+  
 }

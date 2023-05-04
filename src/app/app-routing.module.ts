@@ -13,11 +13,12 @@ import { VeiculosComponent } from './views/components/veiculos/veiculos.componen
 import { MotoristaUpdateComponent } from './views/components/motorista/motorista-update/motorista-update.component';
 import { VeiculoUpdateComponent } from './views/components/veiculos/veiculo-update/veiculo-update.component';
 import { SedeUpdateComponent } from './views/components/sedes/sede-update/sede-update.component';
+import { LoginComponent } from './views/components/login/login.component';
 
 
 const routes: Routes = [
   {
-    path: "",
+    path: "home",
     component: HomeComponent
   },
   {
@@ -75,6 +76,12 @@ const routes: Routes = [
   {
     path: "sedes/update/:id",
     component: SedeUpdateComponent
+  }
+  ,
+
+  {
+    path: "",
+    component: LoginComponent
   }
 
 

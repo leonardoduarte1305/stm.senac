@@ -5,6 +5,8 @@ main {
     align-items: center;
     background-color: #1A1D24;
     height: 100vh;
+    position: absolute ;
+    margin-top: -100px;
 }
 
 form {
@@ -59,4 +61,8 @@ transition: ease-in-out 0.6s;
 form button:hover{
     background-color:white ;
     cursor: pointer;
+}
+span{
+    color: red;
+    
 }

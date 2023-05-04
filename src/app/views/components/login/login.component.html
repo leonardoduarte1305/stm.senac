@@ -12,11 +12,13 @@
         <div >
             <label for="">USUÁRIO</label>
             <input [(ngModel)]="user" type="text" name="user" id="" placeholder="usuario">
+            <span *ngIf="erro">senha ou usuario incorreto</span>
         </div>
         <div>
             <label for="">SENHA</label>
-            <input [(ngModel)]="senha" type="text" placeholder="senha">
+            <input [(ngModel)]="senha" name="senha" type="password" placeholder="senha">
+            <span *ngIf="erro">senha ou usuario incorreto</span>
         </div>
-        <button >ENTER</button>
+        <button (click)="enter()" >ENTER</button>
     </form>
 </main>

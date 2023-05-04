@@ -4,7 +4,9 @@ import { interval } from 'rxjs';
 import { Itinerario } from 'src/app/models/itinerario';
 import { ItinerarioService } from 'src/app/services/itinerario.service';
 import { MotoristaService } from 'src/app/services/motorista.service';
+import { SedeService } from 'src/app/services/sede.service';
 import { VeiculoService } from 'src/app/services/veiculo.service';
+import { ViagemService } from 'src/app/services/viagem.service';
 
 @Component({
   selector: 'app-itinerarios',
@@ -20,7 +22,9 @@ export class ItinerariosComponent implements OnInit {
     private router: Router,
     private service: ItinerarioService,
     private serviceMotorista: MotoristaService,
-    private serviceVeiculo: VeiculoService
+    private serviceVeiculo: VeiculoService,
+    private serviceSede:SedeService,
+    private viagemService:ViagemService
   ) { }
 
 
@@ -36,9 +40,15 @@ export class ItinerariosComponent implements OnInit {
 
     this.service.findAll().subscribe((resposta) => {
       this.itinerarios = resposta;
+      console.log(resposta);
 
       //loop para pegar veiculos e motoristas pertencentes as viagens 
       for (let i = 0; i < this.itinerarios.length; i++) {
+
+        this.serviceSede.findById(this.itinerarios[i].sede).subscribe(resposta=>{
+          this.itinerarios[i].nomeSede=resposta.nome;
+        })
+
         //busca de motorista por ID
         this.serviceMotorista.findById(this.itinerarios[i].motoristaId).subscribe(resposta => {
           this.itinerarios[i].motorista = resposta.nome;
@@ -54,7 +64,7 @@ export class ItinerariosComponent implements OnInit {
     //Chamada de função para icon de demonstração de status confirmado ou não confirmado através de cor
     this.interval = setInterval(() => {
       this.confirmacao();
-    }, 700);
+    }, 1000);
 
   }
 
@@ -84,4 +94,17 @@ export class ItinerariosComponent implements OnInit {
   }
 
 
+
+  pdf(id:Number){
+    console.log(id)
+    this.viagemService.baixarPDF(id).subscribe(res=>{
+      let url = window.URL.createObjectURL(res);
+      let a = document.createElement('a');
+      a.href=url;
+      a.download='Download pdf';
+      a.click();
+      window.URL.revokeObjectURL(url);
+      a.remove();
+    })
+  }
 }

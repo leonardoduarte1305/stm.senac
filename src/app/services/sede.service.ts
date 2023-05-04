@@ -38,8 +38,8 @@ export class SedeService {
     const url = this.baseUrl + '/sedes/' + id;
     return this.http.delete<Sede>(url)
   }
-  inscrever(id: any, email: string): Observable<string> {
+  inscrever(id: any, email: string[]): Observable<string[]> {
     const url = this.baseUrl + '/sedes/' + id + '/inscrever';
-    return this.http.post<string>(url, email)
+    return this.http.post<string[]>(url, email)
   }
 }

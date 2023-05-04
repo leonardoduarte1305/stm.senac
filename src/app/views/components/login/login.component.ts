@@ -11,15 +11,24 @@ export class LoginComponent {
 
   constructor(
     private router: Router,
-    private service:LoginService
+    private service: LoginService
   ) {
 
   }
+  erro!: boolean ;
   //
-  user!: string;
-  senha!: string;
+  user ='';
+  senha ='';
+  enter() {
+    console.log(this.user +" "+this.senha)
+    if (this.user === 'admin' && this.senha === 'admin') {
+      this.router.navigate(['/home']);
+    } else {
+      this.erro = true;
+
+    }
+  }
 
 
-  
 
 }
