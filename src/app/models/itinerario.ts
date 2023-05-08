@@ -11,7 +11,7 @@ export interface Itinerario {
         confirmacao:string
     },
     motorista:string,
-    veiculo:string
+    veiculo:String
     nomeSede:String
     sede:Number
 }

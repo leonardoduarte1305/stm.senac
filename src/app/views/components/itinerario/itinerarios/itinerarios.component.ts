@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { interval } from 'rxjs';
+import { Confirmacao } from 'src/app/models/confirmacao';
 import { Itinerario } from 'src/app/models/itinerario';
 import { ItinerarioService } from 'src/app/services/itinerario.service';
 import { MotoristaService } from 'src/app/services/motorista.service';
@@ -23,9 +24,10 @@ export class ItinerariosComponent implements OnInit {
     private service: ItinerarioService,
     private serviceMotorista: MotoristaService,
     private serviceVeiculo: VeiculoService,
-    private serviceSede:SedeService,
-    private viagemService:ViagemService
+    private serviceSede: SedeService,
+    private viagemService: ViagemService
   ) { }
+
 
 
   ngOnInit(): void {
@@ -45,8 +47,8 @@ export class ItinerariosComponent implements OnInit {
       //loop para pegar veiculos e motoristas pertencentes as viagens 
       for (let i = 0; i < this.itinerarios.length; i++) {
 
-        this.serviceSede.findById(this.itinerarios[i].sede).subscribe(resposta=>{
-          this.itinerarios[i].nomeSede=resposta.nome;
+        this.serviceSede.findById(this.itinerarios[i].sede).subscribe(resposta => {
+          this.itinerarios[i].nomeSede = resposta.nome;
         })
 
         //busca de motorista por ID
@@ -56,20 +58,20 @@ export class ItinerariosComponent implements OnInit {
         })
         //busca de veículo por ID
         this.serviceVeiculo.findbyId(this.itinerarios[i].veiculoId).subscribe(resposta => {
-          this.itinerarios[i].veiculo = resposta.marca;
+          this.itinerarios[i].veiculo = resposta.modelo;
         })
         console.log(this.itinerarios[i].motoristaId);
       }
     })
     //Chamada de função para icon de demonstração de status confirmado ou não confirmado através de cor
     this.interval = setInterval(() => {
-      this.confirmacao();
+      this.confirmacaoStatus();
     }, 1000);
 
   }
 
 
-  confirmacao(): void {
+  confirmacaoStatus(): void {
     let x = document.getElementsByTagName("h5")
     for (let i = 0; i < this.itinerarios.length; i++) {
 
@@ -95,16 +97,27 @@ export class ItinerariosComponent implements OnInit {
 
 
 
-  pdf(id:Number){
+  pdf(id: Number) {
     console.log(id)
-    this.viagemService.baixarPDF(id).subscribe(res=>{
+    this.viagemService.baixarPDF(id).subscribe(res => {
       let url = window.URL.createObjectURL(res);
       let a = document.createElement('a');
-      a.href=url;
-      a.download='Download pdf';
+      a.href = url;
+      a.download = 'Download pdf';
       a.click();
       window.URL.revokeObjectURL(url);
       a.remove();
+    })
+  }
+  confirmacao: Confirmacao = {
+    confitmacao: "CONFIRMADO"
+  }
+ 
+
+  confirmar(id: any): void {
+
+    this.service.status(id, this.confirmacao).subscribe(res => {
+      console.log(res)
     })
   }
 }

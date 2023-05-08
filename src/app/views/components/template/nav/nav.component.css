@@ -15,20 +15,17 @@ header {
 }
 
 header div {
-display: flex;
-align-items: center;
+    display: flex;
+    align-items: center;
     
-}
-header div h1{
-    font-size: 1em;
-    color: chocolate;
-    font-weight: 600;
 
 }
-header div i{
-margin-left: 5px;
-margin-bottom: 15px;
-    font-size: 5em;
+
+
+header div i {
+    margin-left: 5px;
+    margin-bottom: 15px;
+    font-size: 3.5em;
     color: #3f4453;
 }
 
@@ -70,18 +67,45 @@ mat-drawer {
     width: 15%;
 
 }
-
-@media (max-width:1000px) {
-    mat-drawer{
-        width: 30%;
-    }
+.sidenav .links{
+    border-bottom:2px solid #d2691e ;
+    margin: 0.5em;
 
 }
-.info{
-    height: 55%;
-    
 
-    margin-left: 10px;
+
+@media (max-width:1000px) {
+    mat-drawer {
+        width: 30%;
+    }
+  
+}
+
+
+.info {
+
+
+margin-top: 2em;
+    margin-left: 20px;
     display: flex;
-align-items: flex-end;
+    align-items: flex-end;
+}
+
+header .user {
+    text-decoration: none;
+
+    flex-direction: column;
+}
+
+header .user h1 {
+    color: chocolate;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 0%;
+}
+
+header .user a {
+    text-decoration: none;
+    color: white;
+    margin: 0%;
 }

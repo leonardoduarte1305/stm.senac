@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Destino } from 'src/app/models/destino';
 import { Itinerario } from 'src/app/models/itinerario';
+import { Material } from 'src/app/models/material';
 import { Motorista } from 'src/app/models/motorista';
 import { Sede } from 'src/app/models/sede';
 import { Veiculo } from 'src/app/models/veiculo';
 import { Viagem } from 'src/app/models/viagem';
 import { ItinerarioService } from 'src/app/services/itinerario.service';
+import { MaterialService } from 'src/app/services/material.service';
 import { MotoristaService } from 'src/app/services/motorista.service';
 import { SedeService } from 'src/app/services/sede.service';
 import { VeiculoService } from 'src/app/services/veiculo.service';
@@ -17,7 +20,6 @@ export interface PeriodicElement {
   SetorDestinatario: number;
 
 }
-
 const ELEMENT_DATA: PeriodicElement[] = [
   { QTD: 1, Material: 'Hydrogen', SetorDestinatario: 1.0079 },
   { QTD: 2, Material: 'Helium', SetorDestinatario: 4.0026 },
@@ -41,12 +43,33 @@ export class ItinerarioCreateComponent implements OnInit {
   sedes: Sede[] = [];
   dtSaida!: Date;
   dtVolta!: Date;
+
+  materiais: Material[] = [];
+
+  destinosViagem: Destino[] = [];
+
+  destino: Destino = {
+    id: null!,
+    sedeID: null!,
+    materiais: {
+      materialID: null!,
+      quantidade: 0,
+      setorDestino: null!
+    }
+  };
+
+  addDestino() {
+    this.destinosViagem.push(this.destino);
+    console.log(this.destinosViagem);
+  }
+
   constructor(
     private router: Router,
     private servico: ItinerarioService,
     private servicoVeiculo: VeiculoService,
     private servicoMotorista: MotoristaService,
-    private servicoSede: SedeService
+    private servicoSede: SedeService,
+    private serviceMaterial: MaterialService
   ) {
 
   }
@@ -61,12 +84,12 @@ export class ItinerarioCreateComponent implements OnInit {
   }
 
   create(): void {
-    
+
     this.viagem.datetimeSaida = this.dtSaida.toLocaleString('pt-br');
-    if(this.viagem.datetimeVolta==""){
-      
-    }else{
-      this.viagem.datetimeVolta=this.dtVolta.toLocaleString('pt-br');
+    if (this.viagem.datetimeVolta == "") {
+
+    } else {
+      this.viagem.datetimeVolta = this.dtVolta.toLocaleString('pt-br');
 
     }
     console.log(this.viagem.datetimeVolta)
@@ -80,6 +103,7 @@ export class ItinerarioCreateComponent implements OnInit {
     this.buscarTodosVeiculo();
     this.buscarTodasSedes();
     this.buscarTodosMotoristas();
+    this.buscarMaterial();
 
     this.viagemForm = new FormGroup({
       id: new FormControl(''),
@@ -127,6 +151,15 @@ export class ItinerarioCreateComponent implements OnInit {
       this.sedes = resposta
     })
   }
+  buscarMaterial() {
+    this.serviceMaterial.buscarMateriais().subscribe(res => {
+      this.materiais = res;
+      console.log(this.materiais)
+    })
+
+  }
+
+
 
   navigationToItinerarios() {
     this.router.navigate(['itinerarios']);

@@ -42,22 +42,22 @@
         <section class="container-divs">
             <div>
                 <label for="">Material</label>
-                <select name="" id="">
-                    <option value=""></option>
+                <select  name="materialID" id="" [(ngModel)]="destino.materiais.materialID" >
+                    <option *ngFor="let mat of materiais" value="{{mat.id}}">{{mat.nome}}</option>
                 </select>
             </div>
             <div>
                 <label for="">QTD</label>
-                <input type="number">
+                <input type="number" name="quantidade" [(ngModel)]="destino.materiais.quantidade" >
             </div>
             <div>
                 <label for="">Setor Destinatario</label>
-                <select name="" id="">
+                <select name="setorDestino" id="" [(ngModel)]="destino.materiais.setorDestino" >
                     <option value=""></option>
                 </select>
             </div>
             <div class="btn-adicionar-material-div">
-                <button>+</button>
+                <button  matTooltip="adicionar material em destino" (click)="addDestino()">+</button>
             </div>
         </section>
         <section class="container-divs">

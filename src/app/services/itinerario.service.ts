@@ -4,6 +4,7 @@ import { Itinerario } from '../models/itinerario';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Viagem } from '../models/viagem';
+import { Confirmacao } from '../models/confirmacao';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,10 @@ export class ItinerarioService {
   create(viagem: Viagem): Observable<Viagem> {
     const url = this.baseUrl + "/viagens";
     return this.http.post<Viagem>(url, viagem)
+  }
+  status(id: any, confirmacao: Confirmacao): Observable<Confirmacao> {
+    const url = "http://localhost:8080/viagens/"+id+"/confirmacao";
+    console.log(confirmacao)
+    return this.http.post<Confirmacao>(url, confirmacao);
   }
 }

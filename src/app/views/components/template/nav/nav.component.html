@@ -5,38 +5,44 @@
 
         </button>
         <div>
-            <h1>ADMIN</h1>
+            <div class="user">
+
+                <h1>ADMIN</h1>
+                <!---TIRAR O BOTÃO DE LOGOUT DAQUI E COLOCAR NA NAVBAR-->
+                <a href="">Logout</a>
+            </div>
             <i class="material-icons">account_circle</i>
+
         </div>
     </header>
     <mat-drawer #drawer class="sidenav" mode="side">
-        <div>
-        <img src="assets/imgs/Group 46.png" alt="">
-        <mat-nav-list class="nav-list">
-            <a mat-list-item routerLink="/home"><i class="material-icons">home</i>Home</a>
-        </mat-nav-list>
+        <div class="links">
+            <img src="assets/imgs/Group 46.png" alt="">
+            <mat-nav-list class="nav-list">
+                <a mat-list-item routerLink="/home"><i class="material-icons">home</i>Home</a>
+            </mat-nav-list>
 
 
-        <mat-nav-list class="nav-list">
-            <a mat-list-item routerLink="/itinerarios"><i class="material-icons">share_location</i>Viagens</a>
-        </mat-nav-list>
+            <mat-nav-list class="nav-list">
+                <a mat-list-item routerLink="/itinerarios"><i class="material-icons">share_location</i>Viagens</a>
+            </mat-nav-list>
 
-        <mat-nav-list class="nav-list" *ngIf="show">
-            <a mat-list-item routerLink="/veiculos"><i class="material-icons">directions_car</i>Veiculos</a>
-        </mat-nav-list>
+            <mat-nav-list class="nav-list" *ngIf="show">
+                <a mat-list-item routerLink="/veiculos"><i class="material-icons">directions_car</i>Veiculos</a>
+            </mat-nav-list>
 
 
-        <mat-nav-list class="nav-list" *ngIf="show">
-            <a mat-list-item routerLink="/sedes"><i class="material-icons">home_work</i>Sedes</a>
-        </mat-nav-list>
+            <mat-nav-list class="nav-list" *ngIf="show">
+                <a mat-list-item routerLink="/sedes"><i class="material-icons">home_work</i>Sedes</a>
+            </mat-nav-list>
 
-        <mat-nav-list class="nav-list" *ngIf="show">
-            <a mat-list-item routerLink="/motoristas"><i class="material-icons">assignment_ind</i>Motoristas</a>
-        </mat-nav-list>
-    </div>
-    <div class="info">
-    <app-info></app-info>
-    </div>
+            <mat-nav-list class="nav-list" *ngIf="show">
+                <a mat-list-item routerLink="/motoristas"><i class="material-icons">assignment_ind</i>Motoristas</a>
+            </mat-nav-list>
+        </div>
+        <div class="info">
+            <app-info></app-info>
+        </div>
     </mat-drawer>
 
     <div class="sidenav-content">

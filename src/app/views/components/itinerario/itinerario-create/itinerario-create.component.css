@@ -17,6 +17,7 @@ form {
 form .container-divs {
     display: flex;
     width: 100%;
+
 }
 
 .container-divs div {
@@ -115,4 +116,19 @@ h3{
     font-weight: bold;
     width: 100%;
     margin-top: 2em;
+}
+
+@media (width<1000px) {
+    form section{
+       flex-direction: column;
+    }
+    .div-buttons {
+        flex-direction: column;
+    }
+    .div-buttons button{
+        width: 50%;
+    }
+    .btn-adicionar-parada-div button {
+        width: 100%;
+    }
 }

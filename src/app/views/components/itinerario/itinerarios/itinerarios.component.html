@@ -10,10 +10,15 @@
         <li *ngFor="let viagens of itinerarios">
             <!--colocar local de saida no lugar do id-->
             <!--Arrumar posição das informações dispostas-->
+
             <!--realizar update-->
-            <h3> ViagemID: {{viagens.id}} Origem: {{viagens.nomeSede}}</h3>
-            <button class="btn-pdf" (click)="pdf(viagens.id)" matTooltip="Download"> <i id="edit"
-                    class="material-icons">download</i> PDF</button>
+            <div class="header-cards">
+
+                <!--<h3> ViagemID: {{viagens.id}} Origem: {{viagens.nomeSede}}</h3>-->
+                <h3> Origem: {{viagens.nomeSede}}</h3>
+                <button class="btn-pdf" (click)="pdf(viagens.id)" matTooltip="Download"> <i id="edit"
+                        class="material-icons">download</i> PDF</button>
+            </div>
             <section class="container">
 
                 <table>
@@ -28,34 +33,36 @@
                     </tr>
                     <tr>
                         <td>
-           
+
                             <p> {{viagens.destinos.length}}</p>
                         </td>
                         <td>
 
-                            <p> {{viagens.encerrado}}</p>
+                            <p> {{viagens.encerrado.replace("_"," " )}}</p>
                         </td>
                         <td>
-               
+
                             <div class="span">
-                                <p> {{viagens.status.confirmacao}} </p>
+                                <p> {{viagens.status.confirmacao.replace("_"," " )}} </p>
                                 <h5 class="status"> </h5>
+                                <button (click)="confirmar(viagens.id)">Confirmar</button>
+                                <button>Desconfirmar</button>
                             </div>
                         </td>
                         <td>
-               
-                            <p> {{viagens.datetimeSaida}}</p>
+
+                            <p> {{viagens.datetimeSaida.replace("T"," " )}}</p>
                         </td>
                         <td>
-                   
+
                             <p> {{viagens.datetimeVolta}}</p>
                         </td>
                         <td>
-                
+
                             <p> {{viagens.motorista}}</p>
                         </td>
                         <td>
-                      
+
                             <p> {{viagens.veiculo}}</p>
                         </td>
                     </tr>
@@ -64,7 +71,8 @@
 
             </section>
             <div class="btn">
-                <button (click)="confirmacao()">EDITAR</button>
+
+                <button (click)="confirmacaoStatus()">EDITAR</button>
                 <button (click)="getId(viagens)">EXCLUIR</button>
 
             </div>
