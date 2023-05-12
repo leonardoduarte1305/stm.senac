@@ -1,5 +1,6 @@
 <form (ngSubmit)="submit()" [formGroup]="sedeForm" #formDir="ngForm">
     <header>
+        <button class="retornar" (click)="navigationToSedes()"><i class="material-icons">arrow_back</i></button>
         <h1>ATUALIZAR DE SEDE</h1>
     </header>
     <section class="container-inputs">
@@ -93,7 +94,7 @@
     </section>
     <div class="buttons">
         <button class="bt-cadastrar" (click)="update()">ATUALIZAR</button>
-        <button class="bt-cancelar" (click)="navigationToSedes()">CANCELAR</button>
+     
 
     </div>
 </form>

@@ -2,31 +2,38 @@ mat-card {
     width: 80%;
     height: 50%;
     margin: 1rem auto 0 auto;
-background-color: transparent;
-box-shadow: none;
-    
+    background-color: transparent;
+    box-shadow: none;
 
 
-}
-
-.table th {
-    border-bottom: 2px solid black;
-
-    color: chocolate;
 
 }
 
-.paginator{
-    background-color: rgba(255, 255, 255, 0.075);
+
+table {
+    background-color: white;
+    color: black;
+
+}
+
+table td {
+    color: black;
+
+}
+
+table th {
+    color: white;
+    background-color: #1A1D24;
+}
+
+::ng-deep .mat-mdc-paginator-container {
+    background-color: #1A1D24;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-margin-top: .5em;
-
 }
-.table {
 
-    background-color: rgba(0, 0, 0, 0.144);
-    
+mat-paginator {
+    background-color: transparent;
 }
 
 .box-header {
@@ -40,13 +47,14 @@ margin-top: .5em;
 }
 
 header {
-
+    color: black;
+    font-weight: bold;
     margin-left: 10%;
 }
 
 header h1 {
-    font-size: 5em;
-    font-weight: bold;
+    font-size: 4em;
+
     font-family: 'Poppins', sans-serif;
 }
 

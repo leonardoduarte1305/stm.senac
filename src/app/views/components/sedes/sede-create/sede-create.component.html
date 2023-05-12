@@ -1,5 +1,7 @@
 <form (ngSubmit)="submit()" [formGroup]="sedeForm" #formDir="ngForm">
     <header>
+        <button class="retornar" (click)="navigationToSedes()"><i class="material-icons">arrow_back</i></button>
+  
         <h1>CADASTRO DE SEDE</h1>
     </header>
     <section class="container-inputs">
@@ -12,6 +14,14 @@
         </div>
     </section>
     <section class="container-inputs">
+
+        <div class="box-input-cep">
+            <label for="">CEP</label>
+            <input [(ngModel)]="sede.cep" type="text" name="cep" id="cep" placeholder="00000-000" formControlName="cep"
+                (input)="sede.cep = formatCEP($event)" maxlength="8" (input)="consultarCep()">
+            <span *ngIf="cepValidacao  &&  formDir.submitted" class="error"><i class="material-icons">priority_high</i>
+                O cep é obrigatorio</span>
+        </div>
         <div class="box-input">
             <label for="">Rua</label>
             <input maxlength="100" [(ngModel)]="sede.rua" type="text" name="rua" id="" placeholder="rua"
@@ -29,13 +39,7 @@
             <span *ngIf="numero.invalid && formDir.submitted" class="error"><i class="material-icons">priority_high</i>
                 O número é obrigatorio</span>
         </div>
-        <div class="box-input-cep">
-            <label for="">CEP</label>
-            <input [(ngModel)]="sede.cep" type="text" name="cep" id="cep" placeholder="00000-000" formControlName="cep"
-                (input)="sede.cep = formatCEP($event)" maxlength="8">
-            <span *ngIf="cepValidacao  &&  formDir.submitted" class="error"><i class="material-icons">priority_high</i>
-                O cep é obrigatorio</span>
-        </div>
+   
 
     </section>
     <section class="container-inputs">
@@ -92,8 +96,8 @@
         </div>
     </section>
     <div class="buttons">
-        <button class="bt-cadastrar">CADASTRAR</button>
-        <button class="bt-cancelar" (click)="navigationToSedes()">CANCELAR</button>
+        <button class="bt-cadastrar" >CADASTRAR</button>
+       <!---- <button class="bt-cancelar" (click)="navigationToSedes()">CANCELAR</button>-->
 
     </div>
 </form>

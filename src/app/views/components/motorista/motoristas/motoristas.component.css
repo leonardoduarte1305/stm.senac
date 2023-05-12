@@ -1,11 +1,11 @@
-.container{
+.container {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+    background-color: transparent;
 }
-::ng-deep .mat-mdc-paginator-container {
 
-}
+
 .bt-create {
     width: 80%;
 
@@ -18,24 +18,25 @@
 
 .bt-create button {
     width: 20%;
-    padding: 15px;
+    padding: 12px;
+
     background-color: chocolate;
-    border-radius: 10px;
-    color: rgb(248, 248, 248);
-    border: none;
+    border-radius: 50px;
+
+    border: 2px solid chocolate;
     transition: ease-in-out 0.5s;
- font-size: 1.2em;
-    color: black;
+    font-size: 1.2em;
+    color: rgb(255, 255, 255);
     font-weight: bold;
 
 }
 
 .bt-create h1 {
-  
-    font-size: 3em;
-    color: white;
+
+    font-size: 2.5em;
+    color: rgb(0, 0, 0);
     font-weight: bold;
-    
+
 }
 
 .bt-create button:hover {
@@ -47,7 +48,30 @@
     color: white;
 }
 
+
+
+
 table {
-    background-color: rgba(0, 0, 0, 0.103);
-    }
-    
+    background-color: white;
+    color: black;
+
+}
+
+table td {
+    color: black;
+
+}
+
+table th {
+    color: white;
+    background-color: #1A1D24;
+}
+::ng-deep .mat-mdc-paginator-container {
+    background-color: #1A1D24;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+mat-paginator {
+    background-color: transparent;
+}

@@ -1,5 +1,6 @@
 <header>
-    <h1>INSERÇÃO DE MOTORISTA</h1>
+    <button class="retornar" (click)="cancelar()"><i class="material-icons">arrow_back</i></button>
+    <h1>CADASTRO DE MOTORISTA</h1>
 </header>
 <form action="" (ngSubmit)="submit()" [formGroup]="motoristaForm" #formDir="ngForm">
     <div class="box-input">
@@ -9,7 +10,7 @@
     </div>
     <div class="box-input">
         <label for="">Categoria da Carteira</label>
-        <select [(ngModel)]="motorista.carteira" name="categoriaCarteira" id="categoriaCarteira" formControlName="carteira" >
+        <select [(ngModel)]="motorista.carteira" name="categoriaCarteira" id="categoriaCarteira" formControlName="carteira">
             <option *ngFor="let carteira of categoriasCarteira" value="{{carteira}}">{{carteira}}</option>
         </select>
         <span *ngIf="carteira.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> Selecione uma categoria de carteira</span>
@@ -21,7 +22,7 @@
     </div>
     <div class="buttons">
         <button (click)="create()" class="btn-cadastrar">CADASTRAR</button>
-        <button (click)="cancelar()" class="btn-cancelar">CANCELAR</button>
+   <!---     <button (click)="cancelar()" class="btn-cancelar">CANCELAR</button> ---->
     </div>
 </form>
 

@@ -1,4 +1,5 @@
 <header>
+    <button class="retornar" (click)="cancelar()"><i class="material-icons">arrow_back</i></button>
     <h1>ATUALIZAÇÃO DE VEICULO</h1>
 </header>
 <form  action="" (ngSubmit)="submit()" [formGroup]="veiculoForm" #formDir="ngForm">
@@ -40,5 +41,5 @@
 
 
     <button class="btn-cadastrar" (click)="update()" >ATUALIZAR</button>
-    <button (click)="cancelar() " class="btn-cancelar">CANCELAR</button>
+
 </form>

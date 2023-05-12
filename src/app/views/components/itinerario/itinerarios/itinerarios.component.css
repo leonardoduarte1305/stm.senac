@@ -13,18 +13,18 @@
     width: 20%;
     padding: 15px;
     background-color: chocolate;
-    border-radius: 10px;
+    border-radius: 50px;
 
     border: none;
     transition: ease-in-out 0.5s;
     font-size: 1.2em;
-    color: black;
+    color: white;
     font-weight: bold;
 }
 
 .bt-create h1 {
-    font-size: 3em;
-    color: white;
+    font-size: 2.5em;
+    color: black;
     font-weight: bold;
 
 }
@@ -58,7 +58,7 @@ li {
     width: 100%;
     list-style: none;
     margin: 2em;
-    padding: 5px;
+    padding: 15px;
     background-color: #1A1D24;
 
     color: white;
@@ -159,7 +159,7 @@ li {
     font-weight: bold;
     padding: 1px;
     font-size: 1em;
-    border-radius: 10px;
+    border-radius: 50px;
     background-color: chocolate;
     color: black;
     border: none;

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { interval } from 'rxjs';
@@ -25,7 +26,8 @@ export class ItinerariosComponent implements OnInit {
     private serviceMotorista: MotoristaService,
     private serviceVeiculo: VeiculoService,
     private serviceSede: SedeService,
-    private viagemService: ViagemService
+    private viagemService: ViagemService,
+    private http: HttpClient
   ) { }
 
 
@@ -113,7 +115,18 @@ export class ItinerariosComponent implements OnInit {
     confitmacao: "CONFIRMADO"
   }
  
+/*
 
+  public confirmarDestino(id: any) {
+    const url = `http://localhost:8080/destinos/${id}/confirmacao`;
+    const body = { confirmacao: 'CONFIRMADO' };
+  
+    this.http.post(url, body).subscribe((response) => {
+      console.log(response);
+    });
+  }
+  */
+  
   confirmar(id: any): void {
 
     this.service.status(id, this.confirmacao).subscribe(res => {

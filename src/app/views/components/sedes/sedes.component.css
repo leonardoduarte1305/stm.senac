@@ -20,19 +20,19 @@
     width: 20%;
     padding: 15px;
     background-color: chocolate;
-    border-radius: 10px;
+    border-radius: 50px;
     color: rgb(248, 248, 248);
     border: none;
     transition: ease-in-out 0.5s;
     font-size: 1.2em;
-    color: black;
+   
     font-weight: bold;
 }
 
 .bt-create h1 {
 
-    font-size: 3em;
-    color: white;
+    font-size: 2.5em;
+    color: black;
     font-weight: bold;
 
 }
@@ -44,10 +44,6 @@
     cursor: pointer;
 
 
-}
-
-table {
-    background-color: rgba(0, 0, 0, 0.103);
 }
 
 .subscrib i {
@@ -109,4 +105,30 @@ table {
     background-color: white;
     color: black;
     cursor: pointer;
+}
+
+
+table {
+    background-color: white;
+    color: black;
+
+}
+
+table td {
+    color: black;
+
+}
+
+table th {
+    color: white;
+    background-color: #1A1D24;
+}
+::ng-deep .mat-mdc-paginator-container {
+    background-color: #1A1D24;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+mat-paginator {
+    background-color: transparent;
 }

@@ -1,12 +1,9 @@
 form {
     margin-left: auto;
     margin-right: auto;
-
     width: 70%;
     display: flex;
-
     justify-content: center;
-
     flex-wrap: wrap;
 
 }
@@ -20,12 +17,20 @@ form {
 
 }
 
+.box-input label {
+    color: black;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.box-input input::placeholder {
+    color: white;
+}
+
 .box-input input,
 label {
     width: 100%;
-
     border: none;
-
     transition: ease-in-out 0.6s;
 }
 
@@ -39,25 +44,29 @@ label {
 
 form button {
     font-family: 'Poppins', sans-serif;
-    font-size: 1.5em;
-    padding: 15px;
-    margin: 1em;
-    border-radius: 10px;
+    font-size: 1.2em;
+    padding: 8px;
+    margin-top: 3em;
+    border-radius: 50px;
     width: 30%;
+
+    margin-right: 53%;
     transition: ease-in-out 0.6s;
     border: none;
     font-weight: bold;
     background-color: chocolate;
     color: black;
+
+
 }
 
 .btn-cadastrar:hover {
 
-    background-color: white;
+    background-color: rgb(0, 0, 0);
 
     cursor: pointer;
     box-shadow: 0px 0px 20px white;
-    color: rgb(5, 230, 5);
+    color: rgb(255, 255, 255);
 
 }
 
@@ -72,10 +81,10 @@ form button {
 
 select {
     border: none;
-    background-color: gray;
-    width: 100%;
+
+    width: 104%;
     color: white;
-    border: 2px solid gray;
+    border: none;
     font-size: 1.5em;
 }
 
@@ -85,13 +94,39 @@ select option {
 }
 
 header {
-    color: white;
-    text-align: center;
+    color: black;
+    text-align: start;
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    border-bottom: 5px solid chocolate;
 }
 
 header h1 {
-    font-size: 2.5em;
+    font-size: 2.2em;
     font-weight: bold;
+    width: 70%;
+}
+
+header button {
+    height: 25px;
+    margin-top: 5px;
+    width: 50px;
+    margin-right: 10px;
+    border-radius: 50px;
+    background-color: rgb(50, 56, 61);
+    border: none;
+}
+header button:hover{
+    background-color: white;
+    
+    color: black;
+}
+
+header button i {
+    color: white;
+    
 }
 
 
@@ -113,16 +148,23 @@ header h1 {
 
     form button {
         width: 80%;
+        margin: 0%;
     }
 
 }
 
 .error {
-    color: yellow;
+    color: rgb(255, 9, 9);
     display: flex;
+    font-weight: bold;
     align-items: center;
 }
 
 .error i {
     margin-right: 10px;
+}
+
+textarea {
+    resize: none;
+    height: 55px;
 }

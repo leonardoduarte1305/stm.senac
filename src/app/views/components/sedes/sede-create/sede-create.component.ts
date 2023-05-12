@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Sede } from 'src/app/models/sede';
+import { CepServiceService } from 'src/app/services/cep-service.service';
 import { SedeService } from 'src/app/services/sede.service';
 
 
@@ -69,9 +70,18 @@ export class SedeCreateComponent implements OnInit {
   constructor(
     private router: Router,
     private service: SedeService,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
+    private cepService: CepServiceService
   ) {
 
+  }
+  consultarCep() {
+    this.cepService.consultarCep(this.sede.cep).subscribe(res => {
+      console.log(res)
+      this.sede.cidade=res.localidade;
+      this.sede.rua=res.logradouro;
+      this.sede.uf=res.uf;
+    })
   }
 
   navigationToSedes() {
@@ -79,7 +89,7 @@ export class SedeCreateComponent implements OnInit {
   }
 
   create(): void {
-  
+
     console.log(this.sede)
 
     this.cepValidacao = false;
@@ -104,6 +114,7 @@ export class SedeCreateComponent implements OnInit {
 
 
   submit() {
+    this.consultarCep();
     if (this.sedeForm.invalid) {
       return
     }

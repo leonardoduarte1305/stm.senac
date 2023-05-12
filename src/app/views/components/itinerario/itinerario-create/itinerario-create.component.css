@@ -32,54 +32,83 @@ form .container-divs {
     width: 10%;
 
 }
+.container-divs label{
+    color: black;
+    font-weight:bold ;
+    margin-left: 10px;
+}
 
 .btn-adicionar-material-div button {
     padding: 5px;
     margin-top: 20px;
     font-weight: bold;
     font-size: 1.5em;
-    border-radius: 5px;
+    border-radius: 50px;
     background-color: chocolate;
     border: none;
 }
 
 header {
-    text-align: center;
+    display: flex;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 5px solid chocolate;
 
 }
 
 header h1 {
-    font-size: 3em;
+    font-size: 2.5em;
     font-weight: bold;
-    color: white;
+    color: black;
 }
+header button {
+    height: 25px;
+    margin-top: 5px;
+    width: 50px;
+    margin-right: 10px;
+    border-radius: 50px;
+    background-color: rgb(50, 56, 61);
+    border: none;
+}
+header button:hover{
+    background-color: white;
+    
+    color: black;
+}
+
+header button i {
+    color: white;
+    
+}
+
 
 .btn-adicionar-parada-div button {
     width: 20%;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 5px;
-    border-radius: 5px;
+
+    padding: 15px;
+    color: white;
+    border-radius: 50px;
     font-size: 1.2em;
     font-weight: bold;
-    background-color: rgb(255, 255, 255);
+    background-color: #1A1D24;
     border: none;
 }
 
 .div-buttons {
     width: 100%;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+    
     display: flex;
-    margin-top: 100px;
+    margin-top: 7em;
 }
 
 .div-buttons button {
     font-family: 'Poppins', sans-serif;
     font-size: 1.5em;
     padding: 10px;
-    margin: 1em;
-    border-radius: 10px;
+    
+    border-radius: 50px;
     width: 30%;
     transition: ease-in-out 0.6s;
     border: none;
@@ -90,32 +119,39 @@ header h1 {
 
 .div-buttons .btn-cadastrar:hover {
 
-    background-color: white;
+    background-color: black;
 
     cursor: pointer;
     box-shadow: 0px 0px 20px white;
-    color: rgb(5, 230, 5);
+    color: rgb(255, 255, 255);
 
 }
+.add-material-div{
+    display: flex;
 
-.div-buttons  .btn-cancelar:hover {
-    color: red;
-
-    background-color: white;
-
-    cursor: pointer;
-    box-shadow: 0px 0px 20px white;
-
+    flex-direction: row;
 }
+.add-material-div button{
+    width: 180px;
+    margin-left: 10px;
+    border-radius: 50pc;
+    height: 20px;
+    border: none;
+    background-color: #1A1D24;
+    color: white;
+    margin-top:-2px;
+}
+
 h3{
-    background-color:rgba(255, 255, 255, 0.055);
-    border-radius: 5px;
-    color: chocolate;
-    text-align: center;
+  
+    
+    color: black;
+    
     font-size: 1.2em;
     font-weight: bold;
-    width: 100%;
+    width: 95%;
     margin-top: 2em;
+    border-bottom: 5px solid chocolate;
 }
 
 @media (width<1000px) {
@@ -131,4 +167,7 @@ h3{
     .btn-adicionar-parada-div button {
         width: 100%;
     }
+}
+option{
+    background-color: black;
 }

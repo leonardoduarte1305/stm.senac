@@ -1,6 +1,7 @@
 .container {
     height: 100%;
-    background-color: #292D36;
+/* background-color: #292D36;*/
+background-color: rgba(240, 240, 240, 1);
 
 
 }
@@ -39,7 +40,7 @@ i {
 }
 
 .btn_icon {
-    color: white;
+    color: black;
     font-size: 2em;
     margin: 10px;
     cursor: pointer;
@@ -56,10 +57,10 @@ i {
 }
 
 .btn_icon:hover {
-    background-color: rgba(128, 128, 128, 0.596);
+    background-color: rgba(255, 255, 255, 0.596);
     border-radius: 50%;
 
-    box-shadow: 0px 0px 20px gray;
+    box-shadow: 0px 0px 20px rgb(255, 255, 255);
 }
 
 mat-drawer {
@@ -106,6 +107,6 @@ header .user h1 {
 
 header .user a {
     text-decoration: none;
-    color: white;
+    color: black;
     margin: 0%;
 }

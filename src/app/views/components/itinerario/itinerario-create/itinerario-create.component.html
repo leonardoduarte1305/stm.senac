@@ -1,5 +1,6 @@
 <main>
     <header>
+        <button class="retornar" (click)="navigationToItinerarios()"><i class="material-icons">arrow_back</i></button>
         <h1>INSERÇÃO DE VIAGEM</h1>
     </header>
     <form action="" (ngSubmit)="create()" [formGroup]="viagemForm" #formDir="ngForm">
@@ -41,7 +42,10 @@
         <h3>INSERIR MATERIAL EM UM DESTINO</h3>
         <section class="container-divs">
             <div>
-                <label for="">Material</label>
+                <section class="add-material-div">
+                    <label for="">Material</label>
+                    <button matTooltip="adicionar um novo material na lista">adicionar material</button>
+                </section>
                 <select  name="materialID" id="" [(ngModel)]="destino.materiais.materialID" >
                     <option *ngFor="let mat of materiais" value="{{mat.id}}">{{mat.nome}}</option>
                 </select>
@@ -70,12 +74,14 @@
         </section>
         <section class="container-divs">
             <div class="btn-adicionar-parada-div">
-                <button>ADICIONAR PARADA</button>
+                <button>Adicionar destino</button>
             </div>
         </section>
         <div class="div-buttons">
             <button class="btn-cadastrar" (click)="create()">CRIAR VIAGEM</button>
+            <!---
             <button class="btn-cancelar" (click)="navigationToItinerarios()">CANCELAR</button>
+            -->
 
         </div>
     </form>
