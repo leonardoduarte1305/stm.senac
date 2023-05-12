@@ -68,7 +68,7 @@ export class ItinerariosComponent implements OnInit {
     //Chamada de função para icon de demonstração de status confirmado ou não confirmado através de cor
     this.interval = setInterval(() => {
       this.confirmacaoStatus();
-    }, 1000);
+    }, 2000);
 
   }
 

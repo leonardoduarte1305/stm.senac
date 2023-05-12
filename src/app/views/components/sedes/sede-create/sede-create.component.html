@@ -18,8 +18,8 @@
         <div class="box-input-cep">
             <label for="">CEP</label>
             <input [(ngModel)]="sede.cep" type="text" name="cep" id="cep" placeholder="00000-000" formControlName="cep"
-                (input)="sede.cep = formatCEP($event)" maxlength="8" (input)="consultarCep()">
-            <span *ngIf="cepValidacao  &&  formDir.submitted" class="error"><i class="material-icons">priority_high</i>
+               maxlength="9" (input)="consultarCep()" >
+            <span *ngIf="cep.invalid &&  formDir.submitted" class="error"><i class="material-icons">priority_high</i>
                 O cep é obrigatorio</span>
         </div>
         <div class="box-input">

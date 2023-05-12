@@ -40,6 +40,7 @@ import { MotoristaUpdateComponent } from './views/components/motorista/motorista
 import { SedeUpdateComponent } from './views/components/sedes/sede-update/sede-update.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { DiaLogExcluirComponent } from './views/components/template/info/dia-log-excluir/dia-log-excluir.component';
+import { CepFormatDirective } from './cep-format.directive';
 
 
 
@@ -70,7 +71,8 @@ import { DiaLogExcluirComponent } from './views/components/template/info/dia-log
     MotoristaUpdateComponent,
     SedeUpdateComponent,
     DiaLogExcluirComponent,
-    LoginComponent
+    LoginComponent,
+    CepFormatDirective
 
   ],
   imports: [
@@ -92,6 +94,7 @@ import { DiaLogExcluirComponent } from './views/components/template/info/dia-log
     MatSnackBarModule,
     MatFormFieldModule,
     MatTooltipModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

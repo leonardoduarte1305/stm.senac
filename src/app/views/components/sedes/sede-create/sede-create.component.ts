@@ -13,6 +13,9 @@ import { SedeService } from 'src/app/services/sede.service';
   templateUrl: './sede-create.component.html',
   styleUrls: ['./sede-create.component.css']
 })
+
+
+
 export class SedeCreateComponent implements OnInit {
 
   sedeForm!: FormGroup;
@@ -36,7 +39,7 @@ export class SedeCreateComponent implements OnInit {
       cidade: new FormControl('', [Validators.required, Validators.pattern(/\S/)]),
       uf: new FormControl('', [Validators.required, Validators.pattern(/\S/)]),
       observacao: new FormControl(''),
-      cep: new FormControl(''),
+      cep: new FormControl('', [Validators.required, Validators.pattern(/\S/)]),
 
     })
   }
@@ -78,9 +81,9 @@ export class SedeCreateComponent implements OnInit {
   consultarCep() {
     this.cepService.consultarCep(this.sede.cep).subscribe(res => {
       console.log(res)
-      this.sede.cidade=res.localidade;
-      this.sede.rua=res.logradouro;
-      this.sede.uf=res.uf;
+      this.sede.cidade = res.localidade;
+      this.sede.rua = res.logradouro;
+      this.sede.uf = res.uf;
     })
   }
 
@@ -136,5 +139,12 @@ export class SedeCreateComponent implements OnInit {
 
     return cep;
   }
+
+
+
+
+
+
+
 }
 

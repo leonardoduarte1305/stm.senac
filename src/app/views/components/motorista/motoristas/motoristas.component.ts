@@ -48,7 +48,7 @@ export class MotoristasComponent implements AfterViewInit {
 
       this.servive.delet(id).subscribe(resposta => {
         this.findAll();
-        this.servive.message("Motorista excliuso")
+        this.servive.message("Motorista excluido")
       })
     }
   }
