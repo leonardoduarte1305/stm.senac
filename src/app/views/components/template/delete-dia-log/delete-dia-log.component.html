@@ -1,0 +1,10 @@
+<main class="container-diaLog">
+    <header>
+        <i id="edit" class="material-icons" >warning</i>
+        <h2>Deseja excluir este item?</h2>
+    </header>
+    <div >
+        <button class="bt-confirmar" mat-button (click)="dialogRef.close(true)">Confirmar</button>
+        <button class="bt-cancelar" mat-button (click)="dialogRef.close(false)">Cancelar</button>
+    </div>
+</main>

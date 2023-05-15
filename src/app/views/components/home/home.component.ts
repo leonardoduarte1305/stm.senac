@@ -15,7 +15,7 @@ export class HomeComponent implements AfterViewInit {
 
   itinerario: Itinerario[] = [];
 
-  displayedColumns: string[] = ['motorista', 'datetimeSaida', 'datetimeVolta', 'encerrado'];
+  displayedColumns: string[] = ['motorista', 'datetimeSaida', 'datetimeVolta', 'encerrado','ações'];
   dataSource = new MatTableDataSource<Itinerario>(this.itinerario);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

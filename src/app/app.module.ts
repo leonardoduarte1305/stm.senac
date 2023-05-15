@@ -39,12 +39,7 @@ import { VeiculoUpdateComponent } from './views/components/veiculos/veiculo-upda
 import { MotoristaUpdateComponent } from './views/components/motorista/motorista-update/motorista-update.component';
 import { SedeUpdateComponent } from './views/components/sedes/sede-update/sede-update.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { DiaLogExcluirComponent } from './views/components/template/info/dia-log-excluir/dia-log-excluir.component';
-import { CepFormatDirective } from './cep-format.directive';
-
-
-
-
+import { DeleteDiaLogComponent } from './views/components/template/delete-dia-log/delete-dia-log.component';
 
 
 
@@ -70,9 +65,8 @@ import { CepFormatDirective } from './cep-format.directive';
     VeiculoUpdateComponent,
     MotoristaUpdateComponent,
     SedeUpdateComponent,
-    DiaLogExcluirComponent,
     LoginComponent,
-    CepFormatDirective
+    DeleteDiaLogComponent
 
   ],
   imports: [
@@ -93,8 +87,8 @@ import { CepFormatDirective } from './cep-format.directive';
     MatDialogModule,
     MatSnackBarModule,
     MatFormFieldModule,
-    MatTooltipModule
-    
+    MatTooltipModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent]

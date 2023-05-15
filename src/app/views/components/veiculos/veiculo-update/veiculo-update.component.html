@@ -24,7 +24,7 @@
     </div>
     <div class="box-input">
         <label for="">Ano</label>
-        <input [(ngModel)]="veiculo.ano" type="number" name="ano" id="" placeholder="0000"  formControlName="ano">
+        <input [(ngModel)]="veiculo.ano" type="number" name="ano" id="" placeholder="0000"  formControlName="ano" ng-maxlength="4" (keydown)="onKeyDown($event)" >
         <span *ngIf="ano.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> Insira o ano do veículo entre 1900 e {{data.getFullYear()+1}}</span>
     </div>
     <div class="box-input">

@@ -23,17 +23,22 @@ form {
 
 .container-inputs input::placeholder,
 textarea::placeholder {
-    color: white;
+    color: rgb(141, 141, 141);
 }
 
 .container-inputs div {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin: 5px;
+    margin: 2px;
 
 }
-
+.container-inputs .box-input-numero{
+    width: 10%;
+}
+.container-inputs .box-input-uf{
+    width: 20%;
+}
 .buttons {
     display: flex;
     width: 100%;
@@ -114,7 +119,9 @@ header h1 {
         display: block;
 
     }
-
+    .container-inputs .box-input-numero,.container-inputs .box-input-uf{
+        width: 100%;
+    }
     .buttons {
         flex-direction: column;
 
@@ -140,4 +147,8 @@ header h1 {
 textarea {
     resize: none;
     height: 55px;
+}
+option{
+    background-color:rgb(255, 255, 255);
+   
 }

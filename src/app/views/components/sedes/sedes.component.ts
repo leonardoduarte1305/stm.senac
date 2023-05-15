@@ -8,6 +8,7 @@ import { SedeService } from 'src/app/services/sede.service';
 import { OnInit } from '@angular/core';
 
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { DeleteDialogService } from 'src/app/services/delete-dialog.service';
 
 
 
@@ -39,7 +40,8 @@ export class SedesComponent implements AfterViewInit {
     private router: Router,
     private service: SedeService,
     private snack: MatSnackBar,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private deleteDialog: DeleteDialogService
   ) { }
 
   idSubscrib!: any;
@@ -73,16 +75,22 @@ export class SedesComponent implements AfterViewInit {
   navigateToCreate(): void {
     this.router.navigate(['sede/create'])
   }
-  delet(id: any): void {
-    if (confirm("deseja excluir a sede") == true) {
+  async delet(id: any) {
 
+    const confirmed = await this.deleteDialog.open();
+
+    if (confirmed == true) {
       this.service.delet(id).subscribe(resposta => {
         this.findAll();
         this.message("Sede excluida com sucesso")
       })
+
     } else {
+
       this.message("Nenhuma alteração feita")
     }
+
+
   }
 
   message(msg: String): void {
@@ -148,7 +156,7 @@ export class DialogOverviewExampleDialog implements OnInit {
     e = [this.emailValido];
 
     this.service.inscrever(this.data.idSubscrib, e).subscribe((resposta) => {
-      this.message("Foi inscrito na sede"+resposta)
+      this.message("Foi inscrito na sede" + resposta)
     })
   }
   message(msg: String): void {
@@ -161,5 +169,5 @@ export class DialogOverviewExampleDialog implements OnInit {
     })
   }
 
-  
+
 }

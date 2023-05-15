@@ -1,7 +1,7 @@
 <form (ngSubmit)="submit()" [formGroup]="sedeForm" #formDir="ngForm">
     <header>
         <button class="retornar" (click)="navigationToSedes()"><i class="material-icons">arrow_back</i></button>
-  
+
         <h1>CADASTRO DE SEDE</h1>
     </header>
     <section class="container-inputs">
@@ -17,8 +17,7 @@
 
         <div class="box-input-cep">
             <label for="">CEP</label>
-            <input [(ngModel)]="sede.cep" type="text" name="cep" id="cep" placeholder="00000-000" formControlName="cep"
-               maxlength="9" (input)="consultarCep()" >
+            <input [(ngModel)]="sede.cep" type="text" name="cep" id="cep" placeholder="00000-000" formControlName="cep" (input)="consultarCep()" mask=00000-000 [maxLength]="9">
             <span *ngIf="cep.invalid &&  formDir.submitted" class="error"><i class="material-icons">priority_high</i>
                 O cep é obrigatorio</span>
         </div>
@@ -39,7 +38,7 @@
             <span *ngIf="numero.invalid && formDir.submitted" class="error"><i class="material-icons">priority_high</i>
                 O número é obrigatorio</span>
         </div>
-   
+
 
     </section>
     <section class="container-inputs">
@@ -96,8 +95,8 @@
         </div>
     </section>
     <div class="buttons">
-        <button class="bt-cadastrar" >CADASTRAR</button>
-       <!---- <button class="bt-cancelar" (click)="navigationToSedes()">CANCELAR</button>-->
+        <button class="bt-cadastrar">CADASTRAR</button>
+        <!---- <button class="bt-cancelar" (click)="navigationToSedes()">CANCELAR</button>-->
 
     </div>
 </form>

@@ -7,7 +7,8 @@ import { VeiculoService } from 'src/app/services/veiculo.service';
 import { Route, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { HomeService } from 'src/app/services/home.service';
-import { DiaLogExcluirComponent } from '../template/info/dia-log-excluir/dia-log-excluir.component';
+import { DeleteDialogService } from 'src/app/services/delete-dialog.service';
+
 @Component({
   selector: 'app-veiculos',
   templateUrl: './veiculos.component.html',
@@ -26,7 +27,8 @@ export class VeiculosComponent implements AfterViewInit {
     private service: VeiculoService,
     private router: Router,
     public diaLog: MatDialog,
-    private home: HomeService
+    private home: HomeService,
+    private deleteDialog: DeleteDialogService
   ) { }
 
 
@@ -46,20 +48,18 @@ export class VeiculosComponent implements AfterViewInit {
   navigateToCreate(): void {
     this.router.navigate(['veiculos/create'])
   }
-  delet(id: any): void {
-    
-console.log(this.home.openDiaLog())
-    if (confirm("Deseja excluir o veiculo?") == true) {
+  async delet(id: any) {
 
+    const confirmed = await this.deleteDialog.open();
+
+    if (confirmed == true) {
       this.service.delet(id).subscribe(resposta => {
         this.findAll();
         this.service.message("Veículo excluido")
       });
-
     } else {
       this.service.message("Nenhuma alteração feita")
     }
-
 
   }
 

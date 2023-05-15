@@ -38,7 +38,7 @@ export class VeiculoUpdateComponent implements OnInit {
   ngOnInit(): void {
     this.id_veiculo = this.route.snapshot.paramMap.get("id")!;
     this.findById();
-    
+
     this.veiculoForm = new FormGroup({
       id: new FormControl(null!),
       modelo: new FormControl('', [Validators.required, Validators.pattern(/\S/)]),
@@ -49,7 +49,7 @@ export class VeiculoUpdateComponent implements OnInit {
       tamanho: new FormControl(''),
     })
   }
-  
+
 
   get modelo() {
     return this.veiculoForm.get('modelo')!;
@@ -66,10 +66,10 @@ export class VeiculoUpdateComponent implements OnInit {
 
   get ano() {
     console.log(this.veiculoForm.get('ano')?.value)
-    
+
 
     return this.veiculoForm.get('ano')!;
-    
+
   }
 
   get renavam() {
@@ -80,7 +80,7 @@ export class VeiculoUpdateComponent implements OnInit {
     return this.veiculoForm.get('tamanho')!;
   }
 
-  findById():void {
+  findById(): void {
     this.service.findbyId(this.id_veiculo).subscribe(resposta => {
       this.veiculo = resposta;
       console.log(resposta)
@@ -90,8 +90,8 @@ export class VeiculoUpdateComponent implements OnInit {
   cancelar(): void {
     this.router.navigate(['veiculos']);
   }
-  update():void{
-    this.service.update(this.veiculo).subscribe(resposta=>{
+  update(): void {
+    this.service.update(this.veiculo).subscribe(resposta => {
       this.router.navigate(['veiculos'])
       this.service.message("Veículo Criado!")
     })
@@ -104,10 +104,10 @@ export class VeiculoUpdateComponent implements OnInit {
       verticalPosition: 'top'
     })
   }
-  
+
   carBrands: string[] = [
 
-
+    
     "Acura",
     "Alfa Romeo",
     "Aston Martin",
@@ -128,6 +128,7 @@ export class VeiculoUpdateComponent implements OnInit {
     "Honda",
     "Hyundai",
     "Infiniti",
+    "jac",
     "Jaguar",
     "Jeep",
     "Kia",
@@ -157,7 +158,16 @@ export class VeiculoUpdateComponent implements OnInit {
     "Volkswagen",
     "Volvo"
   ];
-  submit(){
-    
+  submit() {
+
+  }
+
+  onKeyDown(event: any) {
+  
+    const currentValue = event.target.value;
+    const key = event.key;
+    if (currentValue.length === 4 && key !== 'Backspace' && key !== 'Delete' && key !== 'ArrowLeft' && key !== 'ArrowRight') {
+      event.preventDefault(); 
+    }
   }
 }

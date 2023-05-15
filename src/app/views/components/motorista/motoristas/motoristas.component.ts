@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Route, Router } from '@angular/router';
 import { Motorista } from 'src/app/models/motorista';
+import { DeleteDialogService } from 'src/app/services/delete-dialog.service';
 import { MotoristaService } from 'src/app/services/motorista.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class MotoristasComponent implements AfterViewInit {
 
   constructor(
     private servive: MotoristaService,
-    private router: Router
+    private router: Router,
+    private deleteDialog: DeleteDialogService
 
   ) { }
 
@@ -41,15 +43,20 @@ export class MotoristasComponent implements AfterViewInit {
     this.router.navigate(['motoristas/create']);
   }
 
-  delet(id: any): void {
-    if (confirm("Deseja excluir o motorista") == false) {
-      this.servive.message("Nenhuma alteração feita")
-    } else {
+  async delet(id: any) {
 
+    const confirmed = await this.deleteDialog.open();
+
+    if (confirmed == true) {
       this.servive.delet(id).subscribe(resposta => {
         this.findAll();
         this.servive.message("Motorista excluido")
       })
+    } else {
+
+
+      this.servive.message("Nenhuma alteração feita")
     }
+
   }
 }

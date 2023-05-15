@@ -1,10 +1,9 @@
-
 <header>
   <h1>STM</h1>
   <p>sistema de transferencia de material</p>
 </header>
 <div class="creat">
-<button routerLink="/itinerarios/create">Criar nova Viagem</button>
+  <button routerLink="/itinerarios/create">Criar nova Viagem</button>
 
 </div>
 <mat-card class="box">
@@ -19,7 +18,7 @@
 
 
   <div>
-   
+
     <table class="table" mat-table [dataSource]="dataSource">
 
       <!-- Position Column -->
@@ -45,12 +44,17 @@
         <th mat-header-cell *matHeaderCellDef> Destino Final </th>
         <td mat-cell *matCellDef="let element"> {{element.encerrado}} </td>
       </ng-container>
+      <ng-container matColumnDef="ações">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+        <td mat-cell *matCellDef="let element"> <button class="bt-alterar-viagem">  <i id="edit" class="material-icons" matTooltip="Editar">edit</i></button></td>
+      </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    <mat-paginator class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+      aria-label="Select page of periodic elements">
     </mat-paginator>
   </div>
 

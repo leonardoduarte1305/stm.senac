@@ -63,10 +63,10 @@ export class VeiculoCreateComponent implements OnInit {
 
   get ano() {
     console.log(this.veiculoForm.get('ano')?.value)
-    
+
 
     return this.veiculoForm.get('ano')!;
-    
+
   }
 
   get renavam() {
@@ -135,7 +135,7 @@ export class VeiculoCreateComponent implements OnInit {
 
   carBrands: string[] = [
 
-
+  
     "Acura",
     "Alfa Romeo",
     "Aston Martin",
@@ -156,6 +156,7 @@ export class VeiculoCreateComponent implements OnInit {
     "Honda",
     "Hyundai",
     "Infiniti",
+    "jac",
     "Jaguar",
     "Jeep",
     "Kia",
@@ -189,10 +190,14 @@ export class VeiculoCreateComponent implements OnInit {
   submit() {
 
   }
-  limitarInput(event: any) {
-    const input = event.target;
-    if (input.value.length > 4) {
-      input.value = input.value.slice(0, 4);
+
+
+  onKeyDown(event: any) {
+  
+    const currentValue = event.target.value;
+    const key = event.key;
+    if (currentValue.length === 4 && key !== 'Backspace' && key !== 'Delete' && key !== 'ArrowLeft' && key !== 'ArrowRight') {
+      event.preventDefault(); 
     }
   }
 }

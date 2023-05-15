@@ -13,6 +13,11 @@ form {
     width: 80%;
 
 }
+form input::placeholder{
+  
+        color: rgb(141, 141, 141);
+ 
+}
 
 form .container-divs {
     display: flex;
@@ -169,5 +174,6 @@ h3{
     }
 }
 option{
-    background-color: black;
+    background-color:rgb(255, 255, 255);
+   
 }

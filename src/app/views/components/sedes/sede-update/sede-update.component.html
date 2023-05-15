@@ -13,6 +13,13 @@
         </div>
     </section>
     <section class="container-inputs">
+        <div class="box-input-cep">
+            <label for="">CEP</label>
+            <input [(ngModel)]="sede.cep" type="text" name="cep" id="cep" placeholder="00000-000" formControlName="cep"
+                maxlength="9">
+            <span *ngIf="cep.invalid &&  formDir.submitted" class="error"><i class="material-icons">priority_high</i> O
+                cep é obrigatorio</span>
+        </div>
         <div class="box-input">
             <label for="">Rua</label>
             <input maxlength="100" [(ngModel)]="sede.rua" type="text" name="rua" id="" placeholder="rua"
@@ -30,13 +37,7 @@
             <span *ngIf="numero.invalid && formDir.submitted" class="error"><i class="material-icons">priority_high</i>
                 O número é obrigatorio</span>
         </div>
-        <div class="box-input-cep">
-            <label for="">CEP</label>
-            <input [(ngModel)]="sede.cep" type="text" name="cep" id="cep" placeholder="00000-000" formControlName="cep"
-                maxlength="9">
-            <span *ngIf="cep.invalid &&  formDir.submitted" class="error"><i class="material-icons">priority_high</i> O
-                cep é obrigatorio</span>
-        </div>
+       
 
     </section>
     <section class="container-inputs">
