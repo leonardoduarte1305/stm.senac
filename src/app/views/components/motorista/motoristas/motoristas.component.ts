@@ -42,6 +42,11 @@ export class MotoristasComponent implements AfterViewInit {
   navigationToCreate(): void {
     this.router.navigate(['motoristas/create']);
   }
+ applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
 
   async delet(id: any) {
 

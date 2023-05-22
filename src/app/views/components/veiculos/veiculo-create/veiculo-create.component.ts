@@ -105,7 +105,7 @@ export class VeiculoCreateComponent implements OnInit {
     */
     if (this.validarRenavam(this.veiculo.renavan) === true) {
 
-      console.log(this.veiculo)
+   
       this.service.create(this.veiculo).subscribe((resposta) => {
         this.router.navigate(['veiculos'])
         this.service.message("Veículo Criado!")

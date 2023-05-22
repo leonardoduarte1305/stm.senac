@@ -1,0 +1,72 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    height: 100%;
+
+}
+
+main h2 {
+    color: black;
+
+    background-color: chocolate;
+    width: 100%;
+}
+
+.error {
+    border-bottom: 3px solid red;
+
+}
+
+main span {
+    width: 95%;
+
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: red;
+    text-align: justify;
+}
+
+main label {
+    color: black;
+
+    width: 90%;
+}
+
+.butons {
+    background-color: #1A1D24;
+    width: 100%;
+    justify-content: center;
+}
+
+.butons button {
+    width: 50%;
+    border: none;
+
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    background-color: transparent;
+
+}
+
+.butons button:hover {
+    cursor: pointer;
+    background-color: rgb(54, 57, 70);
+    color: white;
+}
+
+.inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputs input {
+    width: 90%;
+}

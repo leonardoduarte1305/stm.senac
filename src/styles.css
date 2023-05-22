@@ -2,6 +2,8 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+
+
 html,
 body {
     height: 100%;
@@ -30,24 +32,25 @@ body {
 input,
 select,
 textarea {
-    border: 1px solid transparent;
-   
-    /* background-color: rgba(0, 0, 0, 0.411);*/
-    background-color: rgba(0, 0, 0, 0.158);
-    color: black;
-    font-size: 1.5em;
-  
+
     border-radius: 5px;
+    /* background-color: rgba(0, 0, 0, 0.411);*/
+    background-color: rgba(0, 0, 0, 0.151);
+    color: black;
+    border: none;
+    font-size: 1.5em;
+
+  
+    
     padding: 8px;
    /* box-shadow: 2px 2px 5px rgb(22, 22, 22);*/
 
 }
-
-::ng-deep .mat-mdc-paginator-container {
-    background-color: rgb(37, 37, 37);
-
-
+input:focus,textarea:focus,select:focus{
+    outline: none;
+  box-shadow: 0px 0px 5px chocolate;
 }
+
 
 .delet i {
     background-color: transparent;
@@ -71,7 +74,4 @@ textarea {
     cursor: pointer;
     transition: ease-in-out 0.4s;
     background-color: white;
-}
-table {
-    background-color: rgba(0, 0, 0, 0.103);
 }

@@ -1,29 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+
+
 .container {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
     background-color: transparent;
 }
-
+.div-busca{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 2em;
+}
+.div-busca input{
+    color: white;
+}
 
 .bt-create {
     width: 80%;
 
+    padding: 5px;
+    border-radius: 50px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2em;
     flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
 
 }
 
 .bt-create button {
     width: 20%;
-    padding: 12px;
+    padding: 10px;
 
-    background-color: chocolate;
+    background-color: #1A1D24;
     border-radius: 50px;
+    border: none;
 
-    border: 2px solid chocolate;
     transition: ease-in-out 0.5s;
     font-size: 1.2em;
     color: rgb(255, 255, 255);
@@ -32,20 +50,23 @@
 }
 
 .bt-create h1 {
+    margin: 0%;
+    font-size: 2em;
+    color: rgb(231, 231, 231);
+    font-family: 'Secular One', sans-serif;
 
-    font-size: 2.5em;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
 
 }
 
+
+
 .bt-create button:hover {
-    background-color: chocolate;
+
     color: black;
-    box-shadow: 0px 0px 10px chocolate;
+
     cursor: pointer;
-    border-color: chocolate;
-    color: white;
+
+    background-color: white;
 }
 
 
@@ -66,8 +87,8 @@ table th {
     color: white;
     background-color: #1A1D24;
 }
+
 ::ng-deep .mat-mdc-paginator-container {
     background-color: #1A1D24;
-  
-}
 
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Destino } from 'src/app/models/destino';
 import { Itinerario } from 'src/app/models/itinerario';
@@ -13,6 +14,9 @@ import { MaterialService } from 'src/app/services/material.service';
 import { MotoristaService } from 'src/app/services/motorista.service';
 import { SedeService } from 'src/app/services/sede.service';
 import { VeiculoService } from 'src/app/services/veiculo.service';
+import { CriarMaterialComponent } from '../../material/criar-material/criar-material.component';
+import { SetorService } from 'src/app/services/setor.service';
+import { Setor } from 'src/app/models/setor';
 
 export interface PeriodicElement {
   Material: string;
@@ -41,6 +45,7 @@ export class ItinerarioCreateComponent implements OnInit {
   veiculos: Veiculo[] = [];
   motoristas: Motorista[] = [];
   sedes: Sede[] = [];
+  setores: Setor[] = [];
   dtSaida!: Date;
   dtVolta!: Date;
 
@@ -69,9 +74,24 @@ export class ItinerarioCreateComponent implements OnInit {
     private servicoVeiculo: VeiculoService,
     private servicoMotorista: MotoristaService,
     private servicoSede: SedeService,
-    private serviceMaterial: MaterialService
+    private serviceMaterial: MaterialService,
+    private dialog: MatDialog,
+    private serviceSetor: SetorService
   ) {
 
+  }
+
+  criarMaterial(): void {
+
+    const dialogRef: MatDialogRef<CriarMaterialComponent> = this.dialog.open(CriarMaterialComponent, {
+      width: '600px', // Defina a largura do diálogo conforme necessário
+      data: { /* Opcionalmente, você pode passar dados para o diálogo */ }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // Manipule o resultado do diálogo, se necessário
+      this.buscarMaterial();
+    });
   }
   viagem: Viagem = {
     id: null!,
@@ -86,11 +106,10 @@ export class ItinerarioCreateComponent implements OnInit {
   create(): void {
 
     this.viagem.datetimeSaida = this.dtSaida.toLocaleString('pt-br');
+    console.log(this.viagem.datetimeSaida);
     if (this.viagem.datetimeVolta == "") {
-
     } else {
       this.viagem.datetimeVolta = this.dtVolta.toLocaleString('pt-br');
-
     }
     console.log(this.viagem.datetimeVolta)
     this.servico.create(this.viagem).subscribe((resposta) => {
@@ -104,7 +123,7 @@ export class ItinerarioCreateComponent implements OnInit {
     this.buscarTodasSedes();
     this.buscarTodosMotoristas();
     this.buscarMaterial();
-
+    this.buscarSetor();
     this.viagemForm = new FormGroup({
       id: new FormControl(''),
       motoristaId: new FormControl(''),
@@ -158,7 +177,12 @@ export class ItinerarioCreateComponent implements OnInit {
     })
 
   }
-
+  buscarSetor() {
+    this.serviceSetor.findAll().subscribe(res => {
+      this.setores = res;
+      console.log(this.setores)
+    })
+  }
 
 
   navigationToItinerarios() {
@@ -167,4 +191,9 @@ export class ItinerarioCreateComponent implements OnInit {
   msg(): void {
     this.servico.mensagem("Material Adicionado ao destino");
   }
+
+
+
+
+
 }

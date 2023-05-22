@@ -1,16 +1,20 @@
 form {
-    display: flex;
-    flex-direction: column;
     margin-left: auto;
     margin-right: auto;
     width: 70%;
-    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+   background-color: rgb(230, 230, 230);
+    padding: 100px 0px 100px 0px;
+    border-radius: 28px;
+    box-shadow: 2px 2px 20px black;
 
 }
 
 .container-inputs {
     display: flex;
-    width: 100%;
+    width: 90%;
     margin-top: 2em;
 
 }
@@ -41,7 +45,7 @@ textarea::placeholder {
 }
 .buttons {
     display: flex;
-    width: 100%;
+    width: 90%;
     justify-content: start;
     margin-top: 5em;
     align-items: center;
@@ -78,11 +82,11 @@ textarea::placeholder {
 
 header {
     display: flex;
-    color: black;
-    border-bottom: 5px solid chocolate;
+    color: white;
+    
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
+    width: 70%;
     
 
 }
@@ -93,7 +97,7 @@ header button {
     width: 50px;
     margin-right: 10px;
     border-radius: 50px;
-    background-color: rgb(50, 56, 61);
+    background-color: chocolate;
     border: none;
 }
 header button:hover{

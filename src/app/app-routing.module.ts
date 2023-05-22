@@ -14,6 +14,7 @@ import { MotoristaUpdateComponent } from './views/components/motorista/motorista
 import { VeiculoUpdateComponent } from './views/components/veiculos/veiculo-update/veiculo-update.component';
 import { SedeUpdateComponent } from './views/components/sedes/sede-update/sede-update.component';
 import { LoginComponent } from './views/components/login/login.component';
+import { MateriaisComponent } from './views/components/material/materiais/materiais.component';
 
 
 const routes: Routes = [
@@ -82,6 +83,11 @@ const routes: Routes = [
   {
     path: "",
     component: LoginComponent
+  },
+
+  {
+    path: "materiais",
+    component: MateriaisComponent
   }
 
 

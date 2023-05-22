@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+.acoes{
+    display: flex;
+    
+}
 .conatiner {
     width: 80%;
     margin-left: auto;
@@ -7,40 +13,45 @@
 
 .bt-create {
     width: 80%;
-
+    display: flex;
+    align-items: center;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2em;
-    flex-direction: column;
-
+    flex-direction: row;
+    justify-content: space-between;
+ 
+    border-radius: 50px;
+    padding: 5px;
+ 
 }
 
 
 .bt-create button {
     width: 20%;
-    padding: 15px;
-    background-color: chocolate;
+    padding: 10px;
+    background-color: #1A1D24;
     border-radius: 50px;
     color: rgb(248, 248, 248);
     border: none;
     transition: ease-in-out 0.5s;
     font-size: 1.2em;
-   
+
     font-weight: bold;
 }
 
 .bt-create h1 {
-
-    font-size: 2.5em;
-    color: black;
-    font-weight: bold;
-
+    font-weight: 500;
+    font-size: 2em;
+    color: rgb(255, 255, 255);
+    margin: 0%;
+    font-family: 'Secular One', sans-serif;
 }
 
 .bt-create button:hover {
-    background-color: chocolate;
-    color: white;
-    box-shadow: 0px 0px 10px chocolate;
+    background-color: white;
+    color: black;
+
     cursor: pointer;
 
 
@@ -101,7 +112,8 @@
     border: none;
     transition: ease-in-out 0.9s;
 }
-.box-diaLog-button button:hover{
+
+.box-diaLog-button button:hover {
     background-color: white;
     color: black;
     cursor: pointer;
@@ -116,6 +128,7 @@ table {
 
 table td {
     color: black;
+    
 
 }
 
@@ -123,8 +136,17 @@ table th {
     color: white;
     background-color: #1A1D24;
 }
+
 ::ng-deep .mat-mdc-paginator-container {
     background-color: #1A1D24;
-  
-}
 
+}
+.div-busca{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2em;
+}
+.div-busca input{
+    color: white;
+}

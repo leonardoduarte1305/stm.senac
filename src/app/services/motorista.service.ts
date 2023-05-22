@@ -43,7 +43,7 @@ export class MotoristaService {
     this.snack.open(`${msg}`, 'OK', {
       horizontalPosition: 'end',
       verticalPosition: 'top',
-      duration: 3000,
+      duration: 3000
 
     })
   }

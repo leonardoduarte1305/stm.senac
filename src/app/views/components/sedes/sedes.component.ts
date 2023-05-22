@@ -44,6 +44,12 @@ export class SedesComponent implements AfterViewInit {
     private deleteDialog: DeleteDialogService
   ) { }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
   idSubscrib!: any;
   name!: string;
   openDialog(id: any): void {
@@ -156,7 +162,8 @@ export class DialogOverviewExampleDialog implements OnInit {
     e = [this.emailValido];
 
     this.service.inscrever(this.data.idSubscrib, e).subscribe((resposta) => {
-      this.message("Foi inscrito na sede" + resposta)
+      this.message("Foi inscrito na sede" + this.nomeSede)
+      this.onNoClick();
     })
   }
   message(msg: String): void {

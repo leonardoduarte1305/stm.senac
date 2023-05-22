@@ -1,6 +1,7 @@
 main {
     width: 100%;
-    height: 88vh;
+    height: 90vh;
+
 }
 
 form {
@@ -11,12 +12,16 @@ form {
     justify-content: center;
     align-items: center;
     width: 80%;
+    background-color: rgb(221, 221, 221);
+    padding: 20px 5px 20px 5px;
+    border-radius: 5px;
 
 }
-form input::placeholder{
-  
-        color: rgb(141, 141, 141);
- 
+
+form input::placeholder {
+
+    color: rgb(141, 141, 141);
+
 }
 
 form .container-divs {
@@ -37,9 +42,10 @@ form .container-divs {
     width: 10%;
 
 }
-.container-divs label{
+
+.container-divs label {
     color: black;
-    font-weight:bold ;
+    font-weight: bold;
     margin-left: 10px;
 }
 
@@ -55,36 +61,38 @@ form .container-divs {
 
 header {
     display: flex;
-    width: 75%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
-    border-bottom: 5px solid chocolate;
+
 
 }
 
 header h1 {
-    font-size: 2.5em;
+    font-size: 2em;
     font-weight: bold;
-    color: black;
+    color: white;
 }
+
 header button {
     height: 25px;
     margin-top: 5px;
     width: 50px;
     margin-right: 10px;
     border-radius: 50px;
-    background-color: rgb(50, 56, 61);
+    background-color: chocolate;
     border: none;
 }
-header button:hover{
+
+header button:hover {
     background-color: white;
-    
+
     color: black;
 }
 
 header button i {
     color: white;
-    
+
 }
 
 
@@ -103,7 +111,7 @@ header button i {
 .div-buttons {
     width: 100%;
     justify-content: start;
-    
+
     display: flex;
     margin-top: 7em;
 }
@@ -112,7 +120,7 @@ header button i {
     font-family: 'Poppins', sans-serif;
     font-size: 1.5em;
     padding: 10px;
-    
+
     border-radius: 50px;
     width: 30%;
     transition: ease-in-out 0.6s;
@@ -127,16 +135,18 @@ header button i {
     background-color: black;
 
     cursor: pointer;
-    box-shadow: 0px 0px 20px white;
+
     color: rgb(255, 255, 255);
 
 }
-.add-material-div{
+
+.add-material-div {
     display: flex;
 
     flex-direction: row;
 }
-.add-material-div button{
+
+.add-material-div button {
     width: 180px;
     margin-left: 10px;
     border-radius: 50pc;
@@ -144,36 +154,42 @@ header button i {
     border: none;
     background-color: #1A1D24;
     color: white;
-    margin-top:-2px;
+    margin-top: -2px;
 }
 
-h3{
-  
-    
-    color: black;
-    
+h3 {
+
+
+    color: white;
+
     font-size: 1.2em;
     font-weight: bold;
-    width: 95%;
+    width: 100%;
+    text-align: center;
     margin-top: 2em;
-    border-bottom: 5px solid chocolate;
+    border-radius: 50px;
+    background-color: #1A1D24;
 }
 
 @media (width<1000px) {
-    form section{
-       flex-direction: column;
+    form section {
+        flex-direction: column;
     }
+
     .div-buttons {
         flex-direction: column;
     }
-    .div-buttons button{
+
+    .div-buttons button {
         width: 50%;
     }
+
     .btn-adicionar-parada-div button {
         width: 100%;
     }
 }
-option{
-    background-color:rgb(255, 255, 255);
-   
+
+option {
+    background-color: rgb(255, 255, 255);
+
 }

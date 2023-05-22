@@ -19,5 +19,13 @@ export class MaterialService {
   }
 
 
-
+  create(material: Material): Observable<Material> {
+    const url = this.baseUrl + '/materiais'
+    return this.http.post<Material>(url, material)
+  }
+  delet(id: any): Observable<Material> {
+    const url = this.baseUrl + '/materiais/' + id;
+    return this.http.delete<Material>(url);
+  }
+  
 }

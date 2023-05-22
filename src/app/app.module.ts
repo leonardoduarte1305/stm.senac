@@ -19,7 +19,6 @@ import { VeiculosComponent } from './views/components/veiculos/veiculos.componen
 import { LoginComponent } from './views/components/login/login.component';
 import { MatCardModule } from '@angular/material/card';
 import { SedesComponent } from './views/components/sedes/sedes.component';
-import { UsuariosComponent } from './views/components/usuarios/usuarios.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -40,7 +39,9 @@ import { MotoristaUpdateComponent } from './views/components/motorista/motorista
 import { SedeUpdateComponent } from './views/components/sedes/sede-update/sede-update.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { DeleteDiaLogComponent } from './views/components/template/delete-dia-log/delete-dia-log.component';
-
+import { CriarMaterialComponent } from './views/components/material/criar-material/criar-material.component';
+import { MateriaisComponent } from './views/components/material/materiais/materiais.component';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -52,7 +53,6 @@ import { DeleteDiaLogComponent } from './views/components/template/delete-dia-lo
     HomeComponent,
     VeiculosComponent,
     SedesComponent,
-    UsuariosComponent,
     VeiculoCreateComponent,
     SedeCreateComponent,
     InfoComponent,
@@ -66,7 +66,9 @@ import { DeleteDiaLogComponent } from './views/components/template/delete-dia-lo
     MotoristaUpdateComponent,
     SedeUpdateComponent,
     LoginComponent,
-    DeleteDiaLogComponent
+    DeleteDiaLogComponent,
+    CriarMaterialComponent,
+    MateriaisComponent
 
   ],
   imports: [
@@ -88,6 +90,7 @@ import { DeleteDiaLogComponent } from './views/components/template/delete-dia-lo
     MatSnackBarModule,
     MatFormFieldModule,
     MatTooltipModule,
+    MatInputModule
   
   ],
   providers: [],

@@ -1,0 +1,12 @@
+<main>
+    <h2 mat-dialog-title>Inserir um novo material</h2>
+    <div class="inputs" mat-dialog-content>
+        <label for="">Material</label>
+        <input  [ngClass]="{'error': isError}"  [(ngModel)]="material.nome" name="nome" type="text" maxlength="80">
+        <span *ngIf="validar"><i class="material-icons" >report</i> O campo não pode ser nulo </span>
+    </div>
+    <div class="butons" mat-dialog-actions>
+        <button mat-button (click)="fecharDialog()">CANCELAR</button>
+        <button mat-button (click)="criar()">CRIAR</button>
+    </div>
+</main>

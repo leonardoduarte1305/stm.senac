@@ -1,24 +1,25 @@
 .container {
     height: 100%;
-background-color: #e0e0e0;
+    background-color: rgba(49, 54, 63, 1);
 
 
 
 }
 
 header {
-    background-color: transparent;
+    background-color:transparent;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 0.5em;
+    
+    margin: .5em;
 
 }
 
 header div {
     display: flex;
     align-items: center;
-    
+
 
 }
 
@@ -40,7 +41,7 @@ i {
 }
 
 .btn_icon {
-    color: black;
+    color: rgb(255, 255, 255);
     font-size: 2em;
     margin: 10px;
     cursor: pointer;
@@ -68,8 +69,9 @@ mat-drawer {
     width: 15%;
 
 }
-.sidenav .links{
-    border-bottom:2px solid #d2691e ;
+
+.sidenav .links {
+    border-bottom: 2px solid #d2691e;
     margin: 0.5em;
 
 }
@@ -79,17 +81,27 @@ mat-drawer {
     mat-drawer {
         width: 30%;
     }
-  
+
 }
 
 
 .info {
 
+    flex-direction: column;
+    margin-top: 2em;
 
-margin-top: 2em;
-    margin-left: 20px;
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
+}
+.info a{
+    text-decoration: none;
+    color: chocolate;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 6px;
+}
+.info a:hover{
+    color: white;
 }
 
 header .user {
@@ -107,6 +119,6 @@ header .user h1 {
 
 header .user a {
     text-decoration: none;
-    color: black;
+    color: rgb(255, 255, 255);
     margin: 0%;
 }

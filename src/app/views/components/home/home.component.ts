@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Home } from 'src/app/models/home';
 import { Itinerario } from 'src/app/models/itinerario';
 import { HomeService } from 'src/app/services/home.service';
@@ -20,7 +21,8 @@ export class HomeComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private service: ItinerarioService) {
+  constructor(private service: ItinerarioService,
+    private router: Router) {
 
   }
 
@@ -34,6 +36,10 @@ export class HomeComponent implements AfterViewInit {
       this.dataSource = new MatTableDataSource<Itinerario>(this.itinerario);
       this.dataSource.paginator = this.paginator;
     })
+  }
+
+  materiaisPagina():void{
+this.router.navigate(['materiais']);
   }
 }
 
