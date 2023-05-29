@@ -25,6 +25,11 @@ export class ItinerarioService {
     }
     )
   }
+
+  findById(id: any): Observable<Viagem> {
+    const url = this.baseUrl + '/viagens/' + id;
+    return this.http.get<Viagem>(url);
+  }
   findAll(): Observable<Itinerario[]> {
     const url = this.baseUrl + '/viagens'
     return this.http.get<Itinerario[]>(url);
@@ -39,8 +44,14 @@ export class ItinerarioService {
     return this.http.post<Viagem>(url, viagem)
   }
   status(id: any, confirmacao: Confirmacao): Observable<Confirmacao> {
-    const url = "http://localhost:8080/viagens/"+id+"/confirmacao";
+    const url = "http://localhost:8080/viagens/" + id + "/confirmacao";
     console.log(confirmacao)
     return this.http.post<Confirmacao>(url, confirmacao);
+  }
+
+
+  update(viagem: Viagem): Observable<Viagem> {
+    const url = this.baseUrl + '/viagens/' + viagem.id;
+    return this.http.put<Viagem>(url, viagem);
   }
 }

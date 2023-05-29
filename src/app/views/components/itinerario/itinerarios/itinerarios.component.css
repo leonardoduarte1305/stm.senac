@@ -1,5 +1,5 @@
 .bt-create {
-    width: 75%;
+    width: 60%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -41,19 +41,20 @@
 }
 
 .test {
-    width: 100%;
+    width: 70%;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
 
 }
 
 
 ul {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+
 }
 
 li {
@@ -72,7 +73,6 @@ li {
 }
 
 
-
 .header-cards {
     display: flex;
     justify-content: space-between;
@@ -80,10 +80,10 @@ li {
 
 .header-cards h3 {
     font-weight: bold;
-    background-color: chocolate;
+
     padding: 5px;
     border-radius: 50px;
-    color: white;
+    color: black;
 }
 
 .container {
@@ -170,15 +170,25 @@ li {
     color: white;
     border: none;
 }
-.btn button:hover{
+
+.btn button a {
+    text-decoration: none;
+    color: white;
+}
+
+.btn button:hover {
     background-color: #262a33;
     cursor: pointer;
 }
+
 .container table {
     width: 100%;
-    background-color: transparent;
+    background-color: rgb(199, 199, 199);
+    border-radius: 15px;
+    height: 100px;
 
 }
+
 
 table td,
 th {

@@ -55,7 +55,7 @@
    
 }
 
-div {
+.conatiner {
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -84,4 +84,21 @@ table th {
 ::ng-deep .mat-mdc-paginator-container {
     background-color: #1A1D24;
 
+}
+@media (width<1000px) {
+    .bt-create button{
+        width: 200px;
+        font-size: 1em;
+    }
+    
+}
+.table-limit {
+    max-width: 100%;
+    /* Defina a altura máxima desejada */
+    overflow-x: auto;
+    /* Adicione rolagem vertical quando necessário */
+}
+.acoes{
+    display: flex;
+    
 }

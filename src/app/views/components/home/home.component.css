@@ -35,10 +35,12 @@ table th {
     background-color: #1A1D24;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+
 }
 
 mat-paginator {
     background-color: transparent;
+    width: 100%;
 }
 
 .box-header {
@@ -92,7 +94,7 @@ header h1 {
 
 .creat .card {
     background-color: chocolate;
-    width: 48%;
+    width: 47%;
     padding: 10px;
     transition: ease-in-out 0.5s;
     border-radius: 30px;
@@ -157,4 +159,22 @@ header h1 {
 
     transition: ease-in-out 0.5s;
 
+}
+.table-limit {
+    max-width: 100%;
+    /* Defina a altura máxima desejada */
+    overflow-x: auto;
+    /* Adicione rolagem vertical quando necessário */
+}
+
+
+@media (width<1000px) {
+    .creat .card{
+        width: 40%;
+    }
+    .creat .card .bt button{
+        width: 100%;
+        font-size: .9em;
+    }
+    
 }

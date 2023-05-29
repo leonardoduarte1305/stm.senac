@@ -19,7 +19,7 @@ export class VeiculoCreateComponent implements OnInit {
   veiculoForm!: FormGroup;
 
   //PADRÃO PARA ACEITAR A PLACA ANTIGA E NOVA DO MERCOSUL
-  //placaPattern = /^[a-zA-Z]{3}\d[a-zA-Z0-9][a-zA-Z0-9]?\d{2}$/;
+  placaPattern = /^[a-zA-Z]{3}\d[a-zA-Z0-9][a-zA-Z0-9]?\d{2}$/;
 
   veiculo: Veiculo = {
     id: null!,
@@ -40,7 +40,7 @@ export class VeiculoCreateComponent implements OnInit {
       id: new FormControl(null!),
       modelo: new FormControl('', [Validators.required, Validators.pattern(/\S/)]),
       marca: new FormControl('', [Validators.required, Validators.pattern(/\S/)]),
-      placa: new FormControl('', [Validators.required, Validators.pattern(/^[A-Z]{3}\d{4}$/), Validators.pattern(/\S/)]),
+      placa: new FormControl('', [Validators.required, Validators.pattern(this.placaPattern), Validators.pattern(/\S/)]),
       ano: new FormControl('', [Validators.required, Validators.pattern(/^\d{4}$/), Validators.min(1900), Validators.max(this.data.getFullYear() + 1), Validators.pattern(/\S/)]),
       renavam: new FormControl('', [Validators.required, Validators.minLength(11), Validators.pattern(/\S/), Validators.pattern(/^\d{11}$/)]),
       tamanho: new FormControl(''),
@@ -105,7 +105,7 @@ export class VeiculoCreateComponent implements OnInit {
     */
     if (this.validarRenavam(this.veiculo.renavan) === true) {
 
-   
+
       this.service.create(this.veiculo).subscribe((resposta) => {
         this.router.navigate(['veiculos'])
         this.service.message("Veículo Criado!")
@@ -135,7 +135,7 @@ export class VeiculoCreateComponent implements OnInit {
 
   carBrands: string[] = [
 
-  
+
     "Acura",
     "Alfa Romeo",
     "Aston Martin",
@@ -193,11 +193,11 @@ export class VeiculoCreateComponent implements OnInit {
 
 
   onKeyDown(event: any) {
-  
+
     const currentValue = event.target.value;
     const key = event.key;
     if (currentValue.length === 4 && key !== 'Backspace' && key !== 'Delete' && key !== 'ArrowLeft' && key !== 'ArrowRight') {
-      event.preventDefault(); 
+      event.preventDefault();
     }
   }
 }

@@ -1,16 +1,20 @@
 form {
-    display: flex;
-    flex-direction: column;
     margin-left: auto;
     margin-right: auto;
     width: 70%;
-    align-items: center;
-
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+   background-color: rgb(230, 230, 230);
+    padding: 100px 0px 100px 0px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 20px black;
+    border-top: 2em solid rgb(26, 27, 32);
 }
 
 .container-inputs {
     display: flex;
-    width: 100%;
+    width: 90%;
     margin-top: 2em;
 
 }
@@ -41,7 +45,7 @@ textarea::placeholder {
 }
 .buttons {
     display: flex;
-    width: 100%;
+    width: 90%;
     justify-content: start;
     margin-top: 5em;
     align-items: center;
@@ -51,7 +55,7 @@ textarea::placeholder {
     font-family: 'Poppins', sans-serif;
     font-size: 1.5em;
     padding: 8px;
-
+box-shadow: 2px 2px 5px rgb(88, 88, 88);
     border-radius: 50px;
     width: 30%;
     transition: ease-in-out 0.6s;
@@ -78,11 +82,11 @@ textarea::placeholder {
 
 header {
     display: flex;
-    color: black;
-    border-bottom: 5px solid chocolate;
+    color: white;
+    
     margin-left: auto;
     margin-right: auto;
-    width: 90%;
+    width: 70%;
     
 
 }
@@ -93,7 +97,7 @@ header button {
     width: 50px;
     margin-right: 10px;
     border-radius: 50px;
-    background-color: rgb(50, 56, 61);
+    background-color: chocolate;
     border: none;
 }
 header button:hover{

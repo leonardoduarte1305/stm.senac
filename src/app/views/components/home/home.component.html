@@ -4,7 +4,7 @@
 </header>
 <section class="creat">
 
-  <div class="card" >
+  <div class="card">
     <div>
       <i class="material-icons">add</i>
       <h4>Criar Nova Viagem</h4>
@@ -20,7 +20,8 @@
       <h4>Materiais salvos no sistema</h4>
     </div>
     <div class="bt">
-      <button (click)="materiaisPagina()" >Lista de todos materiais <i class="material-icons"> arrow_right_alt</i> </button>
+      <button (click)="materiaisPagina()">Lista de todos materiais <i class="material-icons"> arrow_right_alt</i>
+      </button>
     </div>
   </div>
 
@@ -37,7 +38,7 @@
 -->
 
 
-  <div>
+  <div class="table-limit">
 
     <table class="table" mat-table [dataSource]="dataSource">
 
@@ -74,9 +75,9 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator color="warn" class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-      aria-label="Select page of periodic elements">
-    </mat-paginator>
   </div>
+  <mat-paginator color="warn" class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+    aria-label="Select page of periodic elements">
+  </mat-paginator>
 
 </mat-card>

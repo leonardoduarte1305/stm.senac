@@ -21,9 +21,9 @@
             </div>
             <section class="container">
 
+
                 <table>
-                    <tr>
-                        <th>Total de destinos</th>
+                    <tr class="tr-header">
                         <th>Andamento</th>
                         <th>Status</th>
                         <th>Data Saida</th>
@@ -31,11 +31,9 @@
                         <th>Motorista</th>
                         <th>Veículo</th>
                     </tr>
-                    <tr>
-                        <td>
+                    
+                    <tr class="list-dados">
 
-                            <p> {{viagens.destinos.length}}</p>
-                        </td>
                         <td>
 
                             <p> {{viagens.encerrado.replace("_"," " )}}</p>
@@ -45,7 +43,7 @@
                             <div class="span">
                                 <p> {{viagens.status.confirmacao.replace("_"," " )}} </p>
                                 <h5 class="status"> </h5>
-                        
+
                             </div>
                         </td>
                         <td>
@@ -69,14 +67,24 @@
                 </table>
 
             </section>
-            <div class="btn">
-
-                <button (click)="confirmacaoStatus()">EDITAR</button>
-                <button (click)="getId(viagens)">EXCLUIR</button>
-
-            </div>
+            <button (click)="mostrar()">Mostrar</button>
+            <div *ngIf="mostrarDestinos" class="box-destinos">
+        <li *ngFor="let d of viagens.destino">
+            <p>{{d}}</p>
         </li>
+</div>
 
-    </ul>
+<div class="btn">
+
+
+    <button><a class="up" routerLink="update/{{viagens.id}}">
+            EDITAR
+        </a></button>
+    <button (click)="getId(viagens)">EXCLUIR</button>
+
+</div>
+</li>
+
+</ul>
 
 </div>

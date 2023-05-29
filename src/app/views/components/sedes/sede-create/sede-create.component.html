@@ -10,7 +10,7 @@
             <input maxlength="60" [(ngModel)]="sede.nome" type="text" name="nome" id=""
                 placeholder="Insira um nome de identificação" formControlName="nome">
             <span *ngIf="nome.invalid && formDir.submitted" class="error"><i class="material-icons">priority_high</i> O
-                campo nome não pode ser nulo</span>
+                campo nome não pode ser vazio</span>
         </div>
     </section>
     <section class="container-inputs">
@@ -47,7 +47,7 @@
             <input maxlength="80" [(ngModel)]="sede.cidade" type="text" name="cidade" id="" placeholder="cidade"
                 formControlName="cidade">
             <span *ngIf="cidade.invalid && formDir.submitted" class="error"><i class="material-icons">priority_high</i>
-                A cidade é obrigatorio</span>
+                A cidade é obrigatoria</span>
         </div>
         <div class="box-input-uf">
             <label for="">UF</label>

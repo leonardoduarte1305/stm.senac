@@ -150,3 +150,17 @@ table th {
 .div-busca input{
     color: white;
 }
+
+@media (width<1000px) {
+    .bt-create button{
+        width: 200px;
+        font-size: 1em;
+    }
+    
+}
+.table-limit {
+    max-width: 100%;
+    /* Defina a altura máxima desejada */
+    overflow-x: auto;
+    /* Adicione rolagem vertical quando necessário */
+}

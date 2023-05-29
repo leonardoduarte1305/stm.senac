@@ -5,10 +5,11 @@ form {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-   background-color: rgb(230, 230, 230);
+    background-color: rgb(230, 230, 230);
     padding: 100px 0px 100px 0px;
-    border-radius: 28px;
+    border-radius: 10px;
     box-shadow: 2px 2px 20px black;
+    border-top: 2em solid rgb(26, 27, 32);
 
 }
 
@@ -48,7 +49,7 @@ form button {
     margin-top: 3em;
     border-radius: 50px;
     width: 30%;
-
+    box-shadow: 2px 2px 5px rgb(100, 100, 100);
     margin-right: 53%;
     transition: ease-in-out 0.6s;
     border: none;
@@ -83,13 +84,13 @@ select {
 
     width: 104%;
     color: black;
-  
+
 
     font-size: 1.5em;
 }
 
-option{
-    background-color:rgb(255, 255, 255);
+option {
+    background-color: rgb(255, 255, 255);
 }
 
 header {
@@ -99,7 +100,7 @@ header {
     margin-left: auto;
     margin-right: auto;
     display: flex;
-    
+
 }
 
 header h1 {
@@ -114,18 +115,19 @@ header button {
     width: 50px;
     margin-right: 10px;
     border-radius: 50px;
-    background-color:chocolate;
+    background-color: chocolate;
     border: none;
 }
-header button:hover{
+
+header button:hover {
     background-color: white;
-    
+
     color: black;
 }
 
 header button i {
     color: white;
-    
+
 }
 
 
@@ -143,6 +145,10 @@ header button i {
 
     form div {
         width: 100%;
+    }
+
+    form .box-input {
+        width: 90%;
     }
 
     form button {

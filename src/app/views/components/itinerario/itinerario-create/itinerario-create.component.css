@@ -1,7 +1,7 @@
+/*ESTILO GERAL DA TELA DE CADASTRO DE VIAGEM*/
 main {
     width: 100%;
     height: 90vh;
-
 }
 
 form {
@@ -11,10 +11,12 @@ form {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 80%;
-    background-color: rgb(221, 221, 221);
+    width: 70%;
+    background-color: rgb(247, 247, 247);
     padding: 20px 5px 20px 5px;
-    border-radius: 5px;
+    border-radius: 10px;
+    border-top: 2em solid #1A1D24;
+    margin-bottom: 2em;
 
 }
 
@@ -30,6 +32,65 @@ form .container-divs {
 
 }
 
+
+/*ESTILO DE TODOS OS COMPONENTES DA TABELA DE LISTAGEM DE MATERIAIS DE UM DESTINO*/
+
+table {
+
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+
+    color: black;
+    border-radius: 5px;
+}
+
+.table-limit {
+    max-height: 200px;
+    /* Defina a altura máxima desejada */
+    overflow-y: auto;
+    /* Adicione rolagem vertical quando necessário */
+}
+
+.table-bt-remover {
+    width: 5%;
+
+}
+
+table th {
+    background-color: chocolate;
+
+}
+
+table td {
+    background-color: rgba(255, 255, 255, 0.945);
+}
+
+.container-destinos section div label {
+    color: white;
+}
+
+.container-destinos h3 {
+    color: chocolate;
+    font-weight: bold;
+    margin: 1em;
+}
+
+.container-destinos section div select {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.096);
+}
+
+.container-destinos section div option {
+    color: black;
+}
+
+.container-destinos section div input {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.096);
+}
+
 .container-divs div {
     width: 100%;
     margin: 0.5em;
@@ -39,9 +100,18 @@ form .container-divs {
 }
 
 .container-divs .btn-adicionar-material-div {
-    width: 10%;
+    width: 120px;
 
 }
+
+.container-destinos {
+    width: 100%;
+    padding: 5px;
+    margin-top: 2em;
+    background-color: #1A1D24;
+}
+
+
 
 .container-divs label {
     color: black;
@@ -51,17 +121,23 @@ form .container-divs {
 
 .btn-adicionar-material-div button {
     padding: 5px;
-    margin-top: 20px;
+
     font-weight: bold;
     font-size: 1.5em;
     border-radius: 50px;
-    background-color: chocolate;
+    background-color: white;
     border: none;
+}
+
+.bt-removerMaterial-lista {
+    background-color: transparent;
+    border: none;
+    color: red;
 }
 
 header {
     display: flex;
-    width: 80%;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
 
@@ -98,31 +174,35 @@ header button i {
 
 .btn-adicionar-parada-div button {
     width: 20%;
-
-    padding: 15px;
-    color: white;
+    padding: 10px;
     border-radius: 50px;
-    font-size: 1.2em;
+    font-size: 1em;
     font-weight: bold;
-    background-color: #1A1D24;
+    background-color: chocolate;
     border: none;
+}
+
+.btn-adicionar-parada-div button:hover {
+    background-color: black;
+    cursor: pointer;
+    color: white;
+
 }
 
 .div-buttons {
     width: 100%;
     justify-content: start;
-
     display: flex;
     margin-top: 7em;
 }
 
 .div-buttons button {
     font-family: 'Poppins', sans-serif;
-    font-size: 1.5em;
+    font-size: 1em;
     padding: 10px;
 
     border-radius: 50px;
-    width: 30%;
+    width: 20%;
     transition: ease-in-out 0.6s;
     border: none;
     font-weight: bold;
@@ -152,29 +232,34 @@ header button i {
     border-radius: 50pc;
     height: 20px;
     border: none;
-    background-color: #1A1D24;
-    color: white;
+    background-color: white;
+    color: black;
+    font-weight: bold;
     margin-top: -2px;
 }
 
-h3 {
+.error {
+    color: rgb(255, 0, 0);
+    display: flex;
+    align-items: center;
 
-
-    color: white;
-
-    font-size: 1.2em;
-    font-weight: bold;
-    width: 100%;
-    text-align: center;
-    margin-top: 2em;
-    border-radius: 50px;
-    background-color: #1A1D24;
+    margin-bottom: -24px;
 }
 
-@media (width<1000px) {
+.error i {
+    margin-right: 10px;
+    margin: 0%;
+}
+
+
+@media (width<1200px) {
     form section {
         flex-direction: column;
+
     }
+  form section div{
+    margin: 0%;
+  }  
 
     .div-buttons {
         flex-direction: column;

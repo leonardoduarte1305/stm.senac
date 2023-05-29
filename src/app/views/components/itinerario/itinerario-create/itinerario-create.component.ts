@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Destino } from 'src/app/models/destino';
-import { Itinerario } from 'src/app/models/itinerario';
 import { Material } from 'src/app/models/material';
 import { Motorista } from 'src/app/models/motorista';
 import { Sede } from 'src/app/models/sede';
@@ -17,29 +16,17 @@ import { VeiculoService } from 'src/app/services/veiculo.service';
 import { CriarMaterialComponent } from '../../material/criar-material/criar-material.component';
 import { SetorService } from 'src/app/services/setor.service';
 import { Setor } from 'src/app/models/setor';
+import { DestinoService } from 'src/app/services/destino.service';
+import { Materiais } from 'src/app/models/materiais';
 
-export interface PeriodicElement {
-  Material: string;
-  QTD: number;
-  SetorDestinatario: number;
-
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  { QTD: 1, Material: 'Hydrogen', SetorDestinatario: 1.0079 },
-  { QTD: 2, Material: 'Helium', SetorDestinatario: 4.0026 },
-  { QTD: 3, Material: 'Lithium', SetorDestinatario: 6.941 },
-  { QTD: 4, Material: 'Beryllium', SetorDestinatario: 9.0122 },
-  { QTD: 5, Material: 'Boron', SetorDestinatario: 10.811 },
-
-];
 @Component({
   selector: 'app-itinerario-create',
   templateUrl: './itinerario-create.component.html',
   styleUrls: ['./itinerario-create.component.css']
 })
 export class ItinerarioCreateComponent implements OnInit {
-  displayedColumns: string[] = ['Material', 'QTD', 'SetorDestinatario'];
-  dataSource = ELEMENT_DATA;
+
+
 
   viagemForm!: FormGroup;
   veiculos: Veiculo[] = [];
@@ -51,21 +38,51 @@ export class ItinerarioCreateComponent implements OnInit {
 
   materiais: Material[] = [];
 
-  destinosViagem: Destino[] = [];
+  destinosViagem: Number[] = [];
+  materialid: Number = 0;
+  qtd: Number = 0;
+  setor: Number = 0;
 
+  materiaisDestino: Materiais[] = [];
+
+  interfaceMateriais: Materiais = {
+    materialId: 0,
+    quantidade: 0,
+    setorDestino: 0
+  }
   destino: Destino = {
     id: null!,
-    sedeID: null!,
-    materiais: {
-      materialID: null!,
-      quantidade: 0,
-      setorDestino: null!
-    }
+    sedeId: 0,
+    materiaisQntdSetor: this.materiaisDestino,
+    status:null!
+    
+
   };
 
+  addMaterial() {
+    const novoObjeto: Materiais = {
+      materialId: this.interfaceMateriais.materialId,
+      quantidade: this.interfaceMateriais.quantidade,
+      setorDestino: this.interfaceMateriais.setorDestino
+    };
+
+    this.materiaisDestino.push(novoObjeto);
+
+    console.log(this.materiaisDestino);
+  }
   addDestino() {
-    this.destinosViagem.push(this.destino);
-    console.log(this.destinosViagem);
+
+    this.destinoService.create(this.destino).subscribe(res => {
+      this.destinosViagem.push(res.id);
+
+
+      for (let i = 0; i < this.destinosViagem.length; i++) {
+
+        console.log("ID :" + this.destinosViagem[i])
+      }
+      console.log(res);
+      this.materiaisDestino.pop();
+    })
   }
 
   constructor(
@@ -76,20 +93,20 @@ export class ItinerarioCreateComponent implements OnInit {
     private servicoSede: SedeService,
     private serviceMaterial: MaterialService,
     private dialog: MatDialog,
-    private serviceSetor: SetorService
+    private serviceSetor: SetorService,
+    private destinoService: DestinoService
   ) {
 
   }
+  
+  
 
   criarMaterial(): void {
-
     const dialogRef: MatDialogRef<CriarMaterialComponent> = this.dialog.open(CriarMaterialComponent, {
-      width: '600px', // Defina a largura do diálogo conforme necessário
-      data: { /* Opcionalmente, você pode passar dados para o diálogo */ }
+      width: '600px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // Manipule o resultado do diálogo, se necessário
       this.buscarMaterial();
     });
   }
@@ -97,7 +114,7 @@ export class ItinerarioCreateComponent implements OnInit {
     id: null!,
     datetimeSaida: "",
     datetimeVolta: "",
-    destinos: [],
+    destinos: this.destinosViagem,
     motoristaId: 0,
     sede: 0,
     veiculoId: 0
@@ -105,16 +122,19 @@ export class ItinerarioCreateComponent implements OnInit {
 
   create(): void {
 
+    if(this.viagemForm.invalid){
+      console.log("Erro")
+    }
+    console.log(this.viagem)
     this.viagem.datetimeSaida = this.dtSaida.toLocaleString('pt-br');
-    console.log(this.viagem.datetimeSaida);
     if (this.viagem.datetimeVolta == "") {
     } else {
       this.viagem.datetimeVolta = this.dtVolta.toLocaleString('pt-br');
     }
-    console.log(this.viagem.datetimeVolta)
+
     this.servico.create(this.viagem).subscribe((resposta) => {
       console.log(resposta);
-      this.router.navigate(['itinerarios']);
+      //this.router.navigate(['itinerarios']);
     })
   }
 
@@ -126,14 +146,22 @@ export class ItinerarioCreateComponent implements OnInit {
     this.buscarSetor();
     this.viagemForm = new FormGroup({
       id: new FormControl(''),
-      motoristaId: new FormControl(''),
+      motoristaId: new FormControl('',[Validators.required]),
       veiculoId: new FormControl(''),
-      destinos: new FormControl([2]),
-      datetimeSaida: new FormControl(Date),
+      destinos: new FormControl(['']),
+      datetimeSaida: new FormControl(Date,[Validators.required]),
       datetimeVolta: new FormControl(Date),
-      sede: new FormControl('')
-
+      sede: new FormControl('',[Validators.required]),
+      materialID: new FormControl(''),
+      quantidade: new FormControl('',[Validators.min(1)]),
+      setorDestino: new FormControl(''),
+      destinatario: new FormControl(''),
+  
+  
     })
+  }
+  get sede() {
+    return this.viagemForm.get('sede')!;
   }
   get motoristaId() {
     return this.viagemForm.get('motoristaId')!;
@@ -150,9 +178,22 @@ export class ItinerarioCreateComponent implements OnInit {
   get datetimeVolta() {
     return this.viagemForm.get('datetimeVolta')!;
   }
-  get sede() {
-    return this.viagemForm.get('sede')!;
+  get materialID() {
+    return this.viagemForm.get('materialID')!;
   }
+
+  get quantidade() {
+    return this.viagemForm.get('quantidade')!;
+  }
+
+  get setorDestino() {
+    return this.viagemForm.get('setorDestino')!;
+  }
+
+  get destinatario() {
+    return this.viagemForm.get('destinatario')!;
+  }
+
 
   buscarTodosVeiculo() {
     this.servicoVeiculo.findAll().subscribe((resposta) => {
@@ -191,9 +232,7 @@ export class ItinerarioCreateComponent implements OnInit {
   msg(): void {
     this.servico.mensagem("Material Adicionado ao destino");
   }
+  sibmit(){
 
-
-
-
-
+  }
 }

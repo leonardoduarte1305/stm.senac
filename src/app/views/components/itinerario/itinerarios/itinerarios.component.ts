@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { interval } from 'rxjs';
+import { findIndex } from 'rxjs';
+
 import { Confirmacao } from 'src/app/models/confirmacao';
 import { Itinerario } from 'src/app/models/itinerario';
+import { Materiais } from 'src/app/models/materiais';
+import { DestinoService } from 'src/app/services/destino.service';
 import { ItinerarioService } from 'src/app/services/itinerario.service';
 import { MotoristaService } from 'src/app/services/motorista.service';
 import { SedeService } from 'src/app/services/sede.service';
@@ -20,6 +23,12 @@ export class ItinerariosComponent implements OnInit {
   itinerarios: Itinerario[] = [];
   interval: any;
 
+  interfaceMateriais: Materiais = {
+    materialId: 0,
+    quantidade: 0,
+    setorDestino: 0
+  }
+  mostrarDestinos: boolean = false;
   constructor(
     private router: Router,
     private service: ItinerarioService,
@@ -27,7 +36,8 @@ export class ItinerariosComponent implements OnInit {
     private serviceVeiculo: VeiculoService,
     private serviceSede: SedeService,
     private viagemService: ViagemService,
-    private http: HttpClient
+    private http: HttpClient,
+    private serviceDestino: DestinoService
   ) { }
 
 
@@ -40,38 +50,66 @@ export class ItinerariosComponent implements OnInit {
     this.router.navigate(['itinerarios/create'])
   }
 
+
+
   findAll(): void {
 
     this.service.findAll().subscribe((resposta) => {
       this.itinerarios = resposta;
-      console.log(resposta);
-
+      
       //loop para pegar veiculos e motoristas pertencentes as viagens 
       for (let i = 0; i < this.itinerarios.length; i++) {
+        this.serviceDestino.buscarDestinoPorIdViagem(this.itinerarios[i].id).subscribe(res => {
+          const novoobjeto = res;
+          this.itinerarios[i].destino = [];
+          this.itinerarios[i].destino.push(novoobjeto);
 
-        this.serviceSede.findById(this.itinerarios[i].sede).subscribe(resposta => {
-          this.itinerarios[i].nomeSede = resposta.nome;
-        })
-
+          // Chamando a função auxiliar com o índice atual
+          this.processarDestino(i);
+        });
+        this.buscarSedePorId(i);
         //busca de motorista por ID
-        this.serviceMotorista.findById(this.itinerarios[i].motoristaId).subscribe(resposta => {
-          this.itinerarios[i].motorista = resposta.nome;
-
-        })
+        this.buscarMotoristPorId(i);
         //busca de veículo por ID
-        this.serviceVeiculo.findbyId(this.itinerarios[i].veiculoId).subscribe(resposta => {
-          this.itinerarios[i].veiculo = resposta.modelo;
-        })
-        console.log(this.itinerarios[i].motoristaId);
+        this.buscarVeiculoPorId(i);
       }
     })
-    //Chamada de função para icon de demonstração de status confirmado ou não confirmado através de cor
+
+
+    /*Chamada de função para icon de demonstração de status confirmado ou não confirmado através de cor
     this.interval = setInterval(() => {
       this.confirmacaoStatus();
     }, 2000);
+*/
+  }
+  buscarSedePorId(i: any) {
+    this.serviceSede.findById(this.itinerarios[i].sede).subscribe(resposta => {
+      this.itinerarios[i].nomeSede = resposta.nome;
+    })
+  }
+  buscarMotoristPorId(i: any) {
+    this.serviceMotorista.findById(this.itinerarios[i].motoristaId).subscribe(resposta => {
+      this.itinerarios[i].motorista = resposta.nome;
 
+    })
   }
 
+  buscarVeiculoPorId(i: any) {
+    this.serviceVeiculo.findbyId(this.itinerarios[i].veiculoId).subscribe(resposta => {
+      this.itinerarios[i].veiculo = resposta.modelo;
+    })
+  }
+
+  processarDestino(index: number) {
+    for (let j = 0; j < this.itinerarios[index].destino.length; j++) {
+      console.log(this.itinerarios[index].destino[j]);
+    }
+  }
+
+  //NÃO ESTA PRONTO
+  mostrar() {
+    this.mostrarDestinos = true
+  }
 
   confirmacaoStatus(): void {
     let x = document.getElementsByTagName("h5")
@@ -114,19 +152,19 @@ export class ItinerariosComponent implements OnInit {
   confirmacao: Confirmacao = {
     confitmacao: "CONFIRMADO"
   }
- 
-/*
 
-  public confirmarDestino(id: any) {
-    const url = `http://localhost:8080/destinos/${id}/confirmacao`;
-    const body = { confirmacao: 'CONFIRMADO' };
+  /*
   
-    this.http.post(url, body).subscribe((response) => {
-      console.log(response);
-    });
-  }
-  */
-  
+    public confirmarDestino(id: any) {
+      const url = `http://localhost:8080/destinos/${id}/confirmacao`;
+      const body = { confirmacao: 'CONFIRMADO' };
+    
+      this.http.post(url, body).subscribe((response) => {
+        console.log(response);
+      });
+    }
+    */
+
   confirmar(id: any): void {
 
     this.service.status(id, this.confirmacao).subscribe(res => {

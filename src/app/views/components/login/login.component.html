@@ -1,25 +1,24 @@
 <main>
-   
+
     <form action="">
         <header>
-            <div>
-                <img src="assets/imgs/Group 46.png" alt="">
-            </div>
-            <div>
-              
-                <p>sistema de transferência de material</p>
+            <div class="div-header-img">
+                <img src="assets/imgs/Group 69 (4).png" alt="">
+        
             </div>
         </header>
-        <div >
-            <label for="">USUÁRIO</label>
-            <input [(ngModel)]="user" type="text" name="user" id="" placeholder="usuario">
-            <span *ngIf="erro">senha ou usuario incorreto</span>
-        </div>
-        <div>
-            <label for="">SENHA</label>
-            <input [(ngModel)]="senha" name="senha" type="password" placeholder="senha">
-            <span *ngIf="erro">senha ou usuario incorreto</span>
-        </div>
-        <button (click)="enter()" >ENTER</button>
+        <section class="container-divs">
+            <div>
+                <label for="">USUÁRIO</label>
+                <input [(ngModel)]="user" type="text" name="user" id="" placeholder="usuario">
+                <span *ngIf="erro">Senha ou Usuário incorretos</span>
+            </div>
+            <div>
+                <label for="">SENHA</label>
+                <input [(ngModel)]="senha" name="senha" type="password" placeholder="senha">
+                <span *ngIf="erro">Senha ou Usuário incorretos</span>
+            </div>
+        </section>
+        <button (click)="enter()">ENTRAR</button>
     </form>
 </main>

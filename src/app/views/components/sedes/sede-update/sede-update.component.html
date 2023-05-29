@@ -1,15 +1,15 @@
+<header>
+    <button class="retornar" (click)="navigationToSedes()"><i class="material-icons">arrow_back</i></button>
+    <h1>ATUALIZAR DE SEDE</h1>
+</header>
 <form (ngSubmit)="submit()" [formGroup]="sedeForm" #formDir="ngForm">
-    <header>
-        <button class="retornar" (click)="navigationToSedes()"><i class="material-icons">arrow_back</i></button>
-        <h1>ATUALIZAR DE SEDE</h1>
-    </header>
     <section class="container-inputs">
         <div class="box-input-nome">
             <label for="">Nome</label>
             <input maxlength="60" [(ngModel)]="sede.nome" type="text" name="nome" id=""
                 placeholder="Insira um nome de identificação" formControlName="nome">
             <span *ngIf="nome.invalid && formDir.submitted" class="error"><i class="material-icons">priority_high</i> O
-                campo nome não pode ser nulo</span>
+                campo nome não pode ser vazio</span>
         </div>
     </section>
     <section class="container-inputs">

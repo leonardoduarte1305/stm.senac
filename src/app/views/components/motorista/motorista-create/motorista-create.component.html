@@ -6,7 +6,7 @@
     <div class="box-input">
         <label for="">Nome</label>
         <input [(ngModel)]="motorista.nome" type="text" name="nome" id="" placeholder="insira o nome do motorista" formControlName="nome" maxlength="100">
-        <span *ngIf="nome.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> O campo nome não pode ser nulo</span>
+        <span *ngIf="nome.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> O campo nome não pode ser vazio</span>
     </div>
     <div class="box-input">
         <label for="">Categoria da Carteira</label>

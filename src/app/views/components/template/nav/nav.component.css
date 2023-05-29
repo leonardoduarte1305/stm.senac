@@ -7,11 +7,11 @@
 }
 
 header {
-    background-color:transparent;
+    background-color: transparent;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
+
     margin: .5em;
 
 }
@@ -67,6 +67,7 @@ i {
 mat-drawer {
     background-color: #1A1D24;
     width: 15%;
+    transition: ease-in-out 0.5s;
 
 }
 
@@ -84,6 +85,19 @@ mat-drawer {
 
 }
 
+@media (max-width:400px) {
+    mat-drawer {
+        width: 50%;
+        position: fixed;
+
+    }
+
+    .container {
+        position: static;
+    }
+
+}
+
 
 .info {
 
@@ -93,14 +107,16 @@ mat-drawer {
     display: flex;
     align-items: flex-start;
 }
-.info a{
+
+.info a {
     text-decoration: none;
     color: chocolate;
     font-weight: bold;
     margin-top: 10px;
     margin-left: 6px;
 }
-.info a:hover{
+
+.info a:hover {
     color: white;
 }
 

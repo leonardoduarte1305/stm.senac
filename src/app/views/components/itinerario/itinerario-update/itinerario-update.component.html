@@ -1,1 +1,112 @@
-<p>itinerario-update works!</p>
+<main>
+    <header>
+        <button class="retornar" (click)="navigationToItinerarios()"><i class="material-icons">arrow_back</i></button>
+        <h1>INSERÇÃO DE VIAGEM</h1>
+    </header>
+    <form action=""  [formGroup]="viagemForm" #formDir="ngForm">
+        <section class="container-divs">
+            <div>
+                <label for="">Origem</label>
+                <select [(ngModel)]="viagem.sede" name="sede" id="" formControlName="sede">
+                    <option *ngFor="let sede of sedes" value="{{sede.id}}">{{sede.nome}}</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="">Data de Saida</label>
+                <input id="dtSaida" [value]="dataHoraString ? transformarStringEmData(dataHoraString) : null" name="datetimeSaida" formControlName="datetimeSaida" [(ngModel)]="dtSaida" type="datetime-local">
+            </div>
+            <div>
+                <label for="">Data de Volta</label>
+                <input name="datetimeVolta" formControlName="datetimeVolta" [(ngModel)]="dtVolta" type="datetime-local">
+            </div>
+        </section>
+        <section class="container-divs">
+            <div>
+                <label for="">Veículo</label>
+                <select [(ngModel)]="viagem.veiculoId" name="veiculoId" id="" formControlName="veiculoId">
+                    <option *ngFor="let veiculo of veiculos" value="{{veiculo.id}}">{{veiculo.modelo}}</option>
+                </select>
+            </div>
+            <div>
+                <label for="">Motorista</label>
+                <select [(ngModel)]="viagem.motoristaId" name="motoristaId" id="" formControlName="motoristaId">
+                    <option *ngFor="let motorista of motoristas" value="{{motorista.id}}">{{motorista.nome}}</option>
+                </select>
+            </div>
+
+        </section>
+        <section class="container-destinos">
+            <h3>CRIAR DESTINO</h3>
+            <section class="container-divs">
+                <div>
+                    <section class="add-material-div">
+                        <label for="">Material</label>
+                        <button (click)="criarMaterial()" matTooltip="adicionar um novo material na lista">adicionar
+                            material</button>
+                    </section>
+                    <select name="materialID" id="" [(ngModel)]="interfaceMateriais.materialId"
+                        formControlName="materialID">
+                        <option *ngFor="let mat of materiais" value="{{mat.id}}">{{mat.nome}}</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="">QTD</label>
+                    <input type="number" name="quantidade" [(ngModel)]="interfaceMateriais.quantidade"
+                        formControlName="quantidade">
+                        <span *ngIf="quantidade.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i>insira a quantidade</span>
+                </div>
+                <div>
+                    <label for="">Setor Destinatario</label>
+                    <select name="setorDestino" id="" [(ngModel)]="interfaceMateriais.setorDestino"
+                        formControlName="setorDestino">
+                        <option *ngFor="let setor of setores" value="{{setor.id}}">{{setor.nome}}</option>
+                    </select>
+                </div>
+                <div class="btn-adicionar-material-div">
+                    <button matTooltip="adicionar material no destino" (click)="addMaterial()">+</button>
+                </div>
+            </section>
+            <div class="table-limit">
+
+                <table class="table table-limit">
+                    <tr>
+                        <th>Material</th>
+                        <th>QTD</th>
+                        <th>Destino</th>
+                        <th class="table-bt-remover"></th>
+                    </tr>
+                    <tr class="listagem-materiais" *ngFor="let s of materiaisDestino">
+                        <td>{{s.materialId}}</td>
+                        <td>{{s.quantidade}}</td>
+                        <td>{{s.setorDestino}}</td>
+                        <td><button class="bt-removerMaterial-lista"><i id="edit" class="material-icons" matTooltip="Remover material da lista">delete</i></button></td>
+                        
+                    </tr>
+                    <!-- Conteúdo da tabela -->
+                </table>
+            </div>
+            <section class="container-divs">
+                <div>
+                    <label for="">Destinatario</label>
+                    <select name="destinatario" id="" [(ngModel)]="destino.sedeId" formControlName="destinatario">
+                        <option *ngFor="let sede of sedes" value="{{sede.id}}">{{sede.nome}}</option>
+                    </select>
+                </div>
+            </section>
+            <section class="container-divs">
+                <div class="btn-adicionar-parada-div">
+                    <button (click)="addDestino()">ADICIONAR DESTINO</button>
+                </div>
+            </section>
+        </section>
+        <div class="div-buttons">
+            <button class="btn-cadastrar" >ATUALIZAR</button>
+            <!---
+            <button class="btn-cancelar" (click)="navigationToItinerarios()">CANCELAR</button>
+            -->
+
+        </div>
+    </form>
+
+</main>

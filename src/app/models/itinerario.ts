@@ -1,9 +1,10 @@
+import { Destino } from "./destino"
+import { Materiais } from "./materiais"
 
 export interface Itinerario {
     id: Number,
     motoristaId: Number,
     veiculoId: Number,
-    destinos: Number[],
     datetimeSaida: String,
     datetimeVolta: String,
     encerrado:String,
@@ -11,7 +12,8 @@ export interface Itinerario {
         confirmacao:string
     },
     motorista:string,
-    veiculo:String
-    nomeSede:String
-    sede:Number
+    veiculo:String,
+    nomeSede:String,
+    sede:Number,
+    destino:Destino[]
 }
