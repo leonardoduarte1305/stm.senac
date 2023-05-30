@@ -2,8 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { findIndex } from 'rxjs';
+import { RespostaHttp } from 'src/app/models/Interface.Destino';
 
 import { Confirmacao } from 'src/app/models/confirmacao';
+import { Destino } from 'src/app/models/destino';
 import { Itinerario } from 'src/app/models/itinerario';
 import { Materiais } from 'src/app/models/materiais';
 import { DestinoService } from 'src/app/services/destino.service';
@@ -13,15 +15,20 @@ import { SedeService } from 'src/app/services/sede.service';
 import { VeiculoService } from 'src/app/services/veiculo.service';
 import { ViagemService } from 'src/app/services/viagem.service';
 
+
 @Component({
   selector: 'app-itinerarios',
   templateUrl: './itinerarios.component.html',
   styleUrls: ['./itinerarios.component.css']
 })
+
+
+
 export class ItinerariosComponent implements OnInit {
 
   itinerarios: Itinerario[] = [];
   interval: any;
+  destinos: Destino[] = [];
 
   interfaceMateriais: Materiais = {
     materialId: 0,
@@ -37,7 +44,8 @@ export class ItinerariosComponent implements OnInit {
     private serviceSede: SedeService,
     private viagemService: ViagemService,
     private http: HttpClient,
-    private serviceDestino: DestinoService
+    private serviceDestino: DestinoService,
+
   ) { }
 
 
@@ -51,22 +59,45 @@ export class ItinerariosComponent implements OnInit {
   }
 
 
+  fazerRequisicao(id: any) {
+    this.http.get<RespostaHttp[]>("http://localhost:8080/viagens/" + id + "/destinos").subscribe(
+      resposta => {
+        // Aqui você pode acessar os dados da resposta tipados corretamente
+        for (const dado of resposta) {
+          console.log('Sede ID:', dado.sedeId);
 
-  findAll(): void {
+          for (const mqSetor of dado.materiaisQntdSetor) {
+            console.log('Material ID:', mqSetor.materialId);
+            console.log('Quantidade:', mqSetor.quantidade);
+            console.log('Setor Destino:', mqSetor.setorDestino);
+          }
+
+          console.log('ID:', dado.id);
+          console.log('Status:', dado.status.confirmacao);
+
+          console.log('------------------------');
+        }
+      },
+      erro => {
+        console.error('Erro na requisição:', erro);
+      }
+    );
+  }
+  async findAll() {
 
     this.service.findAll().subscribe((resposta) => {
       this.itinerarios = resposta;
-      
+
       //loop para pegar veiculos e motoristas pertencentes as viagens 
       for (let i = 0; i < this.itinerarios.length; i++) {
-        this.serviceDestino.buscarDestinoPorIdViagem(this.itinerarios[i].id).subscribe(res => {
-          const novoobjeto = res;
-          this.itinerarios[i].destino = [];
-          this.itinerarios[i].destino.push(novoobjeto);
-
-          // Chamando a função auxiliar com o índice atual
-          this.processarDestino(i);
-        });
+        this.fazerRequisicao(this.itinerarios[i].id);
+        /*   this.serviceDestino.buscarDestinoPorIdViagem(this.itinerarios[i].id).subscribe(res => {
+   
+             this.destinos=[res];
+             console.log(this.destinos[i])
+         //    this.imprimirDados(this.destinos);
+           });
+           */
         this.buscarSedePorId(i);
         //busca de motorista por ID
         this.buscarMotoristPorId(i);
@@ -76,11 +107,29 @@ export class ItinerariosComponent implements OnInit {
     })
 
 
-    /*Chamada de função para icon de demonstração de status confirmado ou não confirmado através de cor
+    //Chamada de função para icon de demonstração de status confirmado ou não confirmado através de cor
     this.interval = setInterval(() => {
       this.confirmacaoStatus();
     }, 2000);
-*/
+
+  }
+
+
+  imprimirDados(dados: Destino[]) {
+    for (const dado of dados) {
+      console.log('Sede ID:', dado.sedeId);
+
+      for (const mqSetor of dado.materiaisQntdSetor) {
+        console.log('Material ID:', mqSetor.materialId);
+        console.log('Quantidade:', mqSetor.quantidade);
+        console.log('Setor Destino:', mqSetor.setorDestino);
+      }
+
+      console.log('ID:', dado.id);
+      console.log('Status:', dado.status.confirmacao);
+
+      console.log('------------------------');
+    }
   }
   buscarSedePorId(i: any) {
     this.serviceSede.findById(this.itinerarios[i].sede).subscribe(resposta => {
@@ -98,12 +147,6 @@ export class ItinerariosComponent implements OnInit {
     this.serviceVeiculo.findbyId(this.itinerarios[i].veiculoId).subscribe(resposta => {
       this.itinerarios[i].veiculo = resposta.modelo;
     })
-  }
-
-  processarDestino(index: number) {
-    for (let j = 0; j < this.itinerarios[index].destino.length; j++) {
-      console.log(this.itinerarios[index].destino[j]);
-    }
   }
 
   //NÃO ESTA PRONTO
@@ -171,4 +214,6 @@ export class ItinerariosComponent implements OnInit {
       console.log(res)
     })
   }
+
+
 }

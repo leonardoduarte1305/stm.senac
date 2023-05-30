@@ -191,7 +191,7 @@ header button i {
 
 .div-buttons {
     width: 100%;
-    justify-content: start;
+
     display: flex;
     margin-top: 7em;
 }

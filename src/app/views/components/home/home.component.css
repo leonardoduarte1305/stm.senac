@@ -30,8 +30,7 @@ table th {
     color: white;
     background-color: #1A1D24;
 }
-
-::ng-deep .mat-mdc-paginator-container {
+.mat-mdc-paginator-container {
     background-color: #1A1D24;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -39,7 +38,7 @@ table th {
 }
 
 mat-paginator {
-    background-color: transparent;
+    background-color:   #1A1D24;
     width: 100%;
 }
 
@@ -63,18 +62,18 @@ header {
     width: 50px;
     border: none;
     border-radius: 50px;
-    background-color:chocolate;
+    background-color:transparent;
 }
 
 .bt-alterar-viagem:hover {
     cursor: pointer;
     background-color: black;
-    color: white;
+   
 }
 
 .bt-alterar-viagem i {
-    font-size: 1.5em;
-    color: white;
+    font-size: 1.8em;
+    color: rgb(26, 147, 196);
 }
 
 header h1 {
@@ -166,7 +165,9 @@ header h1 {
     overflow-x: auto;
     /* Adicione rolagem vertical quando necessário */
 }
-
+.acoes{
+    width: 10%;
+}
 
 @media (width<1000px) {
     .creat .card{

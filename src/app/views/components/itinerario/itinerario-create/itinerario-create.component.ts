@@ -81,7 +81,7 @@ export class ItinerarioCreateComponent implements OnInit {
         console.log("ID :" + this.destinosViagem[i])
       }
       console.log(res);
-      this.materiaisDestino.pop();
+      this.materiaisDestino=[];
     })
   }
 
@@ -134,7 +134,7 @@ export class ItinerarioCreateComponent implements OnInit {
 
     this.servico.create(this.viagem).subscribe((resposta) => {
       console.log(resposta);
-      //this.router.navigate(['itinerarios']);
+     this.router.navigate(['itinerarios']);
     })
   }
 

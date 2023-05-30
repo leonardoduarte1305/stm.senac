@@ -46,7 +46,6 @@ textarea::placeholder {
 .buttons {
     display: flex;
     width: 90%;
-    justify-content: start;
     margin-top: 5em;
     align-items: center;
 }
