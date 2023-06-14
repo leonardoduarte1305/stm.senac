@@ -85,19 +85,6 @@ mat-drawer {
 
 }
 
-@media (max-width:400px) {
-    mat-drawer {
-        width: 50%;
-        position: fixed;
-
-    }
-
-    .container {
-        position: static;
-    }
-
-}
-
 
 .info {
 

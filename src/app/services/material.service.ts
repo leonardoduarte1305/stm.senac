@@ -27,5 +27,8 @@ export class MaterialService {
     const url = this.baseUrl + '/materiais/' + id;
     return this.http.delete<Material>(url);
   }
-  
+  findById(id: any): Observable<Material> {
+    const url = this.baseUrl + '/materiais/' + id;
+    return this.http.get<Material>(url);
+  }
 }

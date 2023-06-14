@@ -31,7 +31,7 @@
                         <th>Motorista</th>
                         <th>Veículo</th>
                     </tr>
-                    
+
                     <tr class="list-dados">
 
                         <td>
@@ -67,10 +67,23 @@
                 </table>
 
             </section>
-            <button (click)="mostrar()">Mostrar</button>
-            <div *ngIf="mostrarDestinos" class="box-destinos">
-        <li *ngFor="let d of viagens.destino">
-            <p>{{d}}</p>
+            <div *ngFor="let d of viagens.interfaceDestino" class="box-destinos">
+        <li>
+
+            <div class="div-header-destinos">
+                <h5>DESTINO: {{d.sedeDestino}}</h5>
+                <div>
+                    <h5>STATUS DO DESTINO: {{d.status.confirmacao.replace("_"," ")}}</h5>
+                </div>
+            </div>
+            <p>{{d.id}}</p>
+
+            <div *ngFor="let a of d.materiaisQntdSetor">
+                <p>Material: {{a.nomeMaterial}}</p>
+                <p>Quantidade: {{a.quantidade}}</p>
+                <p>Setor de destino:{{a.setorDestino}}</p>
+
+            </div>
         </li>
 </div>
 

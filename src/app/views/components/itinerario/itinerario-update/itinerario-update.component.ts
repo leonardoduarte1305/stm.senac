@@ -18,6 +18,8 @@ import { SetorService } from 'src/app/services/setor.service';
 import { Setor } from 'src/app/models/setor';
 import { DestinoService } from 'src/app/services/destino.service';
 import { Materiais } from 'src/app/models/materiais';
+import { Confirmacao } from 'src/app/models/confirmacao';
+import { Itinerario } from 'src/app/models/itinerario';
 
 @Component({
   selector: 'app-itinerario-update',
@@ -41,20 +43,23 @@ export class ItinerarioUpdateComponent implements OnInit {
   materialid: Number = 0;
   qtd: Number = 0;
   setor: Number = 0;
+  destinosDaViagem: Destino[] = [];
 
   materiaisDestino: Materiais[] = [];
 
   interfaceMateriais: Materiais = {
     materialId: 0,
     quantidade: 0,
-    setorDestino: 0
+    setorDestino: 0,
+    nomeMaterial: null!,
+    nomeSetor: null!
   }
   destino: Destino = {
     id: null!,
     sedeId: 0,
     materiaisQntdSetor: this.materiaisDestino,
-    status: null!
-
+    status: null!,
+    nomeSede: null!
 
   };
 
@@ -62,7 +67,9 @@ export class ItinerarioUpdateComponent implements OnInit {
     const novoObjeto: Materiais = {
       materialId: this.interfaceMateriais.materialId,
       quantidade: this.interfaceMateriais.quantidade,
-      setorDestino: this.interfaceMateriais.setorDestino
+      setorDestino: this.interfaceMateriais.setorDestino,
+      nomeMaterial: null!,
+      nomeSetor: null!
     };
 
     this.materiaisDestino.push(novoObjeto);
@@ -98,7 +105,6 @@ export class ItinerarioUpdateComponent implements OnInit {
 
   }
 
-
   criarMaterial(): void {
     const dialogRef: MatDialogRef<CriarMaterialComponent> = this.dialog.open(CriarMaterialComponent, {
       width: '600px'
@@ -115,9 +121,31 @@ export class ItinerarioUpdateComponent implements OnInit {
     destinos: this.destinosViagem,
     motoristaId: 0,
     sede: 0,
-    veiculoId: 0
+    veiculoId: 0,
+    status: {
+      confirmacao: ""
+    },
   }
+  itinerario: Itinerario = {
+    id: null!,
+    motoristaId: null!,
+    veiculoId: null!,
+    datetimeSaida: "",
+    datetimeVolta: "",
+    encerrado: "",
+    status: {
+      confirmacao: ""
+    },
+    motorista: "",
+    veiculo: "",
+    nomeSede: "",
+    sede: null!,
+    interfaceDestino: null!
 
+  }
+  confirmar: Confirmacao = {
+    confitmacao: "CONFIRMADO"
+  }
 
   ngOnInit(): void {
     this.id_viagem = this.route.snapshot.paramMap.get("id")!;
@@ -146,11 +174,16 @@ export class ItinerarioUpdateComponent implements OnInit {
   }
 
   dataHoraString: string = "";
+  msgIconConfirmDestino: string = "";
+  msgConfirmacao: string = "";
   buscarPorId(): void {
     this.servico.findById(this.id_viagem).subscribe(res => {
       this.viagem = res;
+
+      console.log("+++++++++++++")
+      console.log(res.status.confirmacao)
       document.getElementById("dtSaida")
-      this.buscar();
+
 
       /*
       for(let i =0;i<res.destinos.length;i++){
@@ -160,46 +193,74 @@ export class ItinerarioUpdateComponent implements OnInit {
 
       this.dataHoraString = this.transformarStringEmData(res.datetimeSaida)
 
+      if (res.status.confirmacao === "CONFIRMADO") {
+        let s = document.getElementById("statusComCor");
+        s!.style.backgroundColor = "green";
+        this.msgConfirmacao = "VIAGEM CONFIRMADA"
+      } else {
+        this.msgConfirmacao = "VIAGEM NÃO CONFIRMADA"
+      }
+
     })
+    this.buscar();
+
   }
 
+
+  idSetorDestrino: Number = 0;
   buscar() {
 
     this.destinoService.buscarDestinoPorIdViagem(this.id_viagem).subscribe(res => {
 
-     console.log(res)
+      console.log(res)
 
-      interface Destino {
-        sedeId: number;
-        materiaisQntdSetor: {
-          materialId: number;
-          quantidade: number;
-          setorDestino: number;
-        }[];
-        id: number;
-        status: {
-          confirmacao: string;
-        };
-      }
-      
-      function processarDestino(destino: Destino): void {
-        const materiais = destino.materiaisQntdSetor;
-        if (materiais && materiais.length > 0) {
-          for (const material of materiais) {
-            const materialId = material.materialId;
-            const quantidade = material.quantidade;
-            const setorDestino = material.setorDestino;
-            console.log('Material ID:', materialId);
-            console.log('Quantidade:', quantidade);
-            console.log('Setor Destino:', setorDestino);
+      const respostaArray = Object.values(res) as Array<any>;
+      for (const item of respostaArray) {
+
+        this.destinosDaViagem.push(...[item])
+        for (let i = 0; this.destinosDaViagem.length > i; i++) {
+
+          this.servicoSede.findById(this.destinosDaViagem[i].sedeId).subscribe(resposta => {
+            this.destinosDaViagem[i].nomeSede = resposta.nome;
+          })
+
+          
+          if(this.destinosDaViagem[i].status.confirmacao==="CONFIRMADO"){
+            this.msgIconConfirmDestino="❌ desconfirmar"
+          }else{
+          this.msgIconConfirmDestino="✔️ CONFIRMADO";
           }
+
         }
+
       }
+
     })
+
+
+
+
   }
+
+  buscarSetorPorId(id: any): string {
+    let resultado = ""
+
+    for (let i = 0; this.setores.length > i; i++) {
+      console.log("Nome")
+      if (this.setores[i].id == id) {
+        resultado = this.setores[i].nome
+      } else {
+      }
+
+    }
+    return resultado
+  }
+
   transformarStringEmData(dataHoraString: string): string {
+
     const dataHora = new Date(dataHoraString);
     return dataHora.toISOString().substring(0, 16);
+
   }
 
   get motoristaId() {
@@ -270,6 +331,31 @@ export class ItinerarioUpdateComponent implements OnInit {
   }
   msg(): void {
     this.servico.mensagem("Material Adicionado ao destino");
+  }
+
+  excluirDestino(id: any) {
+    this.destinoService.delet(id).subscribe(res => {
+
+      console.log(id)
+    }), console.error("Deu erro na requisição de delet de destino");
+
+  }
+  confirmarDestino(id: any): void {
+
+    this.destinoService.confirmarDestino(id, this.confirmar).subscribe(res => {
+
+    }), console.error("Não deu")
+  }
+
+  
+  confirmacao: Confirmacao = {
+    confitmacao: "CONFIRMADO"
+  }
+
+  confirmarViagem(): void {
+    this.servico.status(this.id_viagem, this.confirmacao).subscribe(res => {
+      console.log(res)
+    })
   }
 
 }

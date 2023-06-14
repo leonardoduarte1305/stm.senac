@@ -48,13 +48,17 @@ export class ItinerarioCreateComponent implements OnInit {
   interfaceMateriais: Materiais = {
     materialId: 0,
     quantidade: 0,
-    setorDestino: 0
+    setorDestino: 0,
+    nomeMaterial:null!,
+    nomeSetor:null!
   }
+  destinosViagemView:Destino[]=[];
   destino: Destino = {
     id: null!,
     sedeId: 0,
     materiaisQntdSetor: this.materiaisDestino,
-    status:null!
+    status:null!,
+    nomeSede:null!
     
 
   };
@@ -63,10 +67,13 @@ export class ItinerarioCreateComponent implements OnInit {
     const novoObjeto: Materiais = {
       materialId: this.interfaceMateriais.materialId,
       quantidade: this.interfaceMateriais.quantidade,
-      setorDestino: this.interfaceMateriais.setorDestino
+      setorDestino: this.interfaceMateriais.setorDestino,
+      nomeMaterial:null!,
+      nomeSetor:null!
     };
+   
 
-    this.materiaisDestino.push(novoObjeto);
+    this.materiaisDestino.push(...[novoObjeto]);
 
     console.log(this.materiaisDestino);
   }
@@ -74,6 +81,7 @@ export class ItinerarioCreateComponent implements OnInit {
 
     this.destinoService.create(this.destino).subscribe(res => {
       this.destinosViagem.push(res.id);
+      this.destinosViagemView.push(res);
 
 
       for (let i = 0; i < this.destinosViagem.length; i++) {
@@ -117,7 +125,10 @@ export class ItinerarioCreateComponent implements OnInit {
     destinos: this.destinosViagem,
     motoristaId: 0,
     sede: 0,
-    veiculoId: 0
+    veiculoId: 0,
+    status: {
+      confirmacao: ""
+  },
   }
 
   create(): void {

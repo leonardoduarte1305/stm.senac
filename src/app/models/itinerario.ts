@@ -1,3 +1,4 @@
+import { RespostaHttp } from "./Interface.Destino"
 import { Destino } from "./destino"
 import { Materiais } from "./materiais"
 
@@ -7,13 +8,14 @@ export interface Itinerario {
     veiculoId: Number,
     datetimeSaida: String,
     datetimeVolta: String,
-    encerrado:String,
-    status:{
-        confirmacao:string
+    encerrado: String,
+    status: {
+        confirmacao: string
     },
-    motorista:string,
-    veiculo:String,
-    nomeSede:String,
-    sede:Number,
-    destino:Destino[]
+    motorista: string,
+    veiculo: String,
+    nomeSede: String,
+    sede: Number,
+    interfaceDestino: RespostaHttp[]
+
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { findIndex } from 'rxjs';
+import { findIndex, of } from 'rxjs';
 import { RespostaHttp } from 'src/app/models/Interface.Destino';
 
 import { Confirmacao } from 'src/app/models/confirmacao';
@@ -10,6 +10,7 @@ import { Itinerario } from 'src/app/models/itinerario';
 import { Materiais } from 'src/app/models/materiais';
 import { DestinoService } from 'src/app/services/destino.service';
 import { ItinerarioService } from 'src/app/services/itinerario.service';
+import { MaterialService } from 'src/app/services/material.service';
 import { MotoristaService } from 'src/app/services/motorista.service';
 import { SedeService } from 'src/app/services/sede.service';
 import { VeiculoService } from 'src/app/services/veiculo.service';
@@ -33,7 +34,9 @@ export class ItinerariosComponent implements OnInit {
   interfaceMateriais: Materiais = {
     materialId: 0,
     quantidade: 0,
-    setorDestino: 0
+    setorDestino: 0,
+    nomeMaterial:null!,
+    nomeSetor:null!
   }
   mostrarDestinos: boolean = false;
   constructor(
@@ -45,6 +48,7 @@ export class ItinerariosComponent implements OnInit {
     private viagemService: ViagemService,
     private http: HttpClient,
     private serviceDestino: DestinoService,
+    private serviceMaterial: MaterialService
 
   ) { }
 
@@ -59,38 +63,77 @@ export class ItinerariosComponent implements OnInit {
   }
 
 
-  fazerRequisicao(id: any) {
-    this.http.get<RespostaHttp[]>("http://localhost:8080/viagens/" + id + "/destinos").subscribe(
-      resposta => {
-        // Aqui você pode acessar os dados da resposta tipados corretamente
-        for (const dado of resposta) {
-          console.log('Sede ID:', dado.sedeId);
+  fazerRequisicao() {
 
-          for (const mqSetor of dado.materiaisQntdSetor) {
-            console.log('Material ID:', mqSetor.materialId);
-            console.log('Quantidade:', mqSetor.quantidade);
-            console.log('Setor Destino:', mqSetor.setorDestino);
+    for (let i = 0; i < this.itinerarios.length; i++) {
+      this.http.get<RespostaHttp[]>("http://localhost:8080/viagens/" + this.itinerarios[i].id + "/destinos").subscribe(
+
+        resposta => {
+
+          this.itinerarios[i].interfaceDestino = resposta;
+          for (let j = 0; j < this.itinerarios[i].interfaceDestino.length; j++) {
+
+            this.serviceSede.findById(this.itinerarios[i].interfaceDestino[j].sedeId).subscribe(res => {
+
+              this.itinerarios[i].interfaceDestino[j].sedeDestino = res.nome;
+
+            })
+
+
           }
 
-          console.log('ID:', dado.id);
-          console.log('Status:', dado.status.confirmacao);
 
-          console.log('------------------------');
+          for (const dado of resposta) {
+            console.log('Sede ID:', dado.sedeId);
+
+            for (const mqSetor of dado.materiaisQntdSetor) {
+              console.log('Material ID:', mqSetor.materialId);
+              console.log('Quantidade:', mqSetor.quantidade);
+              console.log('Setor Destino:', mqSetor.setorDestino);
+              
+            }
+
+            console.log('ID:', dado.id);
+            console.log('Status:', dado.status.confirmacao);
+
+            console.log('------------------------');
+          }
+        },
+        erro => {
+          console.error('Erro na requisição:', erro);
         }
-      },
-      erro => {
-        console.error('Erro na requisição:', erro);
-      }
-    );
+
+      );
+    }
+    this.buscarNomeMAterial()
   }
+
+  buscarNomeMAterial(): void {
+
+    for (let i = 0; i < this.itinerarios.length; i++) {
+      for (let j = 0; j < this.itinerarios[i].interfaceDestino.length; j++) {
+        for (let y = 0; y < this.itinerarios[i].interfaceDestino[j].materiaisQntdSetor.length; y++) {
+          this.serviceMaterial.findById(this.itinerarios[i].interfaceDestino[j].materiaisQntdSetor[j].materialId).subscribe(res => {
+            this.itinerarios[i].interfaceDestino[j].materiaisQntdSetor[y].nomeMaterial = res.nome;
+            console.log(this.itinerarios[i].interfaceDestino[j].materiaisQntdSetor[y].nomeMaterial)
+          })
+
+        }
+      }
+    }
+  }
+
+
   async findAll() {
 
     this.service.findAll().subscribe((resposta) => {
       this.itinerarios = resposta;
+      console.log(resposta)
 
       //loop para pegar veiculos e motoristas pertencentes as viagens 
       for (let i = 0; i < this.itinerarios.length; i++) {
-        this.fazerRequisicao(this.itinerarios[i].id);
+
+        //    this.fazerRequisicao(this.itinerarios[i].id);
         /*   this.serviceDestino.buscarDestinoPorIdViagem(this.itinerarios[i].id).subscribe(res => {
    
              this.destinos=[res];
@@ -104,6 +147,7 @@ export class ItinerariosComponent implements OnInit {
         //busca de veículo por ID
         this.buscarVeiculoPorId(i);
       }
+      this.fazerRequisicao();
     })
 
 
@@ -115,22 +159,11 @@ export class ItinerariosComponent implements OnInit {
   }
 
 
-  imprimirDados(dados: Destino[]) {
-    for (const dado of dados) {
-      console.log('Sede ID:', dado.sedeId);
+  /*===========================================================================================
+  ========================BUSCA DE SEDE,VEICULO E MOTORISTA PARA INCLUSÃO NA VIAGEM ===========
+  =============================================================================================*/
 
-      for (const mqSetor of dado.materiaisQntdSetor) {
-        console.log('Material ID:', mqSetor.materialId);
-        console.log('Quantidade:', mqSetor.quantidade);
-        console.log('Setor Destino:', mqSetor.setorDestino);
-      }
 
-      console.log('ID:', dado.id);
-      console.log('Status:', dado.status.confirmacao);
-
-      console.log('------------------------');
-    }
-  }
   buscarSedePorId(i: any) {
     this.serviceSede.findById(this.itinerarios[i].sede).subscribe(resposta => {
       this.itinerarios[i].nomeSede = resposta.nome;
@@ -150,9 +183,17 @@ export class ItinerariosComponent implements OnInit {
   }
 
   //NÃO ESTA PRONTO
-  mostrar() {
-    this.mostrarDestinos = true
+  mostrar(idViagem: any, iddestino: any) {
+    this.itinerarios[idViagem].interfaceDestino[iddestino].exibir = true;
+
   }
+
+
+  /*===============================================================================================================================
+  ========================FAZER EFEITO VISUAL DE CIRCULO VERDE OU VERMELHO DE ACORDO COM O STATUS SA VIAGEM =======================
+  =================================================================================================================================*/
+
+
 
   confirmacaoStatus(): void {
     let x = document.getElementsByTagName("h5")
@@ -169,8 +210,15 @@ export class ItinerariosComponent implements OnInit {
   }
 
 
-  //exclusão de viagem
+
+  /*===================================================================
+========================EXCLUSÃO DE VIAGEM =======================
+=====================================================================*/
+
   //terminar validação de exclusão
+
+
+
   getId(s: Itinerario) {
     console.log(s.id)
     this.service.delet(s.id).subscribe(resposta => {
@@ -179,6 +227,11 @@ export class ItinerariosComponent implements OnInit {
   }
 
 
+
+
+  /*===================================================================
+========================BUSCAR E GERAR PDF =======================
+=====================================================================*/
 
   pdf(id: Number) {
     console.log(id)
@@ -192,9 +245,8 @@ export class ItinerariosComponent implements OnInit {
       a.remove();
     })
   }
-  confirmacao: Confirmacao = {
-    confitmacao: "CONFIRMADO"
-  }
+
+
 
   /*
   
@@ -208,12 +260,9 @@ export class ItinerariosComponent implements OnInit {
     }
     */
 
-  confirmar(id: any): void {
-
-    this.service.status(id, this.confirmacao).subscribe(res => {
-      console.log(res)
-    })
-  }
+  /*===================================================================
+  ========================CONFIRMAÇÃO DE VIAGEM =======================
+  =====================================================================*/
 
 
 }

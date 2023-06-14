@@ -3,7 +3,12 @@
         <button class="retornar" (click)="navigationToItinerarios()"><i class="material-icons">arrow_back</i></button>
         <h1>INSERÇÃO DE VIAGEM</h1>
     </header>
-    <form action=""  [formGroup]="viagemForm" #formDir="ngForm">
+    <form action="" [formGroup]="viagemForm" #formDir="ngForm">
+        <div class="box-bt-confirmarViagem">
+            <h5 id="statusComCor" matTooltip={{msgConfirmacao}}></h5>
+            <button (click)="confirmarViagem()">CONFIRMAR VIAGEM</button>
+
+        </div>
         <section class="container-divs">
             <div>
                 <label for="">Origem</label>
@@ -14,7 +19,8 @@
 
             <div>
                 <label for="">Data de Saida</label>
-                <input id="dtSaida" [value]="dataHoraString ? transformarStringEmData(dataHoraString) : null" name="datetimeSaida" formControlName="datetimeSaida" [(ngModel)]="dtSaida" type="datetime-local">
+                <input id="dtSaida" [value]="dataHoraString ? transformarStringEmData(dataHoraString) : null"
+                    name="datetimeSaida" formControlName="datetimeSaida" [(ngModel)]="dtSaida" type="datetime-local">
             </div>
             <div>
                 <label for="">Data de Volta</label>
@@ -54,7 +60,8 @@
                     <label for="">QTD</label>
                     <input type="number" name="quantidade" [(ngModel)]="interfaceMateriais.quantidade"
                         formControlName="quantidade">
-                        <span *ngIf="quantidade.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i>insira a quantidade</span>
+                    <span *ngIf="quantidade.invalid && formDir.submitted" class="error"><i
+                            class="material-icons">priority_high</i>insira a quantidade</span>
                 </div>
                 <div>
                     <label for="">Setor Destinatario</label>
@@ -80,8 +87,9 @@
                         <td>{{s.materialId}}</td>
                         <td>{{s.quantidade}}</td>
                         <td>{{s.setorDestino}}</td>
-                        <td><button class="bt-removerMaterial-lista"><i id="edit" class="material-icons" matTooltip="Remover material da lista">delete</i></button></td>
-                        
+                        <td><button class="bt-removerMaterial-lista"><i id="edit" class="material-icons"
+                                    matTooltip="Remover material da lista">delete</i></button></td>
+
                     </tr>
                     <!-- Conteúdo da tabela -->
                 </table>
@@ -100,8 +108,39 @@
                 </div>
             </section>
         </section>
+
+        <section class="container-listagem-destinos" *ngFor="let destinos of destinosDaViagem; let i = index ">
+            <div class="header-listagem-destinos">
+
+                <h1>{{destinos.id}}</h1>
+                <button (click)="excluirDestino(destinos.id)">EXCLUIR</button>
+                <button (click)="  confirmarDestino(destinos.id)">{{msgIconConfirmDestino}}</button>
+            </div>
+            <table>
+
+                <div>
+                    <label for=""></label>
+                    <select name="" id="">
+                        <option value=""> {{destinos.nomeSede}}</option>
+                    </select>
+                </div>
+                <tr>
+                    <td>{{destinos.status.confirmacao.replace("_"," ")}}</td>
+                    <td></td>
+                    <td *ngFor="let materiais of destinos.materiaisQntdSetor">
+                        <p>material: {{materiais.nomeMaterial}}</p>
+                        <p>setor destino: {{materiais.nomeSetor}}</p>
+                        <p>{{materiais.materialId}}</p>
+
+
+                    </td>
+                </tr>
+            </table>
+
+
+        </section>
         <div class="div-buttons">
-            <button class="btn-cadastrar" >ATUALIZAR</button>
+            <button class="btn-cadastrar">ATUALIZAR</button>
             <!---
             <button class="btn-cancelar" (click)="navigationToItinerarios()">CANCELAR</button>
             -->

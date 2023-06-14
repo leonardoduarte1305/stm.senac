@@ -5,5 +5,8 @@ export interface Viagem {
     destinos: Number[],
     datetimeSaida: string,
     datetimeVolta: string,
-    sede: Number
+    sede: Number,
+    status: {
+        confirmacao:string
+   }
 }

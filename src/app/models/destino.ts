@@ -7,4 +7,5 @@ export interface Destino {
     status:{
         confirmacao:string
     }
+    nomeSede:String
 }

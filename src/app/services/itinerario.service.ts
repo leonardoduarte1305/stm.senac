@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Viagem } from '../models/viagem';
 import { Confirmacao } from '../models/confirmacao';
+import { EncerrarViagem } from '../models/encerrarViagem';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,11 @@ export class ItinerarioService {
     const url = "http://localhost:8080/viagens/" + id + "/confirmacao";
     console.log(confirmacao)
     return this.http.post<Confirmacao>(url, confirmacao);
+  }
+  encerrarViagem(id: any, encerrado: EncerrarViagem): Observable<EncerrarViagem> {
+    const url = "http://localhost:8080/viagens/" + id + "/encerramento";
+    console.log(encerrado)
+    return this.http.post<EncerrarViagem>(url, encerrado);
   }
 
 

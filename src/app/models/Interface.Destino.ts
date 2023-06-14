@@ -4,9 +4,15 @@ export interface RespostaHttp {
         materialId: number;
         quantidade: number;
         setorDestino: number;
+        nomeMaterial: String;
+        nomeSetor: String;
     }[];
     id: number;
     status: {
         confirmacao: string;
     };
+
+    sedeDestino: String;
+    exibir: boolean
+
 }

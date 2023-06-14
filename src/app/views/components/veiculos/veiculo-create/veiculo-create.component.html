@@ -15,7 +15,7 @@
     </div>
     <div class="box-input">
         <label for="">Modelo</label>
-        <input [(ngModel)]="veiculo.modelo" required type="text" name="modelo" id="" placeholder="inseira o modelo do veículo"  formControlName="modelo" maxlength="50">
+        <input [(ngModel)]="veiculo.modelo" required type="text" name="modelo" id="" placeholder="insira o modelo do veículo"  formControlName="modelo" maxlength="50">
         <span *ngIf="modelo.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> insira um modelo de veículo</span>
     </div>
     <div class="box-input">

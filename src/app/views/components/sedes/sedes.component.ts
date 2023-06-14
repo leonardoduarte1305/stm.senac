@@ -162,7 +162,7 @@ export class DialogOverviewExampleDialog implements OnInit {
     e = [this.emailValido];
 
     this.service.inscrever(this.data.idSubscrib, e).subscribe((resposta) => {
-      this.message("Foi inscrito na sede" + this.nomeSede)
+      this.message("Foi inscrito na sede " + this.nomeSede)
       this.onNoClick();
     })
   }

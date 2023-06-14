@@ -11,13 +11,15 @@
                     <option></option>
                     <option *ngFor="let sede of sedes" value="{{sede.id}}">{{sede.nome}}</option>
                 </select>
-                <span *ngIf="sede.invalid" class="error" ><i class="material-icons" >priority_high</i> Selecione uma origem</span>
+                <span *ngIf="sede.invalid" class="error"><i class="material-icons">priority_high</i> Selecione uma
+                    origem</span>
             </div>
 
             <div>
                 <label for="">Data de Saida</label>
                 <input name="datetimeSaida" formControlName="datetimeSaida" [(ngModel)]="dtSaida" type="datetime-local">
-                <span *ngIf="datetimeSaida.invalid && formDir.submitted " class="error" ><i class="material-icons" >priority_high</i> Selecione uma origem</span>
+                <span *ngIf="datetimeSaida.invalid && formDir.submitted " class="error"><i
+                        class="material-icons">priority_high</i> Selecione uma origem</span>
             </div>
             <div>
                 <label for="">Data de Volta</label>
@@ -30,7 +32,7 @@
                 <select [(ngModel)]="viagem.veiculoId" name="veiculoId" id="" formControlName="veiculoId">
                     <option *ngFor="let veiculo of veiculos" value="{{veiculo.id}}">{{veiculo.modelo}}</option>
                 </select>
-                
+
             </div>
             <div>
                 <label for="">Motorista</label>
@@ -58,7 +60,8 @@
                     <label for="">QTD</label>
                     <input type="number" name="quantidade" [(ngModel)]="interfaceMateriais.quantidade"
                         formControlName="quantidade">
-                        <span *ngIf="quantidade.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i>insira a quantidade</span>
+                    <span *ngIf="quantidade.invalid && formDir.submitted" class="error"><i
+                            class="material-icons">priority_high</i>insira a quantidade</span>
                 </div>
                 <div>
                     <label for="">Setor Destinatario</label>
@@ -84,8 +87,9 @@
                         <td>{{s.materialId}}</td>
                         <td>{{s.quantidade}}</td>
                         <td>{{s.setorDestino}}</td>
-                        <td><button class="bt-removerMaterial-lista"><i id="edit" class="material-icons" matTooltip="Remover material da lista">delete</i></button></td>
-                        
+                        <td><button class="bt-removerMaterial-lista"><i id="edit" class="material-icons"
+                                    matTooltip="Remover material da lista">delete</i></button></td>
+
                     </tr>
                     <!-- Conteúdo da tabela -->
                 </table>
@@ -104,8 +108,13 @@
                 </div>
             </section>
         </section>
+        <section *ngFor="let d of destinosViagemView">
+            <div>
+                <h1>{{d}}</h1>
+            </div>
+        </section>
         <div class="div-buttons">
-         
+
             <button class="btn-cadastrar" (click)="create()">CRIAR VIAGEM</button>
             <!---
             <button class="btn-cancelar" (click)="navigationToItinerarios()">CANCELAR</button>
