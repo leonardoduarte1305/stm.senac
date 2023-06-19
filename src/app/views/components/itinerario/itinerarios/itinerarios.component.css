@@ -91,6 +91,21 @@ li {
 
 }
 
+.box-materiais {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.055);
+    margin-top: 1em;
+    padding: 5px;
+
+}
+
+.header-container-destinos {
+    margin: .5em;
+    color: chocolate;
+    font-weight: bold;
+}
 
 .header-cards {
     display: flex;

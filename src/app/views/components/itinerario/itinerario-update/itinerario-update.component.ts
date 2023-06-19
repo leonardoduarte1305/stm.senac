@@ -20,6 +20,8 @@ import { DestinoService } from 'src/app/services/destino.service';
 import { Materiais } from 'src/app/models/materiais';
 import { Confirmacao } from 'src/app/models/confirmacao';
 import { Itinerario } from 'src/app/models/itinerario';
+import { forkJoin, switchMap } from 'rxjs';
+import { DestinoUpdateComponent } from '../destino-update/destino-update.component';
 
 @Component({
   selector: 'app-itinerario-update',
@@ -63,32 +65,6 @@ export class ItinerarioUpdateComponent implements OnInit {
 
   };
 
-  addMaterial() {
-    const novoObjeto: Materiais = {
-      materialId: this.interfaceMateriais.materialId,
-      quantidade: this.interfaceMateriais.quantidade,
-      setorDestino: this.interfaceMateriais.setorDestino,
-      nomeMaterial: null!,
-      nomeSetor: null!
-    };
-
-    this.materiaisDestino.push(novoObjeto);
-
-    console.log(this.materiaisDestino);
-  }
-  addDestino() {
-
-    this.destinoService.create(this.destino).subscribe(res => {
-      this.destinosViagem.push(res.id);
-
-
-      for (let i = 0; i < this.destinosViagem.length; i++) {
-        console.log("ID :" + this.destinosViagem[i])
-      }
-      console.log(res);
-      this.materiaisDestino.pop();
-    })
-  }
 
   constructor(
     private router: Router,
@@ -113,6 +89,9 @@ export class ItinerarioUpdateComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.buscarMaterial();
     });
+
+
+
   }
   viagem: Viagem = {
     id: null!,
@@ -143,8 +122,9 @@ export class ItinerarioUpdateComponent implements OnInit {
     interfaceDestino: null!
 
   }
-  confirmar: Confirmacao = {
-    confitmacao: "CONFIRMADO"
+
+  confirmacao: Confirmacao = {
+    confirmacao: "CONFIRMADO"
   }
 
   ngOnInit(): void {
@@ -173,15 +153,65 @@ export class ItinerarioUpdateComponent implements OnInit {
     })
   }
 
+  atualizarViagem() {
+    console.log(this.viagem.datetimeSaida)
+    this.viagem.datetimeSaida = this.dtSaida.toLocaleString('pt-br');
+    if (this.dtVolta == null) {
+    } else {
+      this.viagem.datetimeVolta = this.dtVolta.toLocaleString('pt-br');
+    }
+ 
+    this.servico.update(this.viagem).subscribe(res => {
+      console.log(res);
+    })
+    console.log(this.viagem)
+  }
+
+
+
+  addMaterial() {
+    const novoObjeto: Materiais = {
+      materialId: this.interfaceMateriais.materialId,
+      quantidade: this.interfaceMateriais.quantidade,
+      setorDestino: this.interfaceMateriais.setorDestino,
+      nomeMaterial: null!,
+      nomeSetor: null!
+    };
+
+    this.materiaisDestino.push(novoObjeto);
+
+    console.log(this.materiaisDestino);
+  }
+
+
+  addDestino() {
+    this.destinoService.create(this.destino).subscribe(res => {
+      this.destinosViagem.push(res.id);
+      for (let i = 0; i < this.destinosViagem.length; i++) {
+        console.log("ID :" + this.destinosViagem[i])
+      }
+      console.log(res);
+      this.materiaisDestino.pop();
+    })
+  }
+
+
+
+
   dataHoraString: string = "";
   msgIconConfirmDestino: string = "";
   msgConfirmacao: string = "";
+
+
+  /*****************************************************/
+  /*BUSCAR VIAGEM POR ID PARA PREENCHIMENTO DOS CAMPOS*/
+  /***************************************************/
+
+
   buscarPorId(): void {
+
     this.servico.findById(this.id_viagem).subscribe(res => {
       this.viagem = res;
-
-      console.log("+++++++++++++")
-      console.log(res.status.confirmacao)
       document.getElementById("dtSaida")
 
 
@@ -202,42 +232,71 @@ export class ItinerarioUpdateComponent implements OnInit {
       }
 
     })
-    this.buscar();
+    this.buscarDestinos();
 
   }
 
 
   idSetorDestrino: Number = 0;
-  buscar() {
+
+  /*****************************************************/
+  /*BUSCAR DESTINOS DA VIAGEM                         */
+  /***************************************************/
+
+
+  buscarDestinos() {
+
+
 
     this.destinoService.buscarDestinoPorIdViagem(this.id_viagem).subscribe(res => {
-
       console.log(res)
 
       const respostaArray = Object.values(res) as Array<any>;
+
       for (const item of respostaArray) {
-
         this.destinosDaViagem.push(...[item])
-        for (let i = 0; this.destinosDaViagem.length > i; i++) {
+      }
 
-          this.servicoSede.findById(this.destinosDaViagem[i].sedeId).subscribe(resposta => {
-            this.destinosDaViagem[i].nomeSede = resposta.nome;
-          })
 
-          
-          if(this.destinosDaViagem[i].status.confirmacao==="CONFIRMADO"){
-            this.msgIconConfirmDestino="❌ desconfirmar"
-          }else{
-          this.msgIconConfirmDestino="✔️ CONFIRMADO";
-          }
 
+
+      for (let i = 0; this.destinosDaViagem.length > i; i++) {
+        console.log("ddddd")
+        this.servicoSede.findById(this.destinosDaViagem[i].sedeId).subscribe(resposta => {
+          this.destinosDaViagem[i].nomeSede = resposta.nome;
+        })
+
+        if (this.destinosDaViagem[i].status.confirmacao === "CONFIRMADO") {
+          this.msgIconConfirmDestino = "desconfirmar"
+        } else {
+          this.msgIconConfirmDestino = "confirmar";
         }
 
       }
-
     })
 
 
+  }
+
+
+
+  removerMaterial(idDestino: any, index: any) {
+
+    this.destinoService.buscarDestinoPorId(idDestino).subscribe(res => {
+
+    })
+
+    //this.destinosDaViagem[idDestino].materiaisQntdSetor.splice(index, 1)
+    console.log("Destino Id: " + this.destinosDaViagem + " Id material: " + JSON.stringify(index))
+    console.log(this.destinosDaViagem[idDestino].materiaisQntdSetor[0].quantidade)
+  }
+
+  aualizarViagem(id: any) {
+    const dialogRef: MatDialogRef<DestinoUpdateComponent> = this.dialog.open(DestinoUpdateComponent, {
+      width: '1800px',
+      height: '900px',
+      data: id
+    });
 
 
   }
@@ -263,36 +322,6 @@ export class ItinerarioUpdateComponent implements OnInit {
 
   }
 
-  get motoristaId() {
-    return this.viagemForm.get('motoristaId')!;
-  }
-  get veiculoId() {
-    return this.viagemForm.get('veiculoId')!;
-  }
-  get destinos() {
-    return this.viagemForm.get('destinos')!;
-  }
-  get datetimeSaida() {
-    return this.viagemForm.get('datetimeSaida')!;
-  }
-  get datetimeVolta() {
-    return this.viagemForm.get('datetimeVolta')!;
-  }
-  get materialID() {
-    return this.viagemForm.get('materialID')!;
-  }
-
-  get quantidade() {
-    return this.viagemForm.get('quantidade')!;
-  }
-
-  get setorDestino() {
-    return this.viagemForm.get('setorDestino')!;
-  }
-
-  get destinatario() {
-    return this.viagemForm.get('destinatario')!;
-  }
 
 
   buscarTodosVeiculo() {
@@ -329,9 +358,6 @@ export class ItinerarioUpdateComponent implements OnInit {
   navigationToItinerarios() {
     this.router.navigate(['itinerarios']);
   }
-  msg(): void {
-    this.servico.mensagem("Material Adicionado ao destino");
-  }
 
   excluirDestino(id: any) {
     this.destinoService.delet(id).subscribe(res => {
@@ -340,16 +366,10 @@ export class ItinerarioUpdateComponent implements OnInit {
     }), console.error("Deu erro na requisição de delet de destino");
 
   }
+
   confirmarDestino(id: any): void {
-
-    this.destinoService.confirmarDestino(id, this.confirmar).subscribe(res => {
-
+    this.destinoService.confirmarDestino(id, this.confirmacao).subscribe(res => {
     }), console.error("Não deu")
-  }
-
-  
-  confirmacao: Confirmacao = {
-    confitmacao: "CONFIRMADO"
   }
 
   confirmarViagem(): void {
@@ -358,4 +378,6 @@ export class ItinerarioUpdateComponent implements OnInit {
     })
   }
 
+
 }
+

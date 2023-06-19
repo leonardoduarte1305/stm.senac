@@ -49,17 +49,17 @@ export class ItinerarioCreateComponent implements OnInit {
     materialId: 0,
     quantidade: 0,
     setorDestino: 0,
-    nomeMaterial:null!,
-    nomeSetor:null!
+    nomeMaterial: null!,
+    nomeSetor: null!
   }
-  destinosViagemView:Destino[]=[];
+  destinosViagemView: Destino[] = [];
   destino: Destino = {
     id: null!,
     sedeId: 0,
     materiaisQntdSetor: this.materiaisDestino,
-    status:null!,
-    nomeSede:null!
-    
+    status: null!,
+    nomeSede: null!
+
 
   };
 
@@ -68,10 +68,10 @@ export class ItinerarioCreateComponent implements OnInit {
       materialId: this.interfaceMateriais.materialId,
       quantidade: this.interfaceMateriais.quantidade,
       setorDestino: this.interfaceMateriais.setorDestino,
-      nomeMaterial:null!,
-      nomeSetor:null!
+      nomeMaterial: null!,
+      nomeSetor: null!
     };
-   
+
 
     this.materiaisDestino.push(...[novoObjeto]);
 
@@ -89,7 +89,8 @@ export class ItinerarioCreateComponent implements OnInit {
         console.log("ID :" + this.destinosViagem[i])
       }
       console.log(res);
-      this.materiaisDestino=[];
+      this.materiaisDestino.splice(0, this.materiaisDestino.length);
+
     })
   }
 
@@ -106,8 +107,8 @@ export class ItinerarioCreateComponent implements OnInit {
   ) {
 
   }
-  
-  
+
+
 
   criarMaterial(): void {
     const dialogRef: MatDialogRef<CriarMaterialComponent> = this.dialog.open(CriarMaterialComponent, {
@@ -128,12 +129,12 @@ export class ItinerarioCreateComponent implements OnInit {
     veiculoId: 0,
     status: {
       confirmacao: ""
-  },
+    },
   }
 
   create(): void {
 
-    if(this.viagemForm.invalid){
+    if (this.viagemForm.invalid) {
       console.log("Erro")
     }
     console.log(this.viagem)
@@ -145,7 +146,7 @@ export class ItinerarioCreateComponent implements OnInit {
 
     this.servico.create(this.viagem).subscribe((resposta) => {
       console.log(resposta);
-     this.router.navigate(['itinerarios']);
+      this.router.navigate(['itinerarios']);
     })
   }
 
@@ -157,18 +158,18 @@ export class ItinerarioCreateComponent implements OnInit {
     this.buscarSetor();
     this.viagemForm = new FormGroup({
       id: new FormControl(''),
-      motoristaId: new FormControl('',[Validators.required]),
+      motoristaId: new FormControl('', [Validators.required]),
       veiculoId: new FormControl(''),
       destinos: new FormControl(['']),
-      datetimeSaida: new FormControl(Date,[Validators.required]),
+      datetimeSaida: new FormControl(Date, [Validators.required]),
       datetimeVolta: new FormControl(Date),
-      sede: new FormControl('',[Validators.required]),
+      sede: new FormControl('', [Validators.required]),
       materialID: new FormControl(''),
-      quantidade: new FormControl('',[Validators.min(1)]),
+      quantidade: new FormControl('', [Validators.min(1)]),
       setorDestino: new FormControl(''),
       destinatario: new FormControl(''),
-  
-  
+
+
     })
   }
   get sede() {
@@ -243,7 +244,7 @@ export class ItinerarioCreateComponent implements OnInit {
   msg(): void {
     this.servico.mensagem("Material Adicionado ao destino");
   }
-  sibmit(){
+  sibmit() {
 
   }
 }

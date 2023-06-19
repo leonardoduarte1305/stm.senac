@@ -1,5 +1,5 @@
 export interface Material {
     id:Number
-    nome: String,
+    nome: string,
     descricao: String
 }

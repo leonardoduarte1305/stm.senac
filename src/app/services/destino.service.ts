@@ -20,6 +20,12 @@ export class DestinoService {
     const url = this.baseUrl + "/viagens/" + id + "/destinos";
     return this.http.get<RespostaHttp>(url)
   }
+  buscarDestinoPorId(id: any): Observable<RespostaHttp> {
+    const url = this.baseUrl + "/destinos/" + id ;
+    return this.http.get<RespostaHttp>(url)
+  }
+
+
 
   delet(id: any): Observable<Destino> {
     const url = this.baseUrl + '/destinos/' + id;
@@ -30,4 +36,10 @@ export class DestinoService {
     console.log(confirmacao)
     return this.http.post<Confirmacao>(url, confirmacao);
   }
+
+  update(destino: Destino): Observable<Destino> {
+    const url = this.baseUrl + '/destinos/' + destino.id;
+    return this.http.put<Destino>(url, destino);
+  }
+
 }

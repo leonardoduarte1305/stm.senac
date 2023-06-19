@@ -8,13 +8,17 @@ import { Confirmacao } from 'src/app/models/confirmacao';
 import { Destino } from 'src/app/models/destino';
 import { Itinerario } from 'src/app/models/itinerario';
 import { Materiais } from 'src/app/models/materiais';
+import { Material } from 'src/app/models/material';
+import { Setor } from 'src/app/models/setor';
 import { DestinoService } from 'src/app/services/destino.service';
 import { ItinerarioService } from 'src/app/services/itinerario.service';
 import { MaterialService } from 'src/app/services/material.service';
 import { MotoristaService } from 'src/app/services/motorista.service';
 import { SedeService } from 'src/app/services/sede.service';
+import { SetorService } from 'src/app/services/setor.service';
 import { VeiculoService } from 'src/app/services/veiculo.service';
 import { ViagemService } from 'src/app/services/viagem.service';
+import { LoadingComponent } from '../../template/loading/loading.component';
 
 
 @Component({
@@ -27,16 +31,18 @@ import { ViagemService } from 'src/app/services/viagem.service';
 
 export class ItinerariosComponent implements OnInit {
 
+  loadingComponent: LoadingComponent = new LoadingComponent();
   itinerarios: Itinerario[] = [];
   interval: any;
   destinos: Destino[] = [];
-
+  setores: Setor[] = [];
+  materiais: Material[] = [];
   interfaceMateriais: Materiais = {
     materialId: 0,
     quantidade: 0,
     setorDestino: 0,
-    nomeMaterial:null!,
-    nomeSetor:null!
+    nomeMaterial: null!,
+    nomeSetor: null!
   }
   mostrarDestinos: boolean = false;
   constructor(
@@ -48,7 +54,8 @@ export class ItinerariosComponent implements OnInit {
     private viagemService: ViagemService,
     private http: HttpClient,
     private serviceDestino: DestinoService,
-    private serviceMaterial: MaterialService
+    private serviceMaterial: MaterialService,
+    private serviceSetor: SetorService
 
   ) { }
 
@@ -56,6 +63,10 @@ export class ItinerariosComponent implements OnInit {
 
   ngOnInit(): void {
     this.findAll();
+    this.chamarSetoresNome();
+
+    this.chamarMateriais();
+
   }
 
   navigationToCreate(): void {
@@ -63,8 +74,23 @@ export class ItinerariosComponent implements OnInit {
   }
 
 
+  chamarSetoresNome(): void {
+    this.serviceSetor.findAll().subscribe(res => {
+      this.setores = res;
+      console.log(this.setores)
+    })
+
+  }
+  chamarMateriais(): void {
+    this.serviceMaterial.buscarMateriais().subscribe(res => {
+      this.materiais = res;
+      console.log(this.materiais)
+    })
+  }
+
   fazerRequisicao() {
 
+    
     for (let i = 0; i < this.itinerarios.length; i++) {
       this.http.get<RespostaHttp[]>("http://localhost:8080/viagens/" + this.itinerarios[i].id + "/destinos").subscribe(
 
@@ -74,14 +100,35 @@ export class ItinerariosComponent implements OnInit {
           for (let j = 0; j < this.itinerarios[i].interfaceDestino.length; j++) {
 
             this.serviceSede.findById(this.itinerarios[i].interfaceDestino[j].sedeId).subscribe(res => {
-
               this.itinerarios[i].interfaceDestino[j].sedeDestino = res.nome;
-
             })
+            for (let s = 0; s < this.itinerarios[i].interfaceDestino[j].materiaisQntdSetor.length; s++) {
+              const materialIdDesejado = this.itinerarios[i].interfaceDestino[j].materiaisQntdSetor[s].materialId;
+              const setorIdDesejado = this.itinerarios[i].interfaceDestino[j].materiaisQntdSetor[s].setorDestino;
 
+
+
+              for (let k = 0; k < this.setores.length; k++) {
+                if (this.setores[k].id === setorIdDesejado) {
+                  this.itinerarios[i].interfaceDestino[j].materiaisQntdSetor[s].nomeSetor = this.setores[k].nome;
+                  break;
+                }
+              }
+
+
+              for (let k = 0; k < this.materiais.length; k++) {
+                if (this.materiais[k].id === materialIdDesejado) {
+                  this.itinerarios[i].interfaceDestino[j].materiaisQntdSetor[s].nomeMaterial = this.materiais[k].nome;
+                  break;
+                }
+              }
+
+
+
+
+            }
 
           }
-
 
           for (const dado of resposta) {
             console.log('Sede ID:', dado.sedeId);
@@ -90,7 +137,8 @@ export class ItinerariosComponent implements OnInit {
               console.log('Material ID:', mqSetor.materialId);
               console.log('Quantidade:', mqSetor.quantidade);
               console.log('Setor Destino:', mqSetor.setorDestino);
-              
+
+
             }
 
             console.log('ID:', dado.id);
@@ -98,6 +146,7 @@ export class ItinerariosComponent implements OnInit {
 
             console.log('------------------------');
           }
+
         },
         erro => {
           console.error('Erro na requisição:', erro);
@@ -105,30 +154,19 @@ export class ItinerariosComponent implements OnInit {
 
       );
     }
-    this.buscarNomeMAterial()
+
   }
 
-  buscarNomeMAterial(): void {
-
-    for (let i = 0; i < this.itinerarios.length; i++) {
-      for (let j = 0; j < this.itinerarios[i].interfaceDestino.length; j++) {
-        for (let y = 0; y < this.itinerarios[i].interfaceDestino[j].materiaisQntdSetor.length; y++) {
-          this.serviceMaterial.findById(this.itinerarios[i].interfaceDestino[j].materiaisQntdSetor[j].materialId).subscribe(res => {
-            this.itinerarios[i].interfaceDestino[j].materiaisQntdSetor[y].nomeMaterial = res.nome;
-            console.log(this.itinerarios[i].interfaceDestino[j].materiaisQntdSetor[y].nomeMaterial)
-          })
-
-        }
-      }
-    }
-  }
 
 
   async findAll() {
 
+
+
     this.service.findAll().subscribe((resposta) => {
+      
       this.itinerarios = resposta;
-      console.log(resposta)
+
 
       //loop para pegar veiculos e motoristas pertencentes as viagens 
       for (let i = 0; i < this.itinerarios.length; i++) {
@@ -154,7 +192,7 @@ export class ItinerariosComponent implements OnInit {
     //Chamada de função para icon de demonstração de status confirmado ou não confirmado através de cor
     this.interval = setInterval(() => {
       this.confirmacaoStatus();
-    }, 2000);
+    }, 200);
 
   }
 
@@ -182,12 +220,7 @@ export class ItinerariosComponent implements OnInit {
     })
   }
 
-  //NÃO ESTA PRONTO
-  mostrar(idViagem: any, iddestino: any) {
-    this.itinerarios[idViagem].interfaceDestino[iddestino].exibir = true;
-
-  }
-
+ 
 
   /*===============================================================================================================================
   ========================FAZER EFEITO VISUAL DE CIRCULO VERDE OU VERMELHO DE ACORDO COM O STATUS SA VIAGEM =======================

@@ -5,7 +5,6 @@
 
 <div class="test">
 
-
     <ul>
         <li *ngFor="let viagens of itinerarios">
             <!--colocar local de saida no lugar do id-->
@@ -67,21 +66,22 @@
                 </table>
 
             </section>
+            <h3 class="header-container-destinos">DESTINOS</h3>
             <div *ngFor="let d of viagens.interfaceDestino" class="box-destinos">
         <li>
 
             <div class="div-header-destinos">
-                <h5>DESTINO: {{d.sedeDestino}}</h5>
+                <h4>DESTINO: {{d.sedeDestino}}</h4>
                 <div>
-                    <h5>STATUS DO DESTINO: {{d.status.confirmacao.replace("_"," ")}}</h5>
+                    <h4>STATUS DO DESTINO: {{d.status.confirmacao.replace("_"," ")}}</h4>
                 </div>
             </div>
-            <p>{{d.id}}</p>
+            <!-----      <p>{{d.id}}</p> -->
 
-            <div *ngFor="let a of d.materiaisQntdSetor">
+            <div class="box-materiais" *ngFor="let a of d.materiaisQntdSetor">
                 <p>Material: {{a.nomeMaterial}}</p>
                 <p>Quantidade: {{a.quantidade}}</p>
-                <p>Setor de destino:{{a.setorDestino}}</p>
+                <p>Setor de destino:{{a.nomeSetor}}</p>
 
             </div>
         </li>

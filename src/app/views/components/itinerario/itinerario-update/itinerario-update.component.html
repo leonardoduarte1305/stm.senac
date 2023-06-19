@@ -60,8 +60,7 @@
                     <label for="">QTD</label>
                     <input type="number" name="quantidade" [(ngModel)]="interfaceMateriais.quantidade"
                         formControlName="quantidade">
-                    <span *ngIf="quantidade.invalid && formDir.submitted" class="error"><i
-                            class="material-icons">priority_high</i>insira a quantidade</span>
+                   
                 </div>
                 <div>
                     <label for="">Setor Destinatario</label>
@@ -109,7 +108,10 @@
             </section>
         </section>
 
+
         <section class="container-listagem-destinos" *ngFor="let destinos of destinosDaViagem; let i = index ">
+
+
             <div class="header-listagem-destinos">
 
                 <h1>{{destinos.id}}</h1>
@@ -118,29 +120,24 @@
             </div>
             <table>
 
-                <div>
-                    <label for=""></label>
-                    <select name="" id="">
-                        <option value=""> {{destinos.nomeSede}}</option>
-                    </select>
-                </div>
-                <tr>
+           <h5>{{destinos.nomeSede}}</h5>
+                <tr class="box-info-destinos">
                     <td>{{destinos.status.confirmacao.replace("_"," ")}}</td>
                     <td></td>
-                    <td *ngFor="let materiais of destinos.materiaisQntdSetor">
-                        <p>material: {{materiais.nomeMaterial}}</p>
+                    <td class="materiais-destino" *ngFor="let materiais of destinos.materiaisQntdSetor; let i=index">
+                        <p>Idmaterial: {{materiais.materialId}}</p>
                         <p>setor destino: {{materiais.nomeSetor}}</p>
-                        <p>{{materiais.materialId}}</p>
-
+                        <p>Quantidade: {{materiais.quantidade}}</p>
 
                     </td>
                 </tr>
+                <button (click)="aualizarViagem(destinos.id)">EDITAR DESTINO</button>
             </table>
 
 
         </section>
         <div class="div-buttons">
-            <button class="btn-cadastrar">ATUALIZAR</button>
+            <button class="btn-cadastrar" (click)="atualizarViagem()">ATUALIZAR</button>
             <!---
             <button class="btn-cancelar" (click)="navigationToItinerarios()">CANCELAR</button>
             -->

@@ -42,9 +42,12 @@ import { DeleteDiaLogComponent } from './views/components/template/delete-dia-lo
 import { CriarMaterialComponent } from './views/components/material/criar-material/criar-material.component';
 import { MateriaisComponent } from './views/components/material/materiais/materiais.component';
 import {MatInputModule} from '@angular/material/input';
-import {KeycloakAngularModule,KeycloakService} from 'keycloak-angular';
+//import {KeycloakAngularModule,KeycloakService} from 'keycloak-angular';
 //import {initializeKeycloak} from '../app/services/keycloack.service';
 import { APP_INITIALIZER } from '@angular/core';
+import { LoadingComponent } from './views/components/template/loading/loading.component';
+import { DestinoUpdateComponent } from './views/components/itinerario/destino-update/destino-update.component';
+
 
 @NgModule({
   declarations: [
@@ -70,7 +73,10 @@ import { APP_INITIALIZER } from '@angular/core';
     LoginComponent,
     DeleteDiaLogComponent,
     CriarMaterialComponent,
-    MateriaisComponent
+    MateriaisComponent,
+    LoadingComponent,
+    DestinoUpdateComponent,
+
 
   ],
   imports: [
@@ -93,7 +99,7 @@ import { APP_INITIALIZER } from '@angular/core';
     MatFormFieldModule,
     MatTooltipModule,
     MatInputModule,
-    KeycloakAngularModule
+   // KeycloakAngularModule
   ],
   providers: [
     /*{

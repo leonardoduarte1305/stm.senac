@@ -1,3 +1,3 @@
 export interface Confirmacao{
-    confitmacao:String;
+    confirmacao:String;
 }

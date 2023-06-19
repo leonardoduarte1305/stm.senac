@@ -1,0 +1,102 @@
+table {
+
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+
+    color: black;
+    border-radius: 5px;
+}
+
+.table-limit {
+    max-height: 200px;
+    /* Defina a altura máxima desejada */
+    overflow-y: auto;
+    /* Adicione rolagem vertical quando necessário */
+}
+
+.table-bt-remover {
+    width: 5%;
+
+}
+
+table th {
+    background-color: chocolate;
+
+}
+
+table td {
+    background-color: rgba(255, 255, 255, 0.945);
+}
+
+.container-destinos section div label {
+    color: white;
+}
+
+.container-destinos h3 {
+    color: chocolate;
+    font-weight: bold;
+    margin: 1em;
+}
+
+.container-destinos section div select {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.096);
+}
+
+.container-destinos section div option {
+    color: black;
+}
+
+.container-destinos section div input {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.096);
+}
+
+.container-divs div {
+
+    margin: 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.container-divs .btn-adicionar-material-div {
+    width: 120px;
+
+}
+
+.container-destinos {
+    width: 100%;
+    margin: 0px;
+    padding: 0%;
+    margin-top: -16px;
+    height: 100%;
+
+    background-color: #1A1D24;
+}
+
+
+
+.container-divs label {
+    color: black;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.btn-adicionar-material-div button {
+    padding: 5px;
+
+    font-weight: bold;
+    font-size: 1.5em;
+    border-radius: 50px;
+    background-color: white;
+    border: none;
+}
+
+.bt-removerMaterial-lista {
+    background-color: transparent;
+    border: none;
+    color: red;
+}
