@@ -42,4 +42,8 @@ export class SedeService {
     const url = this.baseUrl + '/sedes/' + id + '/inscrever';
     return this.http.post<string[]>(url, email)
   }
+  desinscrever(id: any, email: string[]): Observable<string[]> {
+    const url = this.baseUrl + '/sedes/' + id + '/desinscrever';
+    return this.http.post<string[]>(url, email)
+  }
 }

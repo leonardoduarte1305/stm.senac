@@ -41,4 +41,7 @@ export class HomeComponent implements AfterViewInit {
   materiaisPagina():void{
 this.router.navigate(['materiais']);
   }
+  cadastroUsuarioPagina():void{
+    this.router.navigate(['usuarios']);
+      }
 }

@@ -99,7 +99,16 @@
     background-color: chocolate;
     width: 100%;
 }
+.bt-diaLog-close{
+    margin-left: auto;
+    margin-bottom: auto;
+    font-size: 1.5em;
+    font-weight: bold;
+    border: none;
+    background-color: transparent;
+    color: red;
 
+}
 .box-diaLog-button button {
     font-size: 1em;
     width: 200px;
@@ -118,8 +127,15 @@
     color: black;
     cursor: pointer;
 }
+.box-diaLog span{
+    color: red;
+    font-weight: bold;
+}
 
-
+.box-diaLog p{
+    text-align: center;
+    margin: .5em;
+}
 table {
     background-color: white;
     color: black;

@@ -141,7 +141,6 @@ export class DialogOverviewExampleDialog implements OnInit {
   }
 
   onNoClick(): void {
-
     this.dialogRef.close();
   }
 
@@ -151,9 +150,36 @@ export class DialogOverviewExampleDialog implements OnInit {
     })
   }
 
+  validarEmail(email: string): boolean {
+    // Regex para validar um endereço de e-mail
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    return regex.test(email);
+  }
+
+  msgErro = "";
   email!: any;
   emailValido!: string;
   inscrever(): void {
+    var e: string[];
+    this.msgErro = "";
+
+    this.email = document.getElementById("email");
+    this.emailValido = this.email.value;
+    console.log(this.emailValido + " id " + this.data.idSubscrib)
+    e = [this.emailValido];
+    if (this.validarEmail(e[0])) {
+
+      this.service.inscrever(this.data.idSubscrib, e).subscribe((resposta) => {
+        this.message("Foi inscrito na sede " + this.nomeSede)
+        this.onNoClick();
+      })
+
+    } else {
+      this.msgErro = "Favor inserir um email válido";
+    }
+  }
+  desisncrever(): void {
     var e: string[];
 
     this.email = document.getElementById("email");
@@ -161,11 +187,17 @@ export class DialogOverviewExampleDialog implements OnInit {
     console.log(this.emailValido + " id " + this.data.idSubscrib)
     e = [this.emailValido];
 
-    this.service.inscrever(this.data.idSubscrib, e).subscribe((resposta) => {
-      this.message("Foi inscrito na sede " + this.nomeSede)
-      this.onNoClick();
-    })
+    if(this.validarEmail(e[0])){
+
+      this.service.desinscrever(this.data.idSubscrib, e).subscribe((resposta) => {
+        this.message("Você se desinscreveu da sede:  " + this.nomeSede)
+        this.onNoClick();
+      })
+    }else{
+      this.msgErro="É necessario informar o email que estará removendo da lista de inscritos da sede"
+    }
   }
+
   message(msg: String): void {
     this.snack.open(`${msg}`, 'OK', {
       horizontalPosition: 'end',

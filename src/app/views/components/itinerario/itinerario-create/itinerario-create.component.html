@@ -84,9 +84,9 @@
                         <th class="table-bt-remover"></th>
                     </tr>
                     <tr class="listagem-materiais" *ngFor="let s of materiaisDestino">
-                        <td>{{s.materialId}}</td>
+                        <td>{{s.nomeMaterial}}</td>
                         <td>{{s.quantidade}}</td>
-                        <td>{{s.setorDestino}}</td>
+                        <td>{{s.nomeSetor}}</td>
                         <td><button class="bt-removerMaterial-lista"><i id="edit" class="material-icons"
                                     matTooltip="Remover material da lista">delete</i></button></td>
 
@@ -110,7 +110,7 @@
         </section>
         <section *ngFor="let d of destinosViagemView">
             <div>
-                <h1>{{d}}</h1>
+                <h1>{{d.id}}</h1>
             </div>
         </section>
         <div class="div-buttons">

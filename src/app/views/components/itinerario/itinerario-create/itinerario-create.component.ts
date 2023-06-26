@@ -68,15 +68,43 @@ export class ItinerarioCreateComponent implements OnInit {
       materialId: this.interfaceMateriais.materialId,
       quantidade: this.interfaceMateriais.quantidade,
       setorDestino: this.interfaceMateriais.setorDestino,
-      nomeMaterial: null!,
-      nomeSetor: null!
+      nomeMaterial: "",
+      nomeSetor: ""
+
+
     };
-
-
     this.materiaisDestino.push(...[novoObjeto]);
-
     console.log(this.materiaisDestino);
+
+    if (novoObjeto.materialId != null && novoObjeto.setorDestino != null) {
+
+
+      for (let k = 0; k < this.setores.length; k++) {
+        if (this.setores[k].id === novoObjeto.setorDestino) {
+
+          novoObjeto.nomeSetor = this.setores[k].nome;
+
+        }
+      }
+
+
+      for (let k = 0; k < this.materiais.length; k++) {
+        if (this.materiais[k].id === novoObjeto.materialId) {
+          novoObjeto.nomeMaterial = this.materiais[k].nome;
+
+        }
+      }
+
+    } else {
+      console.log("deu não")
+    }
+
+
+
+
   }
+
+
   addDestino() {
 
     this.destinoService.create(this.destino).subscribe(res => {
@@ -237,7 +265,6 @@ export class ItinerarioCreateComponent implements OnInit {
     })
   }
 
-
   navigationToItinerarios() {
     this.router.navigate(['itinerarios']);
   }
@@ -247,4 +274,6 @@ export class ItinerarioCreateComponent implements OnInit {
   sibmit() {
 
   }
+
+
 }

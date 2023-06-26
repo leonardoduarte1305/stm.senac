@@ -4,74 +4,99 @@
 </header>
 <section class="creat">
 
-  <div class="card">
-    <div>
-      <i class="material-icons">add</i>
-      <h4>Criar Nova Viagem</h4>
-    </div>
-    <div class="bt">
-      <button routerLink="/itinerarios/create">Criar nova Viagem <i class="material-icons"> arrow_right_alt</i></button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div>
-      <i class="material-icons">inventory_2</i>
-      <h4>Materiais salvos no sistema</h4>
-    </div>
-    <div class="bt">
-      <button (click)="materiaisPagina()">Lista de todos materiais <i class="material-icons"> arrow_right_alt</i>
-      </button>
+  <div class="contaiber-cards">
+    <img src="assets/imgs/materialTransporte.jpg" alt="">
+    <div class="card-viagem">
+      <div>
+        <h4>VIAGENS</h4>
+      </div>
+      <div class="bt">
+        <button routerLink="/itinerarios/create">Criar nova Viagem <i class="material-icons">
+            arrow_right_alt</i></button>
+      </div>
+      <div class="bt">
+        <button routerLink="/itinerarios">Lista de Viagens <i class="material-icons">
+            arrow_right_alt</i></button>
+      </div>
     </div>
   </div>
 
+
+  <div class="contaiber-cards-material-user">
+    <div class="card">
+      <div>
+        <i class="material-icons">inventory_2</i>
+        <h4>Materiais salvos no sistema</h4>
+      </div>
+      <div class="bt">
+        <button (click)="materiaisPagina()">Lista de todos materiais <i class="material-icons"> arrow_right_alt</i>
+        </button>
+      </div>
+    </div>
+
+
+    <div class="card">
+      <div>
+        <i class="material-icons">person</i>
+        <h4>Cadastrar usuário</h4>
+      </div>
+      <div class="bt">
+        <button (click)="cadastroUsuarioPagina()">Cadastrar usuário <i class="material-icons"> arrow_right_alt</i>
+        </button>
+      </div>
+    </div>
+  </div>
 
 </section>
+<!---
 <mat-card class="box">
 
-  <!--
+ 
   <mat-card-header class="box-header">
     <mat-card-title>VIAGENS AGENDADAS</mat-card-title>
     <mat-card-subtitle>Sistema de gerenciamento de viagem de transferencia de material entre
       váriassedes</mat-card-subtitle>
   </mat-card-header>
--->
 
 
-  <div class="table-limit">
 
-    <table class="table" mat-table [dataSource]="dataSource">
+<div class="table-limit">
 
-      <!-- Position Column -->
-      <ng-container matColumnDef="motorista">
-        <th mat-header-cell *matHeaderCellDef> Motorista </th>
-        <td mat-cell *matCellDef="let element"> {{element.motorista}} </td>
-      </ng-container>
+  <table class="table" mat-table [dataSource]="dataSource">
 
-
-      <ng-container matColumnDef="datetimeSaida">
-        <th mat-header-cell *matHeaderCellDef> Data e Hora Saída </th>
-        <td mat-cell *matCellDef="let element"> {{element.datetimeSaida}} </td>
-      </ng-container>
+    
+    <ng-container matColumnDef="motorista">
+      <th mat-header-cell *matHeaderCellDef> Motorista </th>
+      <td mat-cell *matCellDef="let element"> {{element.motorista}} </td>
+    </ng-container>
 
 
-      <ng-container matColumnDef="encerrado">
-        <th mat-header-cell *matHeaderCellDef> Status da Viagem </th>
-        <td mat-cell *matCellDef="let element"> {{element.encerrado.replace("_"," ")}} </td>
-      </ng-container>
-      <ng-container matColumnDef="ações">
-        <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element" class="acoes"> <button class="bt-alterar-viagem"> <i id="edit" class="material-icons"
-              matTooltip="Editar">edit</i></button></td>
-      </ng-container>
+    <ng-container matColumnDef="datetimeSaida">
+      <th mat-header-cell *matHeaderCellDef> Data e Hora Saída </th>
+      <td mat-cell *matCellDef="let element"> {{element.datetimeSaida}} </td>
+    </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
 
-  </div>
-  <mat-paginator color="warn" class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
-    aria-label="Select page of periodic elements">
-  </mat-paginator>
+    <ng-container matColumnDef="encerrado">
+      <th mat-header-cell *matHeaderCellDef> Status da Viagem </th>
+      <td mat-cell *matCellDef="let element"> {{element.encerrado.replace("_"," ")}} </td>
+    </ng-container>
+    <ng-container matColumnDef="ações">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let element" class="acoes"> <button class="bt-alterar-viagem"> <i id="edit" class="material-icons"
+            matTooltip="Editar">edit</i></button></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
+<mat-paginator color="warn" class="paginator" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+  aria-label="Select page of periodic elements">
+</mat-paginator>
 
 </mat-card>
+
+
+-->

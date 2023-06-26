@@ -1,0 +1,45 @@
+
+<header>
+    <button class="retornar" (click)="cancelar()"><i class="material-icons">arrow_back</i></button>
+    <h1>CADASTRO DE USUÁRIO</h1>
+</header>
+
+
+<form  action="" (ngSubmit)="submit()" [formGroup]="usuarioForm" #formDir="ngForm">
+
+    <div class="box-input">
+        <label for="">Nome do usuário</label>
+        <input name="username" id="username" [(ngModel)]="usuario.username" formControlName="username">
+        <span *ngIf="username.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> o nome de usuário não pode ser vazio</span>
+    </div>
+    <div class="box-input">
+        <label for="">Senha</label>
+        <input [(ngModel)]="usuario.password" required type="text" name="password" id="" placeholder=""  formControlName="password" maxlength="10">
+        <span *ngIf="password.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> insira uma senha com no minimo 6 caracter</span>
+    </div>
+    <div class="box-input">
+        <label for="">Nome</label>
+        <input [(ngModel)]="usuario.nome" required type="text" name="nome" id="" placeholder=""  formControlName="nome" maxlength="30">
+        <span *ngIf="nome.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> insira uma senha com no minimo 6 caracter</span>
+    </div>
+    <div class="box-input">
+        <label for="">Sobrenome</label>
+        <input [(ngModel)]="usuario.sobrenome" required type="text" name="sobrenome" id="" placeholder=""  formControlName="sobrenome" maxlength="80">
+        <span *ngIf="sobrenome.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> insira uma senha com no minimo 6 caracter</span>
+    </div>
+    <div class="box-input">
+        <label for="">Email</label>
+        <input [(ngModel)]="usuario.email" required type="text" name="email" id="" placeholder=""  formControlName="email">
+        <span *ngIf="email.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> insira uma senha com no minimo 6 caracter</span>
+    </div>
+    <div class="box-input">
+        <label for="">Tipo do usuário</label>
+        <select name="role" id="role" [(ngModel)]="usuario.role" formControlName="role">
+            <option value="" ></option>
+            <option value="ADMIN" >ADMINISTRADOR</option>
+            <option value="USER" >USUÁRIO</option>
+        </select>
+        <span *ngIf="role.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> selecione o tipo do usuário</span>
+    </div>
+    <button class="btn-cadastrar">CADASTRAR</button>
+</form>

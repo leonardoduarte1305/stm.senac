@@ -1,12 +1,14 @@
-
 <div class="box-diaLog" mat-dialog-content>
-  <p>Insira o seu email para ser notificado quando ocorrer uma viagem que tenha como destino {{nomeSede}}</p>
+  <button mat-button (click)="onNoClick()" class="bt-diaLog-close">X</button>
+  <p>Insira o seu email para ser notificado quando ocorrer uma viagem que tenha como destino {{nomeSede}} ou insira o email que deseja remover da lista de notifição desta sede</p>
   <div appearance="fill">
     <label>Email</label>
     <input type="text" id="email">
   </div>
+  <span>{{msgErro}}</span>
+  
 </div>
 <div class="box-diaLog-button" mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">CANCELAR</button>
-  <button mat-button (click)="inscrever()" >INSCERVER-SE</button>
+  <button mat-button (click)="desisncrever()">DESINSCREVER</button>
+  <button mat-button (click)="inscrever()">INSCERVER-SE</button>
 </div>

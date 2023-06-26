@@ -10,6 +10,7 @@ table {
 }
 
 .table-limit {
+    width: 100%;
     max-height: 200px;
     /* Defina a altura máxima desejada */
     overflow-y: auto;
@@ -31,7 +32,7 @@ table td {
 }
 
 .container-destinos section div label {
-    color: white;
+    color: black;
 }
 
 .container-destinos h3 {
@@ -41,8 +42,8 @@ table td {
 }
 
 .container-destinos section div select {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.096);
+    color: black;
+    background-color: rgba(0, 0, 0, 0.096);
 }
 
 .container-destinos section div option {
@@ -50,8 +51,8 @@ table td {
 }
 
 .container-destinos section div input {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.096);
+    color: black;
+    background-color: rgba(0, 0, 0, 0.096);
 }
 
 .container-divs div {
@@ -61,7 +62,9 @@ table td {
     flex-direction: column;
     justify-content: center;
 }
-
+.container-divs{
+    width: 100%;
+}
 .container-divs .btn-adicionar-material-div {
     width: 120px;
 
@@ -71,10 +74,13 @@ table td {
     width: 100%;
     margin: 0px;
     padding: 0%;
-    margin-top: -16px;
-    height: 100%;
 
-    background-color: #1A1D24;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: #ffffff;
 }
 
 
@@ -99,4 +105,11 @@ table td {
     background-color: transparent;
     border: none;
     color: red;
+}
+.bt-atualizar{
+    width: 350px;
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+
 }

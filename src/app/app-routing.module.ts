@@ -15,6 +15,7 @@ import { VeiculoUpdateComponent } from './views/components/veiculos/veiculo-upda
 import { SedeUpdateComponent } from './views/components/sedes/sede-update/sede-update.component';
 import { LoginComponent } from './views/components/login/login.component';
 import { MateriaisComponent } from './views/components/material/materiais/materiais.component';
+import { UsuarioComponent } from './views/components/usuario/usuario.component';
 
 
 const routes: Routes = [
@@ -89,6 +90,13 @@ const routes: Routes = [
     path: "materiais",
     component: MateriaisComponent
   }
+  ,
+
+  {
+    path: "usuarios",
+    component: UsuarioComponent
+  }
+
 
 
 

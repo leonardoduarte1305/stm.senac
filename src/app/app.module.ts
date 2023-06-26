@@ -47,6 +47,7 @@ import {MatInputModule} from '@angular/material/input';
 import { APP_INITIALIZER } from '@angular/core';
 import { LoadingComponent } from './views/components/template/loading/loading.component';
 import { DestinoUpdateComponent } from './views/components/itinerario/destino-update/destino-update.component';
+import { UsuarioComponent } from './views/components/usuario/usuario.component';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { DestinoUpdateComponent } from './views/components/itinerario/destino-up
     MateriaisComponent,
     LoadingComponent,
     DestinoUpdateComponent,
+    UsuarioComponent,
 
 
   ],

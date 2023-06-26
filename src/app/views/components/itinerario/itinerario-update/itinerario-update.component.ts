@@ -160,7 +160,7 @@ export class ItinerarioUpdateComponent implements OnInit {
     } else {
       this.viagem.datetimeVolta = this.dtVolta.toLocaleString('pt-br');
     }
- 
+
     this.servico.update(this.viagem).subscribe(res => {
       console.log(res);
     })
@@ -210,6 +210,7 @@ export class ItinerarioUpdateComponent implements OnInit {
 
   buscarPorId(): void {
 
+
     this.servico.findById(this.id_viagem).subscribe(res => {
       this.viagem = res;
       document.getElementById("dtSaida")
@@ -247,7 +248,6 @@ export class ItinerarioUpdateComponent implements OnInit {
   buscarDestinos() {
 
 
-
     this.destinoService.buscarDestinoPorIdViagem(this.id_viagem).subscribe(res => {
       console.log(res)
 
@@ -257,25 +257,25 @@ export class ItinerarioUpdateComponent implements OnInit {
         this.destinosDaViagem.push(...[item])
       }
 
-
-
-
-      for (let i = 0; this.destinosDaViagem.length > i; i++) {
-        console.log("ddddd")
-        this.servicoSede.findById(this.destinosDaViagem[i].sedeId).subscribe(resposta => {
-          this.destinosDaViagem[i].nomeSede = resposta.nome;
-        })
-
-        if (this.destinosDaViagem[i].status.confirmacao === "CONFIRMADO") {
-          this.msgIconConfirmDestino = "desconfirmar"
-        } else {
-          this.msgIconConfirmDestino = "confirmar";
-        }
-
-      }
+      this.validarStatusConfirmacao();
     })
 
 
+  }
+  validarStatusConfirmacao() {
+    for (let i = 0; this.destinosDaViagem.length > i; i++) {
+
+      this.servicoSede.findById(this.destinosDaViagem[i].sedeId).subscribe(resposta => {
+        this.destinosDaViagem[i].nomeSede = resposta.nome;
+      })
+
+      if (this.destinosDaViagem[i].status.confirmacao === "CONFIRMADO") {
+        this.msgIconConfirmDestino = "desconfirmar"
+      } else {
+        this.msgIconConfirmDestino = "confirmar";
+      }
+
+    }
   }
 
 
@@ -360,10 +360,19 @@ export class ItinerarioUpdateComponent implements OnInit {
   }
 
   excluirDestino(id: any) {
-    this.destinoService.delet(id).subscribe(res => {
+    const index = this.viagem.destinos.indexOf(id);
+    if (index !== -1) {
+      this.viagem.destinos.splice(index, 1);
+      this.servico.update(this.viagem).subscribe(res => {
 
-      console.log(id)
+        this.ngOnInit();
+      })
+    }
+    console.log(this.viagem.destinos);
+    this.destinoService.delet(id).subscribe(res => {
+      console.log(id, this.id_viagem)
     }), console.error("Deu erro na requisição de delet de destino");
+
 
   }
 
@@ -375,6 +384,7 @@ export class ItinerarioUpdateComponent implements OnInit {
   confirmarViagem(): void {
     this.servico.status(this.id_viagem, this.confirmacao).subscribe(res => {
       console.log(res)
+
     })
   }
 

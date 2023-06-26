@@ -15,18 +15,15 @@ export class LoginComponent {
   ) {
 
   }
-  erro!: boolean ;
+  erro!: boolean;
   //
-  user ='';
-  senha ='';
+  user = '';
+  senha = '';
   enter() {
-    console.log(this.user +" "+this.senha)
-    if (this.user === 'admin' && this.senha === 'admin') {
-      this.router.navigate(['/home']);
-    } else {
-      this.erro = true;
 
-    }
+
+    this.service.gerarToken();
+    this.service.getToken();
   }
 
 
