@@ -1,22 +1,24 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Setor } from '../models/setor';
-import { Observable } from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Setor} from '../models/setor';
+import {Observable} from 'rxjs';
+import {LoginService} from "./NovoLogin.service";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class SetorService {
 
-  constructor(
-    private http: HttpClient
-  ) { }
+    baseUrl: String = "http://localhost:8080";
 
-  baseUrl: String = "http://localhost:8080";
+    constructor(
+        private http: HttpClient, private service: LoginService) {
+    }
 
-  findAll(): Observable<Setor[]> {
-    const url = this.baseUrl + '/setores';
-    return this.http.get<Setor[]>(url);
+    findAll(): Observable<Setor[]> {
+        const url = this.baseUrl + '/setores';
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        return this.http.get<Setor[]>(url, {headers});
 
-  }
+    }
 }

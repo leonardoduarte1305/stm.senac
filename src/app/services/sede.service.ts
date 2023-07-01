@@ -1,49 +1,62 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Sede } from '../models/sede';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Observable} from 'rxjs';
+import {Sede} from '../models/sede';
+import {LoginService} from "./NovoLogin.service";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 
 export class SedeService {
 
-  baseUrl: String = "http://localhost:8080";
+    baseUrl: String = "http://localhost:8080";
 
-  constructor(private http: HttpClient,
-    private snack: MatSnackBar) {
-  }
-  findAll(): Observable<Sede[]> {
-    const url = this.baseUrl + '/sedes';
-    return this.http.get<Sede[]>(url);
+    constructor(private http: HttpClient,
+                private snack: MatSnackBar, private service: LoginService) {
+    }
 
-  }
-  create(sede: Sede): Observable<Sede> {
-    const url = this.baseUrl + '/sedes';
-    return this.http.post<Sede>(url, sede);
-  }
-  findById(id: any): Observable<Sede> {
-    const url = this.baseUrl + "/sedes/" + id;
-    return this.http.get<Sede>(url);
-  }
-  update(sede: Sede): Observable<Sede> {
-    const url = this.baseUrl + '/sedes/' + sede.id;
-    return this.http.put<Sede>(url, sede);
-  }
+    findAll(): Observable<Sede[]> {
+        const url = this.baseUrl + '/sedes';
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        return this.http.get<Sede[]>(url, {headers});
 
-  delet(id: any): Observable<Sede> {
-    const url = this.baseUrl + '/sedes/' + id;
-    return this.http.delete<Sede>(url)
-  }
-  inscrever(id: any, email: string[]): Observable<string[]> {
-    const url = this.baseUrl + '/sedes/' + id + '/inscrever';
-    return this.http.post<string[]>(url, email)
-  }
-  desinscrever(id: any, email: string[]): Observable<string[]> {
-    const url = this.baseUrl + '/sedes/' + id + '/desinscrever';
-    return this.http.post<string[]>(url, email)
-  }
+    }
+
+    create(sede: Sede): Observable<Sede> {
+        const url = this.baseUrl + '/sedes';
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        return this.http.post<Sede>(url, sede, {headers});
+    }
+
+    findById(id: any): Observable<Sede> {
+        const url = this.baseUrl + "/sedes/" + id;
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        return this.http.get<Sede>(url, {headers});
+    }
+
+    update(sede: Sede): Observable<Sede> {
+        const url = this.baseUrl + '/sedes/' + sede.id;
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        return this.http.put<Sede>(url, sede, {headers});
+    }
+
+    delet(id: any): Observable<Sede> {
+        const url = this.baseUrl + '/sedes/' + id;
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        return this.http.delete<Sede>(url, {headers})
+    }
+
+    inscrever(id: any, email: string[]): Observable<string[]> {
+        const url = this.baseUrl + '/sedes/' + id + '/inscrever';
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        return this.http.post<string[]>(url, email, {headers})
+    }
+
+    desinscrever(id: any, email: string[]): Observable<string[]> {
+        const url = this.baseUrl + '/sedes/' + id + '/desinscrever';
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        return this.http.post<string[]>(url, email, {headers})
+    }
 }

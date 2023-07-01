@@ -1,31 +1,31 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { LoginService } from 'src/app/services/login.service';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {LoginService} from 'src/app/services/NovoLogin.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
 
-  constructor(
-    private router: Router,
-    private service: LoginService
-  ) {
+    erro!: boolean;
+    user = '';
+    senha = '';
 
-  }
-  erro!: boolean;
-  //
-  user = '';
-  senha = '';
-  enter() {
+    constructor(
+        private router: Router,
+        private service: LoginService) {
+    }
 
-
-    this.service.gerarToken();
-    this.service.getToken();
-  }
-
+    async enter() {
+        this.service.fazerLoginEArmazenarToken(this.user, this.senha);
+        if (this.service.getTokenDoLocalStorage()) {
+            this.router.navigate(['/home']);
+        } else {
+            this.erro = true;
+        }
+    }
 
 
 }
