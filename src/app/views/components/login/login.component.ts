@@ -18,7 +18,7 @@ export class LoginComponent {
         private service: LoginService) {
     }
 
-    async enter() {
+   /* async enter() {
         this.service.fazerLoginEArmazenarToken(this.user, this.senha);
         if (this.service.getTokenDoLocalStorage()) {
             this.router.navigate(['/home']);
@@ -26,6 +26,6 @@ export class LoginComponent {
             this.erro = true;
         }
     }
-
+*/
 
 }

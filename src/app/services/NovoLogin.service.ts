@@ -45,6 +45,7 @@ export class LoginService {
         localStorage.setItem(this.tokenKey, token);
     }
 
+    
     getTokenDoLocalStorage(): string {
         return localStorage.getItem(this.tokenKey)!;
     }
