@@ -119,6 +119,15 @@ export class ItinerarioCreateComponent implements OnInit {
       console.log(res);
       this.materiaisDestino.splice(0, this.materiaisDestino.length);
 
+      for (let i = 0; i < this.destinosViagemView.length; i++) {
+        for (let j = 0; j < this.sedes.length; j++) {
+          if (this.destinosViagemView[i].sedeId == this.sedes[j].id) {
+            this.destinosViagemView[i].nomeSede = this.sedes[j].nome;
+          }else{
+            
+          }
+        }
+      }
     })
   }
 
@@ -275,5 +284,9 @@ export class ItinerarioCreateComponent implements OnInit {
 
   }
 
+  excluirDestino(id:any){
+    this.destinoService.delet(id).subscribe(res=>{
 
+    })
+  }
 }

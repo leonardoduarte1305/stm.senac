@@ -142,15 +142,16 @@ export class DestinoUpdateComponent implements OnInit {
 
     this.materiaisDestino.splice(index, 1)
     console.log(this.materiaisDestino)
-
-    this.destinoService.update(this.destino).subscribe(res => {
-      console.log(res);
-    })
+    /*
+        this.destinoService.update(this.destino).subscribe(res => {
+          console.log(res);
+        })
+      */
   }
   atualizarDestino() {
 
 
-    this.destino.materiaisQntdSetor=this.materiaisDestino;
+    this.destino.materiaisQntdSetor = this.materiaisDestino;
     console.log(this.destino)
 
     this.destinoService.update(this.destino).subscribe(res => {

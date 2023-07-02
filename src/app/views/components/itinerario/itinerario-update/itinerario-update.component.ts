@@ -187,10 +187,12 @@ export class ItinerarioUpdateComponent implements OnInit {
   addDestino() {
     this.destinoService.create(this.destino).subscribe(res => {
       this.destinosViagem.push(res.id);
+      this.viagem.destinos.push(res.id);
       for (let i = 0; i < this.destinosViagem.length; i++) {
         console.log("ID :" + this.destinosViagem[i])
       }
       console.log(res);
+      console.log(this.viagem);
       this.materiaisDestino.pop();
     })
   }
@@ -291,7 +293,7 @@ export class ItinerarioUpdateComponent implements OnInit {
     console.log(this.destinosDaViagem[idDestino].materiaisQntdSetor[0].quantidade)
   }
 
-  aualizarViagem(id: any) {
+  atualizarDestino(id: any) {
     const dialogRef: MatDialogRef<DestinoUpdateComponent> = this.dialog.open(DestinoUpdateComponent, {
       width: '1800px',
       height: '900px',
@@ -369,11 +371,13 @@ export class ItinerarioUpdateComponent implements OnInit {
       })
     }
     console.log(this.viagem.destinos);
-    this.destinoService.delet(id).subscribe(res => {
-      console.log(id, this.id_viagem)
-    }), console.error("Deu erro na requisição de delet de destino");
 
-
+    /*
+     this.destinoService.delet(id).subscribe(res => {
+       console.log(id, this.id_viagem)
+     }), console.error("Deu erro na requisição de delet de destino");
+ 
+ */
   }
 
   confirmarDestino(id: any): void {

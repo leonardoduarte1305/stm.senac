@@ -1,9 +1,10 @@
 <main>
     <header>
-        <button class="retornar" (click)="navigationToItinerarios()"><i class="material-icons">arrow_back</i></button>
-        <h1>INSERÇÃO DE VIAGEM</h1>
+        <button class="retornar" (click)="navigationToItinerarios()"><i class="material-icons">arrow_back</i>Lista de viagens</button>
+
     </header>
     <form action="" (ngSubmit)="sibmit()" [formGroup]="viagemForm" #formDir="ngForm">
+        <h1>Cadastro de viagem</h1>
         <section class="container-divs">
             <div>
                 <label for="">Origem</label>
@@ -108,9 +109,11 @@
                 </div>
             </section>
         </section>
-        <section *ngFor="let d of destinosViagemView">
-            <div>
-                <h1>{{d.id}}</h1>
+        <section class="container-destinos-view" *ngFor="let d of destinosViagemView">
+            <div class="box-destinos-view">
+                <h4>Destino: {{d.nomeSede}}</h4>
+                <h4>Total de materiais: {{d.materiaisQntdSetor.length}}</h4>
+                <button (click)="excluirDestino(d.id)">remover</button>
             </div>
         </section>
         <div class="div-buttons">
