@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
-import {Router} from '@angular/router';
-import {LoginService} from 'src/app/services/NovoLogin.service';
+import { Component, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
     selector: 'app-login',
@@ -18,14 +18,22 @@ export class LoginComponent {
         private service: LoginService) {
     }
 
-   /* async enter() {
-        this.service.fazerLoginEArmazenarToken(this.user, this.senha);
-        if (this.service.getTokenDoLocalStorage()) {
-            this.router.navigate(['/home']);
-        } else {
-            this.erro = true;
-        }
+
+
+    async enter() {
+        //this.service.removeToken();
+        this.service.gerarToken(this.user, this.senha).then((res: boolean) => {
+            if (res) {
+     
+                this.router.navigate(["/home"])
+            } else {
+                this.erro=true;
+     
+            }
+        });
+
+
     }
-*/
+
 
 }

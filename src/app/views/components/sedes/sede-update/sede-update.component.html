@@ -1,8 +1,9 @@
 <header>
-    <button class="retornar" (click)="navigationToSedes()"><i class="material-icons">arrow_back</i></button>
-    <h1>ATUALIZAR DE SEDE</h1>
+    <button class="retornar" (click)="navigationToSedes()"><i class="material-icons">arrow_back</i>Lista de sedes</button>
+    
 </header>
 <form (ngSubmit)="submit()" [formGroup]="sedeForm" #formDir="ngForm">
+    <h1>Edição de Sede</h1>
     <section class="container-inputs">
         <div class="box-input-nome">
             <label for="">Nome</label>

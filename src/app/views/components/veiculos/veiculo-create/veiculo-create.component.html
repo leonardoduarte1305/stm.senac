@@ -1,46 +1,59 @@
 <header>
-    <button class="retornar" (click)="cancelar()"><i class="material-icons">arrow_back</i></button>
-    <h1>CADASTRO DE VEICULO</h1>
+    <button class="retornar" (click)="cancelar()"><i class="material-icons">arrow_back</i>Lista de veículos</button>
+
 </header>
 
 
-<form  action="" (ngSubmit)="submit()" [formGroup]="veiculoForm" #formDir="ngForm">
+<form action="" (ngSubmit)="submit()" [formGroup]="veiculoForm" #formDir="ngForm">
+    <h1>Cadastro de veículo</h1>
+    <section class="container-inputs">
+        <div class="box-input">
+            <label for="">Marca</label>
+            <select name="marca" id="marca" [(ngModel)]="veiculo.marca" formControlName="marca">
+                <option *ngFor="let s of carBrands" value="{{s}}">{{s}}</option>
+            </select>
+            <span *ngIf="marca.invalid && formDir.submitted" class="error"><i class="material-icons">priority_high</i>
+                selecione uma marca de carro</span>
+        </div>
+        <div class="box-input">
+            <label for="">Modelo</label>
+            <input [(ngModel)]="veiculo.modelo" required type="text" name="modelo" id=""
+                placeholder="insira o modelo do veículo" formControlName="modelo" maxlength="50">
+            <span *ngIf="modelo.invalid && formDir.submitted" class="error"><i class="material-icons">priority_high</i>
+                insira um modelo de veículo</span>
+        </div>
+    </section>
+    <section class="container-inputs">
+        <div class="box-input">
+            <label for="">Placa</label>
+            <input [(ngModel)]="veiculo.placa" type="text" name="placa" id="" placeholder="AAA0000/AAA0A00"
+                onkeyup="this.value = this.value.toUpperCase()" maxlength="8" formControlName="placa">
+            <span *ngIf="placa.invalid && formDir.submitted" class="error"><i class="material-icons">priority_high</i>
+                Digite uma placa valida nos padrões do mercosul </span>
+        </div>
+        <div class="box-input">
+            <label for="">Ano</label>
+            <input [(ngModel)]="veiculo.ano" type="number" name="ano" id="" placeholder="0000" formControlName="ano"
+                ng-maxlength="4" (keydown)="onKeyDown($event)">
+            <span *ngIf="ano.invalid && formDir.submitted" class="error"><i class="material-icons">priority_high</i>
+                Insira o ano do veículo entre 1900 e {{data.getFullYear()+1}}</span>
+        </div>
+    </section>
+    <section class="container-inputs">
+        <div class="box-input">
+            <label for="">Renavam</label>
+            <input [(ngModel)]="veiculo.renavan" type="text" name="renavan" id="" placeholder="00000000000"
+                maxlength="11" formControlName="renavam">
+            <span *ngIf="renavam.invalid && formDir.submitted " class="error"><i
+                    class="material-icons">priority_high</i> O renavam deve conter 11 números</span>
+        </div>
+        <div class="box-input">
+            <label for="">Tamanho</label>
+            <input [(ngModel)]="veiculo.tamanho" type="text" name="tamanho" id=""
+                placeholder="Descreva o tamanho do veículo" formControlName="tamanho">
 
-    <div class="box-input">
-        <label for="">Marca</label>
-        <select name="marca" id="marca" [(ngModel)]="veiculo.marca" formControlName="marca">
-            <option  *ngFor="let s of carBrands" value="{{s}}" >{{s}}</option>
-        </select>
-        <span *ngIf="marca.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> selecione uma marca de carro</span>
-    </div>
-    <div class="box-input">
-        <label for="">Modelo</label>
-        <input [(ngModel)]="veiculo.modelo" required type="text" name="modelo" id="" placeholder="insira o modelo do veículo"  formControlName="modelo" maxlength="50">
-        <span *ngIf="modelo.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> insira um modelo de veículo</span>
-    </div>
-    <div class="box-input">
-        <label for="">Placa</label>
-        <input [(ngModel)]="veiculo.placa" type="text" name="placa" id="" placeholder="AAA0000/AAA0A00"
-            onkeyup="this.value = this.value.toUpperCase()" maxlength="7"  formControlName="placa">
-            <span *ngIf="placa.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> Digite uma placa valida nos padrões do mercosul </span>
-    </div>
-    <div class="box-input">
-        <label for="">Ano</label>
-        <input [(ngModel)]="veiculo.ano" type="number" name="ano" id="" placeholder="0000"  formControlName="ano" ng-maxlength="4" (keydown)="onKeyDown($event)" >
-        <span *ngIf="ano.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> Insira o ano do veículo entre 1900 e {{data.getFullYear()+1}}</span>
-    </div>
-    <div class="box-input">
-        <label for="">Renavam</label>
-        <input [(ngModel)]="veiculo.renavan" type="text" name="renavan" id="" placeholder="00000000000" maxlength="11"  formControlName="renavam">
-        <span  *ngIf="renavam.invalid && formDir.submitted " class="error"><i class="material-icons" >priority_high</i>  O renavam deve conter 11 números</span>
-    </div>
-    <div class="box-input">
-        <label for="">Tamanho</label>
-        <input [(ngModel)]="veiculo.tamanho" type="text" name="tamanho" id=""
-            placeholder="Descreva o tamanho do veículo" formControlName="tamanho">
-
-    </div>
-
+        </div>
+    </section>
     <button (click)="create()" class="btn-cadastrar">CADASTRAR</button>
-  <!---  <button (click)="cancelar() " class="btn-cancelar">CANCELAR</button>-->
+    <!---  <button (click)="cancelar() " class="btn-cancelar">CANCELAR</button>-->
 </form>

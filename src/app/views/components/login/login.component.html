@@ -4,19 +4,22 @@
         <header>
             <div class="div-header-img">
                 <img src="assets/imgs/Group 69 (4).png" alt="">
-        
+
             </div>
         </header>
         <section class="container-divs">
             <div>
                 <label for="">USUÁRIO</label>
-                <input [(ngModel)]="user" type="text" name="user" id="" placeholder="usuario">
-                <span *ngIf="erro">Senha ou Usuário incorretos</span>
+                <input [(ngModel)]="user" type="text" name="user" id="" placeholder="usuario" [ngClass]="{'erro': erro}">
+               
             </div>
             <div>
                 <label for="">SENHA</label>
-                <input [(ngModel)]="senha" name="senha" type="password" placeholder="senha">
-                <span *ngIf="erro">Senha ou Usuário incorretos</span>
+                <input [(ngModel)]="senha" name="senha" type="password" placeholder="senha" [ngClass]="{'erro': erro}">
+          
+            </div>
+            <div *ngIf="erro" class="div-erro">
+                <h5>Credenciais inválidas. Por favor, tente novamente</h5>
             </div>
         </section>
         <button (click)="enter()">ENTRAR</button>

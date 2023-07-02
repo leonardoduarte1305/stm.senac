@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Observable} from 'rxjs';
 import {Motorista} from '../models/motorista';
-import {LoginService} from "./NovoLogin.service";
+import {LoginService} from "./login.service";
 
 
 @Injectable({
@@ -20,31 +20,31 @@ export class MotoristaService {
 
     findAll(): Observable<Motorista[]> {
         const url = this.baseUrl + '/motoristas';
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getToken());
         return this.http.get<Motorista[]>(url, {headers});
     }
 
     findById(id: any): Observable<Motorista> {
         const url = this.baseUrl + '/motoristas/' + id;
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getToken());
         return this.http.get<Motorista>(url, {headers});
     }
 
     update(motorista: Motorista): Observable<Motorista> {
         const url = this.baseUrl + '/motoristas/' + motorista.id;
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getToken());
         return this.http.put<Motorista>(url, motorista, {headers})
     }
 
     create(motorista: Motorista): Observable<Motorista> {
         const url = this.baseUrl + '/motoristas';
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getToken());
         return this.http.post<Motorista>(url, motorista, {headers});
     }
 
     delet(id: any): Observable<Motorista> {
         const url = this.baseUrl + '/motoristas/' + id;
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getToken());
         return this.http.delete<Motorista>(url, {headers});
     }
 

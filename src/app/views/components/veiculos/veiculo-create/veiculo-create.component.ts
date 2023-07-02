@@ -19,8 +19,8 @@ export class VeiculoCreateComponent implements OnInit {
   veiculoForm!: FormGroup;
 
   //PADRÃO PARA ACEITAR A PLACA ANTIGA E NOVA DO MERCOSUL
-  placaPattern = /^[a-zA-Z]{3}\d[a-zA-Z0-9][a-zA-Z0-9]?\d{2}$/;
-
+  // placaPattern = /^[a-zA-Z]{3}\d[a-zA-Z0-9][a-zA-Z0-9]?\d{2}$/;
+  placaPattern = /^[A-Z]{3}-\d{4}|[A-Z]{3}\d[A-Z]\d{2}$/;
   veiculo: Veiculo = {
     id: null!,
     modelo: "",

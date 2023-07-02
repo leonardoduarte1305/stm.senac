@@ -72,7 +72,7 @@ export class UsuarioComponent implements OnInit {
 
   }
   cancelar(){
-    
+    this.router.navigate(["/home"])
   }
 
 }

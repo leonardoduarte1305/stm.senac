@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { findIndex, of } from 'rxjs';
@@ -19,6 +19,7 @@ import { SetorService } from 'src/app/services/setor.service';
 import { VeiculoService } from 'src/app/services/veiculo.service';
 import { ViagemService } from 'src/app/services/viagem.service';
 import { LoadingComponent } from '../../template/loading/loading.component';
+import { LoginService } from 'src/app/services/login.service';
 
 
 @Component({
@@ -55,7 +56,8 @@ export class ItinerariosComponent implements OnInit {
     private http: HttpClient,
     private serviceDestino: DestinoService,
     private serviceMaterial: MaterialService,
-    private serviceSetor: SetorService
+    private serviceSetor: SetorService,
+    private serviceLogin: LoginService
 
   ) { }
 
@@ -90,9 +92,10 @@ export class ItinerariosComponent implements OnInit {
 
   fazerRequisicao() {
 
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.serviceLogin.getToken());
     
     for (let i = 0; i < this.itinerarios.length; i++) {
-      this.http.get<RespostaHttp[]>("http://localhost:8080/viagens/" + this.itinerarios[i].id + "/destinos").subscribe(
+      this.http.get<RespostaHttp[]>("http://localhost:8080/viagens/" + this.itinerarios[i].id + "/destinos",{headers}).subscribe(
 
         resposta => {
 

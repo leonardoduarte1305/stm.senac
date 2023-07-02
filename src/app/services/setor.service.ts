@@ -2,7 +2,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Setor} from '../models/setor';
 import {Observable} from 'rxjs';
-import {LoginService} from "./NovoLogin.service";
+import {LoginService} from "./login.service";
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +17,7 @@ export class SetorService {
 
     findAll(): Observable<Setor[]> {
         const url = this.baseUrl + '/setores';
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getToken());
         return this.http.get<Setor[]>(url, {headers});
 
     }

@@ -1,59 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-
-
-mat-card {
-    width: 80%;
-    height: 50%;
-    margin: 1rem auto 0 auto;
-    background-color: transparent;
-    box-shadow: none;
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Peta:wght@400;700;800;900&display=swap');
 
 
 
-}
 
 
-table {
-    background-color: white;
-    color: black;
 
-}
-
-table td {
-    color: black;
-
-}
-
-table th {
-    color: white;
-    background-color: #1A1D24;
-}
-
-.mat-mdc-paginator-container {
-    background-color: #1A1D24;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-
-}
-
-mat-paginator {
-    background-color: #1A1D24;
-    width: 100%;
-}
-
-.box-header {
-    margin-bottom: 5em;
-}
-
-.box-header mat-card-title {
-    color: chocolate;
-
-    font-size: 2em;
-}
 
 header {
-    color: rgb(207, 207, 207);
-    font-weight: bold;
+    color: rgb(255, 255, 255);
+
     margin-left: 10%;
 }
 
@@ -76,8 +31,10 @@ header {
 }
 
 header h1 {
+    font-weight: 900;
+    font-family: 'Lexend Peta', sans-serif;
     font-size: 4em;
-    font-family: 'Anton', sans-serif;
+
 }
 
 .creat {
@@ -92,7 +49,7 @@ header h1 {
 
 .contaiber-cards {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: white;
     height: 250px;
     display: flex;
@@ -100,13 +57,14 @@ header h1 {
     color: black;
     margin-bottom: 2em;
     justify-content: space-between;
-    padding: 10px;
+    box-shadow: 5px 5px 15px black;
+
 }
 
 .contaiber-cards .card-viagem {
 
     width: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
     display: flex;
     align-items: flex-start;
     padding: 5px;
@@ -135,7 +93,7 @@ header h1 {
 }
 
 .contaiber-cards-material-user {
-    padding: 10px;
+
     width: 100%;
     border-radius: 10px;
 
@@ -153,13 +111,13 @@ header h1 {
 }
 
 .creat .card {
-    background-color: #1A1D24;
+    background-color: #ffffff;
     width: 48%;
-
+    box-shadow: 5px 5px 15px black;
     padding: 10px;
     transition: ease-in-out 0.5s;
-    border-radius: 30px;
-
+    border-radius: 5px;
+    color: black;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -168,40 +126,38 @@ header h1 {
 }
 
 .creat .card i {
-    background-color: #2E3035;
+    background-color: #3f4453;
+    padding: 10px;
     width: 35px;
+    color: chocolate;
     align-items: center;
     justify-content: center;
     display: flex;
     height: 35px;
+
     border-radius: 50px;
 
 }
 
-.creat .card:hover {
-
-    box-shadow: 0px 0px 10px white;
-
-
-}
 
 .creat .card .bt button {
     display: flex;
     align-items: center;
     flex-direction: row;
-    background-color: #2E3035;
+    background-color: #dfdfdf;
     width: 300px;
     border-radius: 50px;
-    color: white;
+    color: black;
 }
 
 .creat .card .bt i {
     background-color: transparent;
-    color: white;
+    color: black;
+    padding: 0%;
 }
 
-.creat .card .bt button:hover {
-    color: rgb(110, 110, 136);
+.creat .card .bt button:hover ,button:hover {
+    color: chocolate;
 }
 
 .creat .card button {
@@ -209,29 +165,22 @@ header h1 {
 
 
     font-size: 1.2em;
-    padding: 10px;
+    padding: 5px;
 
-    font-family: 'Poppins', sans-serif;
+
     border-radius: 5px;
     font-weight: 500;
     background-color: transparent;
     border: none;
     color: black;
 
-    transition: ease-in-out 0.5s;
+
 
 }
 
-.table-limit {
-    max-width: 100%;
-    /* Defina a altura máxima desejada */
-    overflow-x: auto;
-    /* Adicione rolagem vertical quando necessário */
-}
 
-.acoes {
-    width: 10%;
-}
+
+
 
 @media (width<800px) {
     .creat {

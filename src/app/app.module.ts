@@ -50,6 +50,7 @@ import { DestinoUpdateComponent } from './views/components/itinerario/destino-up
 import { UsuarioComponent } from './views/components/usuario/usuario.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,6 +102,7 @@ import { UsuarioComponent } from './views/components/usuario/usuario.component';
     MatFormFieldModule,
     MatTooltipModule,
     MatInputModule,
+  
    // KeycloakAngularModule
   ],
   providers: [

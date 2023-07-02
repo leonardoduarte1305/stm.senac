@@ -1,5 +1,6 @@
 <mat-drawer-container class="container" autosize>
-    <header>
+
+    <header *ngIf="mostrarMenu">
         <button class="btn" mat-icon-button (click)="drawer.toggle()">
             <mat-icon class="btn_icon">more_vert</mat-icon>
 
@@ -9,13 +10,13 @@
 
                 <h1>ADMIN</h1>
                 <!---TIRAR O BOTÃO DE LOGOUT DAQUI E COLOCAR NA NAVBAR-->
-            
+
             </div>
-        
 
         </div>
     </header>
-    <mat-drawer #drawer class="sidenav" mode="side">
+
+    <mat-drawer #drawer class="sidenav" mode="side" [opened]="mostrarMenu">
         <div class="links">
             <img src="assets/imgs/Group 46.png" alt="">
             <mat-nav-list class="nav-list">
@@ -39,20 +40,21 @@
             <mat-nav-list class="nav-list" *ngIf="show">
                 <a mat-list-item routerLink="/motoristas"><i class="material-icons">assignment_ind</i>Motoristas</a>
             </mat-nav-list>
- 
+
         </div>
         <div class="info">
             <!---
             <app-info></app-info>
             ----->
-            <a href="">Sair</a>
+
+            <a (click)="sairDoSistema()">Sair</a>
         </div>
     </mat-drawer>
 
-    <div class="sidenav-content">
-        <router-outlet>
+    <router-outlet>
 
-        </router-outlet>
-    </div>
+    </router-outlet>
+
+
 
 </mat-drawer-container>

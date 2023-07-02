@@ -3,7 +3,7 @@ import {Veiculo} from '../models/veiculo';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {LoginService} from "./NovoLogin.service";
+import {LoginService} from "./login.service";
 
 @Injectable({
     providedIn: 'root'
@@ -20,7 +20,7 @@ export class VeiculoService {
 
     findAll(): Observable<Veiculo[]> {
         const url = this.baseUrl + '/veiculos';
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getToken());
 
         return this.http.get<Veiculo[]>(url, {headers});
 
@@ -28,26 +28,26 @@ export class VeiculoService {
 
     findbyId(id: any): Observable<Veiculo> {
         const url = this.baseUrl + '/veiculos/' + id;
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getToken());
         return this.http.get<Veiculo>(url, {headers});
     }
 
     create(veiculo: Veiculo): Observable<Veiculo> {
         const url = this.baseUrl + '/veiculos';
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getToken());
         return this.http.post<Veiculo>(url, veiculo, {headers});
 
     }
 
     update(veiculo: Veiculo): Observable<Veiculo> {
         const url = this.baseUrl + '/veiculos/' + veiculo.id;
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getToken());
         return this.http.put<Veiculo>(url, veiculo, {headers});
     }
 
     delet(id: Number): Observable<any> {
         const url = this.baseUrl + '/veiculos/' + id;
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getToken());
         return this.http.delete(url, {headers});
     }
 

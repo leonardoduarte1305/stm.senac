@@ -5,12 +5,12 @@ form {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-   background-color: rgb(230, 230, 230);
+    background-color: rgb(230, 230, 230);
     padding: 100px 0px 100px 0px;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 2px 2px 20px black;
     flex-direction: column;
-    border-top: 2em solid rgb(26, 27, 32);
+
 
 }
 
@@ -33,14 +33,15 @@ form {
 form button {
     font-family: 'Poppins', sans-serif;
     font-size: 1.5em;
-    padding: 8px;
+    padding: 5px;
     box-shadow: 2px 2px 5px rgb(71, 71, 71);
 
-    border-radius: 50px;
+    border-radius: 5px;
     width: 30%;
     transition: ease-in-out 0.6s;
     border: none;
-    font-weight: bold;
+    margin-left: 5%;
+    margin-top: 2em;
     background-color: chocolate;
     color: black;
 }
@@ -62,40 +63,34 @@ form input::placeholder {
 
 
 header button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    color: chocolate;
+    margin-bottom: 1em;
     height: 25px;
     margin-top: 5px;
-    width: 50px;
+    width: 200px;
     margin-right: 10px;
     border-radius: 50px;
-    background-color:chocolate;
+    background-color: transparent;
     border: none;
 }
 
 header button:hover {
-    background-color: white;
 
-    color: black;
-}
 
-header button i {
     color: white;
-
-}
-option{
-    background-color:rgb(255, 255, 255);
-   
 }
 
-.buttons {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin-top: 5em;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+
+
+option {
+    background-color: rgb(255, 255, 255);
 
 }
+
 
 header {
     color: white;
@@ -104,12 +99,14 @@ header {
     margin-left: auto;
     margin-right: auto;
     display: flex;
-    
+
 }
 
-header h1 {
+form h1 {
+    text-align: center;
+    color: black;
     font-size: 2.2em;
-    font-weight: bold;
+
 }
 
 @media (max-width:1000px) {

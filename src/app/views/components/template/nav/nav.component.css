@@ -1,18 +1,32 @@
 .container {
     height: 100%;
     background-color: rgba(49, 54, 63, 1);
+    width: 100%;
 
 
 
 }
 
+.div-container {
+    width: 100%;
+    padding: 0%;
+    margin: 0%;
+    background-color: #1A1D24;
+
+}
+
+router-outlet {
+    width: 100%;
+}
+
+
 header {
-    background-color: transparent;
+    background-color: #1A1D24;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-
-    margin: .5em;
+    height: 80px;
+    margin-bottom: 2em;
 
 }
 
@@ -66,8 +80,10 @@ i {
 
 mat-drawer {
     background-color: #1A1D24;
+
+
     width: 15%;
-    transition: ease-in-out 0.5s;
+
 
 }
 
@@ -77,13 +93,6 @@ mat-drawer {
 
 }
 
-
-@media (max-width:1000px) {
-    mat-drawer {
-        width: 30%;
-    }
-
-}
 
 
 .info {
@@ -109,12 +118,12 @@ mat-drawer {
 
 header .user {
     text-decoration: none;
-
+    margin-right: 10px;
     flex-direction: column;
 }
 
 header .user h1 {
-    color: chocolate;
+    color: white;
     font-size: 1.2em;
     font-weight: bold;
     margin-bottom: 0%;
@@ -123,5 +132,5 @@ header .user h1 {
 header .user a {
     text-decoration: none;
     color: rgb(255, 255, 255);
-    margin: 0%;
+
 }

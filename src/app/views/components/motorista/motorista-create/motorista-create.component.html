@@ -1,8 +1,9 @@
 <header>
-    <button class="retornar" (click)="cancelar()"><i class="material-icons">arrow_back</i></button>
-    <h1>CADASTRO DE MOTORISTA</h1>
+    <button class="retornar" (click)="cancelar()"><i class="material-icons">arrow_back</i>Lista de motoristas</button>
+    
 </header>
 <form action="" (ngSubmit)="submit()" [formGroup]="motoristaForm" #formDir="ngForm">
+    <h1>Cadastro de motorista</h1>
     <div class="box-input">
         <label for="">Nome</label>
         <input [(ngModel)]="motorista.nome" type="text" name="nome" id="" placeholder="insira o nome do motorista" formControlName="nome" maxlength="100">

@@ -1,6 +1,6 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {LoginService} from "./NovoLogin.service";
+import {LoginService} from "./login.service";
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +15,7 @@ export class ViagemService {
 
 
     baixarPDF(id: Number) {
-        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getTokenDoLocalStorage());
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getToken());
         headers.set('Accept', 'application/pdf');
         return this.http.get(this.baseUrl + "/viagens/" + id + "/exportar", {headers: headers, responseType: 'blob'})
     }

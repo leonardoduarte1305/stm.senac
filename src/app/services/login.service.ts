@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -15,36 +15,64 @@ export class LoginService {
     private http: HttpClient
 
   ) { }
-  login(): boolean {
-    this.router.navigate(['/']);
-    return true
-  }
-  resultadoToke: string = "";
-  gerarToken() {
-    const data = "grant_type=password&client_id=api-transportes-client&username=gabriel&password=gabriel";
 
-    const xhr = new XMLHttpRequest();
-    xhr.withCredentials = true;
 
-    xhr.addEventListener("readystatechange", function () {
-      if (this.readyState === this.DONE) {
-        
-        console.log(this.responseText);
-        const response = JSON.parse(this.responseText);
-        const accessToken = response.access_token;
-        localStorage.setItem("token",accessToken);
-        console.log("Access Token:", accessToken);
+  resultadoToke: boolean = false;
+  /*
+    gerarToken(user: string, senha: string) {
+      const data = "grant_type=password&client_id=api-transportes-client&username=" + user + "&password=" + senha;
+  
+      const xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+  
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+          if (this.status === 200) {
+  
+  
+            const response = JSON.parse(this.responseText);
+            const accessToken = response.access_token;
+            localStorage.setItem("token", accessToken);
+          }
+  
+  
+  
+        }
+      });
+  
+      xhr.open("POST", "http://localhost:80/realms/master/protocol/openid-connect/token");
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  
+      xhr.send(data);
+      return this.getToken();
+    }
+  */
 
-        
-      }
+  mostrarMenu = new EventEmitter<boolean>();
+
+  gerarToken(user: string, senha: string): Promise<boolean> {
+    const data = `grant_type=password&client_id=api-transportes-client&username=${user}&password=${senha}`;
+    const url = 'http://localhost:80/realms/master/protocol/openid-connect/token';
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+    return new Promise<boolean>((resolve) => {
+      this.http.post(url, data, { headers, withCredentials: true })
+        .subscribe(
+          (response: any) => {
+            const accessToken = response.access_token;
+            localStorage.setItem('token', accessToken);
+            resolve(true);
+            this.mostrarMenu.emit(true)
+          },
+          (error) => {
+            resolve(false);
+            this.mostrarMenu.emit(false)
+          }
+        );
     });
-
-    xhr.open("POST", "http://localhost:80/realms/master/protocol/openid-connect/token");
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-    xhr.send(data);
-
   }
+
+
 
   getToke() {
     const url = 'http://localhost:80/realms/master/protocol/openid-connect/token';
@@ -79,13 +107,14 @@ export class LoginService {
   }
 
   getToken(): string {
-    alert(localStorage.getItem("token"))
-    console.log( )
+    this.mostrarMenu.emit(true)
     return localStorage.getItem("token")!;
   }
 
   removeToken(): void {
-    localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem("token");
+    this.router.navigate(["/"])
+    this.mostrarMenu.emit(false);
   }
 
 
