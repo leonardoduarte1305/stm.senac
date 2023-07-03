@@ -22,6 +22,7 @@ import { Confirmacao } from 'src/app/models/confirmacao';
 import { Itinerario } from 'src/app/models/itinerario';
 import { forkJoin, switchMap } from 'rxjs';
 import { DestinoUpdateComponent } from '../destino-update/destino-update.component';
+import { EncerrarViagem } from 'src/app/models/encerrarViagem';
 
 @Component({
   selector: 'app-itinerario-update',
@@ -125,6 +126,9 @@ export class ItinerarioUpdateComponent implements OnInit {
 
   confirmacao: Confirmacao = {
     confirmacao: "CONFIRMADO"
+  }
+  encerrar: EncerrarViagem = {
+    encerrado: "ENCERRAR"
   }
 
   ngOnInit(): void {
@@ -390,8 +394,16 @@ export class ItinerarioUpdateComponent implements OnInit {
       console.log(res)
 
     })
+
   }
 
+  encerrarViagem() {
+
+    this.servico.encerrarViagem(this.id_viagem, this.encerrar).subscribe(res => {
+      console.log(res);
+      this.router.navigate(['itinerarios'])
+    })
+  }
 
 }
 

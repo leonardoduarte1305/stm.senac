@@ -1,12 +1,15 @@
 <main>
     <header>
-        <button class="retornar" (click)="navigationToItinerarios()"><i class="material-icons">arrow_back</i></button>
-        <h1>INSERÇÃO DE VIAGEM</h1>
+        <button class="retornar" (click)="navigationToItinerarios()"><i class="material-icons">arrow_back</i>Lista de
+            viagens</button>
+
     </header>
     <form action="" [formGroup]="viagemForm" #formDir="ngForm">
+        <h1>Edição de viagem</h1>
         <div class="box-bt-confirmarViagem">
             <h5 id="statusComCor" matTooltip={{msgConfirmacao}}></h5>
-            <button (click)="confirmarViagem()">CONFIRMAR VIAGEM</button>
+            <button (click)="confirmarViagem()">confirmar viagem</button>
+            <button (click)="encerrarViagem()">encerrar viagem</button>
 
         </div>
         <section class="container-divs">
@@ -60,7 +63,7 @@
                     <label for="">QTD</label>
                     <input type="number" name="quantidade" [(ngModel)]="interfaceMateriais.quantidade"
                         formControlName="quantidade">
-                   
+
                 </div>
                 <div>
                     <label for="">Setor Destinatario</label>
@@ -113,16 +116,17 @@
 
 
             <div class="header-listagem-destinos">
-
-                <h1>{{destinos.id}}</h1>
-                <button (click)="excluirDestino(destinos.id)">EXCLUIR</button>
+                <!--   <h1>{{destinos.id}}</h1> -->
+                <h5></h5>
+               <!-- <td>{{destinos.status.confirmacao.replace("_"," ")}}</td> -->
+                <button (click)="excluirDestino(destinos.id)">excluir</button>
                 <button (click)="  confirmarDestino(destinos.id)">{{msgIconConfirmDestino}}</button>
+                <button (click)="atualizarDestino(destinos.id)" class="bt-edit-destino">EDITAR DESTINO</button>
             </div>
             <table>
 
-           <h5>{{destinos.nomeSede}}</h5>
+                <h5>Destino: {{destinos.nomeSede}}</h5>
                 <tr class="box-info-destinos">
-                    <td>{{destinos.status.confirmacao.replace("_"," ")}}</td>
                     <td></td>
                     <td class="materiais-destino" *ngFor="let materiais of destinos.materiaisQntdSetor; let i=index">
                         <p>Idmaterial: {{materiais.materialId}}</p>
@@ -131,7 +135,6 @@
 
                     </td>
                 </tr>
-                <button (click)="atualizarDestino(destinos.id)">EDITAR DESTINO</button>
             </table>
 
 

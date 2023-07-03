@@ -123,8 +123,8 @@ export class ItinerarioCreateComponent implements OnInit {
         for (let j = 0; j < this.sedes.length; j++) {
           if (this.destinosViagemView[i].sedeId == this.sedes[j].id) {
             this.destinosViagemView[i].nomeSede = this.sedes[j].nome;
-          }else{
-            
+          } else {
+
           }
         }
       }
@@ -284,9 +284,20 @@ export class ItinerarioCreateComponent implements OnInit {
 
   }
 
-  excluirDestino(id:any){
-    this.destinoService.delet(id).subscribe(res=>{
-
-    })
+  excluirDestino(id: any) {
+    console.log(this.destinosViagem)
+    const index = this.destinosViagem.indexOf(id);
+    if (index !== -1) {
+      this.destinosViagem.splice(index, 1);
+      console.log(this.destinosViagem)
+      this.destinosViagemView.splice(index,1);
+    }
+    /*
+    
+        this.destinoService.delet(id).subscribe(res => {
+    
+        })
+        */
   }
+
 }
