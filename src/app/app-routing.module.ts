@@ -16,68 +16,82 @@ import { SedeUpdateComponent } from './views/components/sedes/sede-update/sede-u
 import { LoginComponent } from './views/components/login/login.component';
 import { MateriaisComponent } from './views/components/material/materiais/materiais.component';
 import { UsuarioComponent } from './views/components/usuario/usuario.component';
+import { AuthGuardService } from './views/components/guards/auth-guard.service';
 
 
 const routes: Routes = [
   {
     path: "home",
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate:[AuthGuardService]
   },
   {
     path: "veiculos",
-    component: VeiculosComponent
+    component: VeiculosComponent,
+    canActivate:[AuthGuardService]
   },
   {
     path: "veiculos/create",
-    component: VeiculoCreateComponent
+    component: VeiculoCreateComponent,
+    canActivate:[AuthGuardService]
   },
   {
     path: "sedes",
-    component: SedesComponent
+    component: SedesComponent,
+    canActivate:[AuthGuardService]
   },
   {
     path: "sede/create",
-    component: SedeCreateComponent
+    component: SedeCreateComponent,
+    canActivate:[AuthGuardService]
   },
   {
     path: "motoristas",
-    component: MotoristasComponent
+    component: MotoristasComponent,
+    canActivate:[AuthGuardService]
   },
   {
     path: "motoristas/create",
-    component: MotoristaCreateComponent
+    component: MotoristaCreateComponent,
+    canActivate:[AuthGuardService]
   },
 
   {
     path: "itinerarios",
-    component: ItinerariosComponent
+    component: ItinerariosComponent,
+    canActivate:[AuthGuardService]
   },
 
   {
     path: "itinerarios/create",
-    component: ItinerarioCreateComponent
+    component: ItinerarioCreateComponent,
+    canActivate:[AuthGuardService]
   },
 
   {
     path: "itinerarios/update/:id",
-    component: ItinerarioUpdateComponent
+    component: ItinerarioUpdateComponent,
+    canActivate:[AuthGuardService]
   },
 
   {
     path: "motoristas/update/:id",
-    component: MotoristaUpdateComponent
+    component: MotoristaUpdateComponent,
+    canActivate:[AuthGuardService]
   }
   ,
 
   {
     path: "veiculos/update/:id",
-    component: VeiculoUpdateComponent
+    component: VeiculoUpdateComponent,
+    canActivate:[AuthGuardService]
   }
   ,
 
   {
     path: "sedes/update/:id",
-    component: SedeUpdateComponent
+    component: SedeUpdateComponent,
+    canActivate:[AuthGuardService]
   }
   ,
 
@@ -88,13 +102,15 @@ const routes: Routes = [
 
   {
     path: "materiais",
-    component: MateriaisComponent
+    component: MateriaisComponent,
+    canActivate:[AuthGuardService]
   }
   ,
 
   {
     path: "usuarios",
-    component: UsuarioComponent
+    component: UsuarioComponent,
+    canActivate:[AuthGuardService]
   }
 
 

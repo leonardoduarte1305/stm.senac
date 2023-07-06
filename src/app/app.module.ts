@@ -48,6 +48,7 @@ import { APP_INITIALIZER } from '@angular/core';
 import { LoadingComponent } from './views/components/template/loading/loading.component';
 import { DestinoUpdateComponent } from './views/components/itinerario/destino-update/destino-update.component';
 import { UsuarioComponent } from './views/components/usuario/usuario.component';
+import { AuthGuardService } from './views/components/guards/auth-guard.service';
 
 
 
@@ -106,6 +107,7 @@ import { UsuarioComponent } from './views/components/usuario/usuario.component';
    // KeycloakAngularModule
   ],
   providers: [
+    AuthGuardService
     /*{
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,

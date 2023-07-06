@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +11,16 @@ import { Observable } from 'rxjs';
 export class LoginService {
 
   private tokenKey = 'access_token';
+  private jwtHelper: JwtHelperService;
 
   constructor(
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
 
-  ) { }
+
+  ) {
+    this.jwtHelper = new JwtHelperService();
+  }
 
 
   resultadoToke: boolean = false;
@@ -49,6 +55,7 @@ export class LoginService {
   */
 
   mostrarMenu = new EventEmitter<boolean>();
+  validarUser: boolean = false;
 
   gerarToken(user: string, senha: string): Promise<boolean> {
     const data = `grant_type=password&client_id=api-transportes-client&username=${user}&password=${senha}`;
@@ -61,10 +68,12 @@ export class LoginService {
           (response: any) => {
             const accessToken = response.access_token;
             localStorage.setItem('token', accessToken);
+            this.validarUser = true;
             resolve(true);
             this.mostrarMenu.emit(true)
           },
           (error) => {
+            this.validarUser = false;
             resolve(false);
             this.mostrarMenu.emit(false)
           }
@@ -72,7 +81,9 @@ export class LoginService {
     });
   }
 
-
+  usuarioAutenticado() {
+    return this.validarUser;
+  }
 
   getToke() {
     const url = 'http://localhost:80/realms/master/protocol/openid-connect/token';
@@ -108,15 +119,40 @@ export class LoginService {
 
   getToken(): string {
     this.mostrarMenu.emit(true)
+    this.getRoles(localStorage.getItem("token")!)
+    this.getPreferredUsername(localStorage.getItem("token")!);
     return localStorage.getItem("token")!;
   }
 
   removeToken(): void {
     localStorage.removeItem("token");
+//    localStorage.removeItem("nome");
+  //  localStorage.removeItem("role");
     this.router.navigate(["/"])
     this.mostrarMenu.emit(false);
   }
 
 
+  decodeToken(token: string): any {
+    const decodedToken = this.jwtHelper.decodeToken(token);
+    return decodedToken;
+  }
+
+  getRoles(token: string): string[] {
+    const decodedToken = this.decodeToken(token);
+    const resourceAccess = decodedToken.resource_access || {};
+    const roles = resourceAccess['api-transportes-client']?.roles || [];
+    localStorage.setItem('role', roles[0]);
+    console.log(roles)
+    return roles;
+  }
+
+  getPreferredUsername(token: string): string {
+    const decodedToken = this.decodeToken(token);
+    const preferredUsername = decodedToken.preferred_username || '';
+    console.log(preferredUsername)
+    localStorage.setItem('nome', preferredUsername);
+    return preferredUsername;
+  }
 
 }
