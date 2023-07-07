@@ -20,6 +20,7 @@ import { VeiculoService } from 'src/app/services/veiculo.service';
 import { ViagemService } from 'src/app/services/viagem.service';
 import { LoadingComponent } from '../../template/loading/loading.component';
 import { LoginService } from 'src/app/services/login.service';
+import { DeleteDialogService } from 'src/app/services/delete-dialog.service';
 
 
 @Component({
@@ -57,7 +58,8 @@ export class ItinerariosComponent implements OnInit {
     private serviceDestino: DestinoService,
     private serviceMaterial: MaterialService,
     private serviceSetor: SetorService,
-    private serviceLogin: LoginService
+    private serviceLogin: LoginService,
+    private deleteDialog: DeleteDialogService
 
   ) { }
 
@@ -66,9 +68,20 @@ export class ItinerariosComponent implements OnInit {
   ngOnInit(): void {
     this.findAll();
     this.chamarSetoresNome();
-
+    this.validarUser();
     this.chamarMateriais();
 
+  }
+
+  mostrarDados: boolean = false;
+  validarUser() {
+    setTimeout(() => {
+      if (localStorage.getItem("role") == "USER") {
+        this.mostrarDados = false;
+      } else {
+        this.mostrarDados = true;
+      }
+    }, 50)
   }
 
   navigationToCreate(): void {
@@ -93,9 +106,9 @@ export class ItinerariosComponent implements OnInit {
   fazerRequisicao() {
 
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.serviceLogin.getToken());
-    
+
     for (let i = 0; i < this.itinerarios.length; i++) {
-      this.http.get<RespostaHttp[]>("http://localhost:8080/viagens/" + this.itinerarios[i].id + "/destinos",{headers}).subscribe(
+      this.http.get<RespostaHttp[]>("http://localhost:8080/viagens/" + this.itinerarios[i].id + "/destinos", { headers }).subscribe(
 
         resposta => {
 
@@ -167,7 +180,7 @@ export class ItinerariosComponent implements OnInit {
 
 
     this.service.findAll().subscribe((resposta) => {
-      
+
       this.itinerarios = resposta;
 
 
@@ -192,10 +205,6 @@ export class ItinerariosComponent implements OnInit {
     })
 
 
-    //Chamada de função para icon de demonstração de status confirmado ou não confirmado através de cor
-    this.interval = setInterval(() => {
-      this.confirmacaoStatus();
-    }, 200);
 
   }
 
@@ -223,27 +232,13 @@ export class ItinerariosComponent implements OnInit {
     })
   }
 
- 
+
 
   /*===============================================================================================================================
   ========================FAZER EFEITO VISUAL DE CIRCULO VERDE OU VERMELHO DE ACORDO COM O STATUS SA VIAGEM =======================
   =================================================================================================================================*/
 
 
-
-  confirmacaoStatus(): void {
-    let x = document.getElementsByTagName("h5")
-    for (let i = 0; i < this.itinerarios.length; i++) {
-
-      if (this.itinerarios[i].status.confirmacao === "CONFIRMADO") {
-        x[i].style.backgroundColor = "green"
-
-      } else {
-        console.log(this.itinerarios[i].status.confirmacao);
-      }
-    }
-    clearInterval(this.interval);
-  }
 
 
 
@@ -255,11 +250,18 @@ export class ItinerariosComponent implements OnInit {
 
 
 
-  getId(s: Itinerario) {
-    console.log(s.id)
-    this.service.delet(s.id).subscribe(resposta => {
-      this.findAll();
-    })
+  async getId(s: Itinerario) {
+
+    const confirmed = await this.deleteDialog.open();
+    if (confirmed == true) {
+      this.service.delet(s.id).subscribe(resposta => {
+        this.findAll();
+      })
+
+    } else {
+      this.service.mensagem("Nenhuma alteração feita")
+    }
+
   }
 
 
@@ -301,4 +303,16 @@ export class ItinerariosComponent implements OnInit {
   =====================================================================*/
 
 
+  update(res: Itinerario) {
+
+
+    if (res.encerrado == "ENCERRADO") {
+      console.log(res);
+      this.service.mensagem("Viagens encerradas não podem ser editadas");
+
+    } else {
+      this.router.navigate(['itinerarios/update/' + res.id])
+    }
+
+  }
 }

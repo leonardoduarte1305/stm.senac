@@ -131,23 +131,6 @@ li {
     color: rgb(117, 117, 117);
 }
 
-.status {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: yellow;
-    margin-bottom: 15px;
-    margin-left: 10px;
-}
-
-.statusConfirm {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: green;
-    margin-bottom: 15px;
-    margin-left: 10px;
-}
 
 .span {
     display: flex;

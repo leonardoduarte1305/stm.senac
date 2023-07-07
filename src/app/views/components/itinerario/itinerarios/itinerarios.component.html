@@ -2,7 +2,7 @@
 <div class="test">
     <header class="bt-create">
         <h1>VIAGENS</h1>
-        <button (click)="navigationToCreate()">AGENDAR VIAGEM</button>
+        <button *ngIf="mostrarDados" (click)="navigationToCreate()">AGENDAR VIAGEM</button>
     </header>
 
     <ul>
@@ -41,7 +41,7 @@
 
                             <div class="span">
                                 <p> {{viagens.status.confirmacao.replace("_"," " )}} </p>
-                                <h5 class="status"> </h5>
+                      
 
                             </div>
                         </td>
@@ -90,11 +90,9 @@
 <div class="btn">
 
 
-    <button><a class="up" routerLink="update/{{viagens.id}}">
-            EDITAR
-        </a></button>
+    <button (click)="update(viagens)" >EDITAR</button>
     <button (click)="getId(viagens)">EXCLUIR</button>
-
+    
 </div>
 </li>
 

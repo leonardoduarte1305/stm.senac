@@ -26,7 +26,7 @@ export class ItinerarioService {
         this.snack.open(`${msg}`, 'Ok', {
                 horizontalPosition: 'center',
                 verticalPosition: 'top',
-                duration: 1000
+                duration: 2000
             }
         )
     }

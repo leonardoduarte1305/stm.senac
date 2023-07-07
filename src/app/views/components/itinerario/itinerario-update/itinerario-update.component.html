@@ -6,10 +6,10 @@
     </header>
     <form action="" [formGroup]="viagemForm" #formDir="ngForm">
         <h1>Edição de viagem</h1>
-        <div class="box-bt-confirmarViagem">
+        <div class="box-bt-confirmarViagem" >
             <h5 id="statusComCor" matTooltip={{msgConfirmacao}}></h5>
-            <button (click)="confirmarViagem()">confirmar viagem</button>
-            <button (click)="encerrarViagem()">encerrar viagem</button>
+            <button *ngIf="mostrarDados" (click)="confirmarViagem()">confirmar viagem</button>
+            <button *ngIf="mostrarDados" (click)="encerrarViagem()">encerrar viagem</button>
 
         </div>
         <section class="container-divs">
@@ -117,10 +117,11 @@
 
             <div class="header-listagem-destinos">
                 <!--   <h1>{{destinos.id}}</h1> -->
-                <h5></h5>
-               <!-- <td>{{destinos.status.confirmacao.replace("_"," ")}}</td> -->
+                <h5 id="corDestino" ></h5>
+               <td>{{destinos.status.confirmacao.replace("_"," ")}}</td> 
                 <button (click)="excluirDestino(destinos.id)">excluir</button>
-                <button (click)="  confirmarDestino(destinos.id)">{{msgIconConfirmDestino}}</button>
+                <button (click)="confirmarDestino(destinos.id)">confirmar</button>
+                <button (click)="desconfirmarDestino(destinos.id)">desconfirmar</button>
                 <button (click)="atualizarDestino(destinos.id)" class="bt-edit-destino">EDITAR DESTINO</button>
             </div>
             <table>

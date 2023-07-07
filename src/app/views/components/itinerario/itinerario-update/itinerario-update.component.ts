@@ -140,6 +140,7 @@ export class ItinerarioUpdateComponent implements OnInit {
     this.buscarTodosMotoristas();
     this.buscarMaterial();
     this.buscarSetor();
+    this.validarUser();
     this.viagemForm = new FormGroup({
       id: new FormControl(''),
       motoristaId: new FormControl(''),
@@ -155,6 +156,16 @@ export class ItinerarioUpdateComponent implements OnInit {
 
 
     })
+  }
+  mostrarDados: boolean = false;
+  validarUser() {
+    setTimeout(() => {
+      if (localStorage.getItem("role") == "USER") {
+        this.mostrarDados = false;
+      } else {
+        this.mostrarDados = true;
+      }
+    }, 50)
   }
 
   atualizarViagem() {
@@ -275,11 +286,6 @@ export class ItinerarioUpdateComponent implements OnInit {
         this.destinosDaViagem[i].nomeSede = resposta.nome;
       })
 
-      if (this.destinosDaViagem[i].status.confirmacao === "CONFIRMADO") {
-        this.msgIconConfirmDestino = "desconfirmar"
-      } else {
-        this.msgIconConfirmDestino = "confirmar";
-      }
 
     }
   }
@@ -385,8 +391,16 @@ export class ItinerarioUpdateComponent implements OnInit {
   }
 
   confirmarDestino(id: any): void {
+    this.confirmacao.confirmacao="CONFIRMADO";
     this.destinoService.confirmarDestino(id, this.confirmacao).subscribe(res => {
-    }), console.error("Não deu")
+      this.buscarPorId();
+    })
+  }
+  desconfirmarDestino(id: any): void {
+    this.confirmacao.confirmacao="NAO_CONFIRMADO";
+    this.destinoService.desconfirmarDestino(id, this.confirmacao).subscribe(res=>{
+      
+    })
   }
 
   confirmarViagem(): void {
@@ -403,6 +417,10 @@ export class ItinerarioUpdateComponent implements OnInit {
       console.log(res);
       this.router.navigate(['itinerarios'])
     })
+  }
+  validarDestino(){
+    let b =document.getElementById("corDestino");
+    
   }
 
 }

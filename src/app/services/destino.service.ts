@@ -47,6 +47,12 @@ export class DestinoService {
         console.log(confirmacao)
         return this.http.post<Confirmacao>(url, confirmacao, {headers});
     }
+    desconfirmarDestino(id: any, confirmacao: Confirmacao): Observable<Confirmacao> {
+        const url = "http://localhost:8080/destinos/" + id + "/confirmacao";
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getToken());
+        console.log(confirmacao)
+        return this.http.post<Confirmacao>(url, confirmacao, {headers});
+    }
 
     update(destino: Destino): Observable<Destino> {
         const url = this.baseUrl + '/destinos/' + destino.id;

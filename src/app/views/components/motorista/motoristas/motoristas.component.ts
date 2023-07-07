@@ -29,7 +29,21 @@ export class MotoristasComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.findAll();
+    this.validarUser();
   }
+
+  mostrarDados: boolean = false;
+
+  validarUser() {
+    setTimeout(() => {
+      if (localStorage.getItem("role") == "USER") {
+        this.mostrarDados = false;
+      } else {
+        this.mostrarDados = true;
+      }
+    }, 50)
+  }
+
 
   findAll(): void {
     this.servive.findAll().subscribe((resposta) => {

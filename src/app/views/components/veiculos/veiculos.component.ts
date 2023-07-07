@@ -39,6 +39,19 @@ export class VeiculosComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.findAll();
+    this.validarUser();
+  }
+
+  mostrarDados: boolean = false;
+
+  validarUser() {
+    setTimeout(() => {
+      if (localStorage.getItem("role") == "USER") {
+        this.mostrarDados = false;
+      } else {
+        this.mostrarDados = true;
+      }
+    }, 50)
   }
 
   findAll(): void {
