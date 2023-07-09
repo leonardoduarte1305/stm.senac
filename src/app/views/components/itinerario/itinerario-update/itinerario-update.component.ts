@@ -484,5 +484,15 @@ export class ItinerarioUpdateComponent implements OnInit {
 
   }
 
+  removerMaterialLista(index: any) {
+
+    this.materiaisDestino.splice(index, 1)
+    console.log(this.materiaisDestino)
+    /*
+        this.destinoService.update(this.destino).subscribe(res => {
+          console.log(res);
+        })
+      */
+  }
 }
 
