@@ -1,10 +1,13 @@
-<main>
+<div *ngIf="exibirLoading" class="loading-overlay">
+    <div class="loading-spinner"></div>
+  </div>
+<main *ngIf="exibirLoading==false">
     <header>
         <button class="retornar" (click)="navigationToItinerarios()"><i class="material-icons">arrow_back</i>Lista de
             viagens</button>
 
     </header>
-    <form action="" [formGroup]="viagemForm" #formDir="ngForm">
+    <form action="" [formGroup]="viagemForm" #formDir="ngForm" >
         <h1>Edição de viagem</h1>
         <div class="box-bt-confirmarViagem">
             <h5 id="statusComCor" matTooltip={{msgConfirmacao}}></h5>
@@ -131,8 +134,8 @@
 
             <div class="header-listagem-destinos">
                 <!--   <h1>{{destinos.id}}</h1> -->
-                <h5 id="corDestino"></h5>
-                <td>{{destinos.status.confirmacao.replace("_"," ")}}</td>
+               
+                <td class="confirmacaoDestinoCor">{{destinos.status.confirmacao.replace("_"," ")}}</td>
                 <button *ngIf="mostrarDados" (click)="excluirDestino(destinos.id)">excluir</button>
                 <button *ngIf="mostrarDados" (click)="confirmarDestino(destinos.id)">confirmar</button>
                 <button *ngIf="mostrarDados" (click)="desconfirmarDestino(destinos.id)">desconfirmar</button>

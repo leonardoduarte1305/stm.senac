@@ -23,6 +23,7 @@ import { Itinerario } from 'src/app/models/itinerario';
 import { forkJoin, switchMap } from 'rxjs';
 import { DestinoUpdateComponent } from '../destino-update/destino-update.component';
 import { EncerrarViagem } from 'src/app/models/encerrarViagem';
+import { DeleteDialogService } from 'src/app/services/delete-dialog.service';
 
 @Component({
   selector: 'app-itinerario-update',
@@ -30,6 +31,8 @@ import { EncerrarViagem } from 'src/app/models/encerrarViagem';
   styleUrls: ['./itinerario-update.component.css']
 })
 export class ItinerarioUpdateComponent implements OnInit {
+
+  exibirLoading: boolean;
 
   id_viagem = ""
   viagemForm!: FormGroup;
@@ -77,8 +80,11 @@ export class ItinerarioUpdateComponent implements OnInit {
     private dialog: MatDialog,
     private serviceSetor: SetorService,
     private destinoService: DestinoService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+
+    private deleteDialog: DeleteDialogService
   ) {
+    this.exibirLoading = false;
 
   }
 
@@ -176,7 +182,7 @@ export class ItinerarioUpdateComponent implements OnInit {
     if (dataSaida > dataVolta) {
       this.servico.mensagem("A data de volta não pode ser menor do que a data de saida")
       return
-    } else if(dataAtual>dataSaida){
+    } else if (dataAtual > dataSaida) {
       this.servico.mensagem("A data de saída não pode ser menor que a data atual")
       return
       // A validação passou, as datas estão corretas
@@ -188,8 +194,8 @@ export class ItinerarioUpdateComponent implements OnInit {
     }
 */
     this.servico.update(this.viagem).subscribe(res => {
-    //  this.router.navigate(['itinerarios']);
-    this.servico.mensagem("Viagem atualizada com sucesso");
+      //  this.router.navigate(['itinerarios']);
+      this.servico.mensagem("Viagem atualizada com sucesso");
       console.log(res);
     })
     console.log(this.viagem)
@@ -443,17 +449,22 @@ export class ItinerarioUpdateComponent implements OnInit {
     this.router.navigate(['itinerarios']);
   }
 
-  excluirDestino(id: any) {
-    const index = this.viagem.destinos.indexOf(id);
-    if (index !== -1) {
-      this.viagem.destinos.splice(index, 1);
-      this.servico.update(this.viagem).subscribe(res => {
+  async excluirDestino(id: any) {
 
-      })
-      setTimeout(() => {
+    const confirmed = await this.deleteDialog.open();
+    if (confirmed == true) {
 
-        this.buscarPorId();
-      }, 100);
+      const index = this.viagem.destinos.indexOf(id);
+      if (index !== -1) {
+        this.viagem.destinos.splice(index, 1);
+        this.servico.update(this.viagem).subscribe(res => {
+
+        })
+        setTimeout(() => {
+
+          this.buscarPorId();
+        }, 100);
+      }
     }
     console.log(this.viagem.destinos);
 
@@ -466,32 +477,40 @@ export class ItinerarioUpdateComponent implements OnInit {
   }
 
   confirmarDestino(id: any): void {
+    this.exibirLoading = true; 
     this.confirmacao.confirmacao = "CONFIRMADO";
     this.destinoService.confirmarDestino(id, this.confirmacao).subscribe(res => {
       this.buscarPorId();
+      this.exibirLoading = false; 
     })
   }
   desconfirmarDestino(id: any): void {
+    this.exibirLoading = true; 
     this.confirmacao.confirmacao = "NAO_CONFIRMADO";
     this.destinoService.desconfirmarDestino(id, this.confirmacao).subscribe(res => {
       this.buscarPorId();
+      this.exibirLoading = false; 
     })
   }
 
   confirmarViagem(): void {
+    this.exibirLoading = true; 
     this.confirmacao.confirmacao = "CONFIRMADO";
     this.servico.status(this.id_viagem, this.confirmacao).subscribe(res => {
       console.log(res)
       this.buscarPorId();
+      this.exibirLoading = false; 
 
     })
 
   }
 
-  desconfirmarViagem():void {
-    this.confirmacao.confirmacao='NAO_CONFIRMADO';
+  desconfirmarViagem(): void {
+    this.exibirLoading = true; 
+    this.confirmacao.confirmacao = 'NAO_CONFIRMADO';
     this.servico.desconfirmarViagem(this.id_viagem, this.confirmacao).subscribe(res => {
       this.buscarPorId();
+      this.exibirLoading = false; 
     })
   }
 
