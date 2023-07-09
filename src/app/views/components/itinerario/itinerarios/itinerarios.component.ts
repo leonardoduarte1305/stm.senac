@@ -114,6 +114,7 @@ export class ItinerariosComponent implements OnInit {
 
           this.itinerarios[i].interfaceDestino = resposta;
           for (let j = 0; j < this.itinerarios[i].interfaceDestino.length; j++) {
+            
 
             this.serviceSede.findById(this.itinerarios[i].interfaceDestino[j].sedeId).subscribe(res => {
               this.itinerarios[i].interfaceDestino[j].sedeDestino = res.nome;

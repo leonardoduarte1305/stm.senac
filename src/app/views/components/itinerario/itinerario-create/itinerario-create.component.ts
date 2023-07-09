@@ -29,12 +29,16 @@ export class ItinerarioCreateComponent implements OnInit {
 
 
   viagemForm!: FormGroup;
+
   veiculos: Veiculo[] = [];
   motoristas: Motorista[] = [];
   sedes: Sede[] = [];
   setores: Setor[] = [];
   dtSaida!: Date;
   dtVolta!: Date;
+
+
+  dataHoraAtual!: Date;
 
   materiais: Material[] = [];
 
@@ -62,8 +66,9 @@ export class ItinerarioCreateComponent implements OnInit {
 
 
   };
-
+  materialErro: boolean = false;
   addMaterial() {
+    this.materialErro = false;
     const novoObjeto: Materiais = {
       materialId: this.interfaceMateriais.materialId,
       quantidade: this.interfaceMateriais.quantidade,
@@ -73,40 +78,66 @@ export class ItinerarioCreateComponent implements OnInit {
 
 
     };
+    if (novoObjeto.materialId == 0 || novoObjeto.quantidade == 0 || novoObjeto.setorDestino == 0) {
+      this.materialErro = true;
+      return
+    }
+    this.materialErro = false;
     this.materiaisDestino.push(...[novoObjeto]);
-    console.log(this.materiaisDestino);
-
-    if (novoObjeto.materialId != null && novoObjeto.setorDestino != null) {
-
-
-      for (let k = 0; k < this.setores.length; k++) {
-        if (this.setores[k].id === novoObjeto.setorDestino) {
-
-          novoObjeto.nomeSetor = this.setores[k].nome;
-
+    this.interfaceMateriais.materialId = 0;
+    this.interfaceMateriais.quantidade = 0;
+    this.interfaceMateriais.setorDestino = 0;
+    for (let i = 0; i < this.materiaisDestino.length; i++) {
+      for (let j = 0; j < this.setores.length; j++) {
+        if (this.materiaisDestino[i].setorDestino == this.setores[j].id) {
+          this.materiaisDestino[i].nomeSetor = this.setores[j].nome;
+        }
+      }
+      for (let j = 0; j < this.materiais.length; j++) {
+        if (this.materiaisDestino[i].materialId == this.materiais[j].id) {
+          this.materiaisDestino[i].nomeMaterial = this.materiais[j].nome;
         }
       }
 
-
-      for (let k = 0; k < this.materiais.length; k++) {
-        if (this.materiais[k].id === novoObjeto.materialId) {
-          novoObjeto.nomeMaterial = this.materiais[k].nome;
-
-        }
-      }
-
-    } else {
-      console.log("deu não")
     }
 
 
-
+    /*
+        if (novoObjeto.materialId != null && novoObjeto.setorDestino != null) {
+    
+    
+          for (let k = 0; k < this.setores.length; k++) {
+            if (this.setores[k].id === novoObjeto.setorDestino) {
+    
+              novoObjeto.nomeSetor = this.setores[k].nome;
+    
+            }
+          }
+    
+    
+          for (let k = 0; k < this.materiais.length; k++) {
+            if (this.materiais[k].id === novoObjeto.materialId) {
+              novoObjeto.nomeMaterial = this.materiais[k].nome;
+    
+            }
+          }
+    
+        } else {
+          console.log("deu não")
+        }
+    
+    
+    */
 
   }
 
-
+  destinoErro: boolean = false;
   addDestino() {
-
+    if (this.destino.sedeId == 0) {
+      this.destinoErro = true;
+      return
+    }
+    this.destinoErro = false;
     this.destinoService.create(this.destino).subscribe(res => {
       this.destinosViagem.push(res.id);
       this.destinosViagemView.push(res);
@@ -142,7 +173,7 @@ export class ItinerarioCreateComponent implements OnInit {
     private serviceSetor: SetorService,
     private destinoService: DestinoService
   ) {
-
+    this.dataHoraAtual = new Date();
   }
 
 
@@ -169,10 +200,18 @@ export class ItinerarioCreateComponent implements OnInit {
     },
   }
 
-  create(): void {
 
-    if (this.viagemForm.invalid) {
-      console.log("Erro")
+
+
+  create(): void {
+    alert(this.dtSaida.getDate());
+    if (this.dtSaida.getDate() > this.dataHoraAtual.getDate()) {
+
+    }
+
+    if (this.dtSaida == null || this.viagem.motoristaId == 0 || this.viagem.veiculoId == 0 || this.viagem.sede == 0 || this.dtSaida > this.dataHoraAtual) {
+
+      return
     }
     console.log(this.viagem)
     this.viagem.datetimeSaida = this.dtSaida.toLocaleString('pt-br');
@@ -290,7 +329,7 @@ export class ItinerarioCreateComponent implements OnInit {
     if (index !== -1) {
       this.destinosViagem.splice(index, 1);
       console.log(this.destinosViagem)
-      this.destinosViagemView.splice(index,1);
+      this.destinosViagemView.splice(index, 1);
     }
     /*
     

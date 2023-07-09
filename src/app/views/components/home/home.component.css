@@ -1,11 +1,5 @@
-
-
-
-
-
 header {
     color: rgb(255, 255, 255);
-
     margin-left: 10%;
 }
 
@@ -19,7 +13,6 @@ header {
 .bt-alterar-viagem:hover {
     cursor: pointer;
     background-color: black;
-
 }
 
 .bt-alterar-viagem i {
@@ -31,17 +24,14 @@ header h1 {
     font-weight: 900;
     font-family: 'Lexend Peta', sans-serif;
     font-size: 4em;
-
 }
 
 .creat {
     width: 80%;
-
     margin: 1rem auto 0 auto;
     flex-direction: column;
     border-radius: 5px;
     display: flex;
-
 }
 
 .contaiber-cards {
@@ -55,11 +45,9 @@ header h1 {
     margin-bottom: 2em;
     justify-content: space-between;
     box-shadow: 5px 5px 15px black;
-
 }
 
 .contaiber-cards .card-viagem {
-
     width: 100%;
     border-radius: 5px;
     display: flex;
@@ -67,7 +55,6 @@ header h1 {
     padding: 5px;
     justify-content: space-around;
     flex-direction: column;
-
 }
 
 .contaiber-cards .card-viagem h4 {
@@ -76,7 +63,6 @@ header h1 {
     color: #1A1D24;
     border-bottom: 2px solid chocolate;
     width: 100%;
-
 }
 
 .contaiber-cards .card-viagem button {
@@ -90,14 +76,11 @@ header h1 {
 }
 
 .contaiber-cards-material-user {
-
     width: 100%;
     border-radius: 10px;
-
     height: 250px;
     display: flex;
     flex-direction: row;
-
     margin-bottom: 2em;
     justify-content: space-between;
 }
@@ -118,8 +101,6 @@ header h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-
-
 }
 
 .creat .card i {
@@ -131,11 +112,8 @@ header h1 {
     justify-content: center;
     display: flex;
     height: 35px;
-
     border-radius: 50px;
-
 }
-
 
 .creat .card .bt button {
     display: flex;
@@ -153,48 +131,35 @@ header h1 {
     padding: 0%;
 }
 
-.creat .card .bt button:hover ,button:hover {
+.creat .card .bt button:hover,
+button:hover {
     color: chocolate;
 }
 
 .creat .card button {
-
-
-
     font-size: 1.2em;
     padding: 5px;
-
-
     border-radius: 5px;
     font-weight: 500;
     background-color: transparent;
     border: none;
     color: black;
-
-
-
 }
 
-
-
-
-
-@media (width<800px) {
+@media (max-width: 1000px) {
     .creat {
         flex-direction: column;
-
     }
 
     .contaiber-cards-material-user,
     .contaiber-cards {
         flex-direction: column;
-        height: 50%;
-        padding: 0%;
+        height: auto;
+        padding: 0;
     }
 
     .creat .card {
-
-        width: 90%;
+        width: 95%;
         margin-bottom: 2em;
     }
 
@@ -206,7 +171,7 @@ header h1 {
 
     .contaiber-cards img {
         width: 100px;
-        margin: 0px;
+        margin: 0;
         height: 100px;
     }
 
@@ -214,6 +179,4 @@ header h1 {
         justify-content: center;
         align-items: center;
     }
-
-
 }

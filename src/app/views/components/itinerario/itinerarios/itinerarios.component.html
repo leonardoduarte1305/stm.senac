@@ -15,7 +15,7 @@
 
                 <!--<h3> ViagemID: {{viagens.id}} Origem: {{viagens.nomeSede}}</h3>-->
                 <h3> Origem: {{viagens.nomeSede}}</h3>
-                <button class="btn-pdf" (click)="pdf(viagens.id)" matTooltip="Download"> <i id="edit"
+                <button *ngIf="mostrarDados" class="btn-pdf" (click)="pdf(viagens.id)" matTooltip="Download"> <i id="edit"
                         class="material-icons">download</i> PDF</button>
             </div>
             <section class="container">
@@ -47,7 +47,7 @@
                         </td>
                         <td>
 
-                            <p> {{viagens.datetimeSaida.replace("T"," " )}}</p>
+                            <p> {{viagens.datetimeSaida}}</p>
                         </td>
                         <td>
 
@@ -91,7 +91,7 @@
 
 
     <button (click)="update(viagens)" >EDITAR</button>
-    <button (click)="getId(viagens)">EXCLUIR</button>
+    <button *ngIf="mostrarDados" (click)="getId(viagens)">EXCLUIR</button>
     
 </div>
 </li>

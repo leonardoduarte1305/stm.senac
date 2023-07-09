@@ -1,5 +1,5 @@
 <section class="container-destinos">
-    <h3>CRIAR DESTINO</h3>
+    <h1>Edição de destino</h1>
     <section class="container-divs">
         <div>
             <section class="add-material-div">
@@ -26,6 +26,7 @@
             <button matTooltip="adicionar material no destino" (click)="addMaterial()">+</button>
         </div>
     </section>
+    <span class="erroMaterial" *ngIf="materialErro">Selecione um material, sua quantidade e setor de destino</span>
     <div class="table-limit">
 
         <table class="table table-limit">
@@ -36,9 +37,9 @@
                 <th class="table-bt-remover"></th>
             </tr>
             <tr class="listagem-materiais" *ngFor="let s of materiaisDestino; let i = index">
-                <td>{{s.materialId}}</td>
+                <td>{{s.nomeMaterial}}</td>
                 <td>{{s.quantidade}}</td>
-                <td>{{s.setorDestino}}</td>
+                <td>{{s.nomeSetor}}</td>
                 <td><button class="bt-removerMaterial-lista" (click)="removerMaterial(i)"><i id="edit"
                             class="material-icons" matTooltip="Remover material da lista">delete</i></button></td>
 

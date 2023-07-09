@@ -1,6 +1,6 @@
 table {
 
-    width: 98%;
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2em;
@@ -10,7 +10,7 @@ table {
 }
 
 .table-limit {
-    width: 100%;
+    width: 80%;
     max-height: 200px;
     /* Defina a altura máxima desejada */
     overflow-y: auto;
@@ -35,9 +35,9 @@ table td {
     color: black;
 }
 
-.container-destinos h3 {
-    color: chocolate;
-    font-weight: bold;
+.container-destinos h1 {
+    color: black;
+    
     margin: 1em;
 }
 
@@ -63,7 +63,7 @@ table td {
     justify-content: center;
 }
 .container-divs{
-    width: 100%;
+    width: 80%;
 }
 .container-divs .btn-adicionar-material-div {
     width: 120px;
@@ -80,7 +80,7 @@ table td {
     align-items: center;
     flex-direction: column;
 
-    background-color: #ffffff;
+    background-color: #f3f3f3;
 }
 
 
@@ -96,8 +96,8 @@ table td {
 
     font-weight: bold;
     font-size: 1.5em;
-    border-radius: 50px;
-    background-color: white;
+    border-radius: 5px;
+    background-color: chocolate;
     border: none;
 }
 
@@ -106,10 +106,31 @@ table td {
     border: none;
     color: red;
 }
+.erroMaterial {
+    width: 99%;
+    text-align: center;
+    color: red;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgba(255, 0, 0, 0.13);
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 .bt-atualizar{
     width: 350px;
     padding: 10px;
     border: none;
-    border-radius: 50px;
+    border-radius: 5px;
+    background-color: chocolate;
 
+
+}
+.add-material-div button{
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+    margin-left: 1em;
+    border: none;
+    padding: 2px;
 }

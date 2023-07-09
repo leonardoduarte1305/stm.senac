@@ -20,6 +20,18 @@ form {
 
 }
 
+.erroMaterial {
+    width: 99%;
+    text-align: center;
+    color: red;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgba(255, 0, 0, 0.13);
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 form input::placeholder {
 
     color: rgb(141, 141, 141);
@@ -146,17 +158,19 @@ header {
 
 form h1 {
     font-size: 2em;
-    
+
     color: black;
 }
-.container-destinos-view{
+
+.container-destinos-view {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 
 }
-.box-destinos-view{
+
+.box-destinos-view {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -168,13 +182,15 @@ form h1 {
 
     background-color: #1A1D24;
 }
-.box-destinos-view button{
+
+.box-destinos-view button {
     background-color: white;
-    
+
     color: red;
     border: none;
 }
-.box-destinos-view h4{
+
+.box-destinos-view h4 {
     width: 33%;
 }
 
@@ -206,7 +222,7 @@ header button:hover {
 .btn-adicionar-parada-div button {
     width: 20%;
     padding: 10px;
-    border-radius: 50px;
+    border-radius: 5px;
     font-size: 1em;
     font-weight: bold;
     background-color: chocolate;
@@ -231,7 +247,7 @@ header button:hover {
     font-size: 1em;
     padding: 10px;
 
-    border-radius: 50px;
+    border-radius: 5px;
     width: 20%;
     transition: ease-in-out 0.6s;
     border: none;
@@ -259,7 +275,7 @@ header button:hover {
 .add-material-div button {
     width: 180px;
     margin-left: 10px;
-    border-radius: 50pc;
+    border-radius: 5px;
     height: 20px;
     border: none;
     background-color: white;
@@ -272,7 +288,7 @@ header button:hover {
     color: rgb(255, 0, 0);
     display: flex;
     align-items: center;
-
+    margin-top: 5px;
     margin-bottom: -24px;
 }
 

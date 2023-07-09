@@ -15,6 +15,7 @@ import { SetorService } from 'src/app/services/setor.service';
 import { VeiculoService } from 'src/app/services/veiculo.service';
 import { CriarMaterialComponent } from '../../material/criar-material/criar-material.component';
 import { RespostaHttp } from 'src/app/models/Interface.Destino';
+import { ItinerarioUpdateComponent } from '../itinerario-update/itinerario-update.component';
 
 @Component({
   selector: 'app-destino-update',
@@ -42,7 +43,7 @@ export class DestinoUpdateComponent implements OnInit {
     private destinoService: DestinoService,
     public dialogRef: MatDialogRef<DestinoUpdateComponent>,
 
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: any
 
   ) {
 
@@ -53,6 +54,9 @@ export class DestinoUpdateComponent implements OnInit {
     this.buscarSetor();
     this.buscarTodasSedes();
     this.chamarDestino(this.data);
+
+
+
   }
 
   interfaceMateriais: Materiais = {
@@ -87,11 +91,25 @@ export class DestinoUpdateComponent implements OnInit {
 
       this.materiaisDestino = res.materiaisQntdSetor;
       console.log(this.materiaisDestino)
+
+      for (let i = 0; i < this.materiaisDestino.length; i++) {
+        for (let j = 0; j < this.setores.length; j++) {
+          if (this.materiaisDestino[i].setorDestino == this.setores[j].id) {
+            this.materiaisDestino[i].nomeSetor = this.setores[j].nome;
+          }
+        }
+        for (let j = 0; j < this.materiais.length; j++) {
+          if (this.materiaisDestino[i].materialId == this.materiais[j].id) {
+            this.materiaisDestino[i].nomeMaterial = this.materiais[j].nome;
+          }
+        }
+
+      }
     })
 
 
   }
-
+  materialErro: boolean = false;
   addMaterial() {
     const novoObjeto: Materiais = {
       materialId: this.interfaceMateriais.materialId,
@@ -101,8 +119,27 @@ export class DestinoUpdateComponent implements OnInit {
       nomeSetor: null!
     };
 
+    if (novoObjeto.materialId == 0 || novoObjeto.quantidade == 0 || novoObjeto.setorDestino == 0) {
+      this.materialErro = true;
+      return
+    }
+    this.materialErro = false;
 
     this.materiaisDestino.push(...[novoObjeto]);
+
+    for (let i = 0; i < this.materiaisDestino.length; i++) {
+      for (let j = 0; j < this.setores.length; j++) {
+        if (this.materiaisDestino[i].setorDestino == this.setores[j].id) {
+          this.materiaisDestino[i].nomeSetor = this.setores[j].nome;
+        }
+      }
+      for (let j = 0; j < this.materiais.length; j++) {
+        if (this.materiaisDestino[i].materialId == this.materiais[j].id) {
+          this.materiaisDestino[i].nomeMaterial = this.materiais[j].nome;
+        }
+      }
+
+    }
 
     console.log(this.materiaisDestino);
   }
@@ -149,13 +186,16 @@ export class DestinoUpdateComponent implements OnInit {
       */
   }
   atualizarDestino() {
-
+    
 
     this.destino.materiaisQntdSetor = this.materiaisDestino;
     console.log(this.destino)
 
     this.destinoService.update(this.destino).subscribe(res => {
+    
       console.log(res);
+      this.dialog.closeAll();
+
     })
   }
 }

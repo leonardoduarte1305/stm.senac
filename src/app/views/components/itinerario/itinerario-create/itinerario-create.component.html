@@ -1,9 +1,12 @@
 <main>
     <header>
-        <button class="retornar" (click)="navigationToItinerarios()"><i class="material-icons">arrow_back</i>Lista de viagens</button>
+        <button class="retornar" (click)="navigationToItinerarios()"><i class="material-icons">arrow_back</i>Lista de
+            viagens</button>
 
     </header>
     <form action="" (ngSubmit)="sibmit()" [formGroup]="viagemForm" #formDir="ngForm">
+
+
         <h1>Cadastro de viagem</h1>
         <section class="container-divs">
             <div>
@@ -12,19 +15,21 @@
                     <option></option>
                     <option *ngFor="let sede of sedes" value="{{sede.id}}">{{sede.nome}}</option>
                 </select>
-                <span *ngIf="sede.invalid" class="error"><i class="material-icons">priority_high</i> Selecione uma
+                <span *ngIf="this.viagem.sede==0" class="error"><i class="material-icons">priority_high</i> Selecione
+                    uma
                     origem</span>
             </div>
 
             <div>
                 <label for="">Data de Saida</label>
                 <input name="datetimeSaida" formControlName="datetimeSaida" [(ngModel)]="dtSaida" type="datetime-local">
-                <span *ngIf="datetimeSaida.invalid && formDir.submitted " class="error"><i
-                        class="material-icons">priority_high</i> Selecione uma origem</span>
+                <span *ngIf="this.dtSaida==null" class="error"><i
+                        class="material-icons">priority_high</i> Selecione uma data de saída</span>
             </div>
             <div>
                 <label for="">Data de Volta</label>
                 <input name="datetimeVolta" formControlName="datetimeVolta" [(ngModel)]="dtVolta" type="datetime-local">
+                
             </div>
         </section>
         <section class="container-divs">
@@ -33,6 +38,8 @@
                 <select [(ngModel)]="viagem.veiculoId" name="veiculoId" id="" formControlName="veiculoId">
                     <option *ngFor="let veiculo of veiculos" value="{{veiculo.id}}">{{veiculo.modelo}}</option>
                 </select>
+                <span *ngIf="this.viagem.veiculoId==0" class="error"><i
+                    class="material-icons">priority_high</i> Selecione um veículo</span>
 
             </div>
             <div>
@@ -40,9 +47,15 @@
                 <select [(ngModel)]="viagem.motoristaId" name="motoristaId" id="" formControlName="motoristaId">
                     <option *ngFor="let motorista of motoristas" value="{{motorista.id}}">{{motorista.nome}}</option>
                 </select>
+                <span *ngIf="this.viagem.motoristaId==0" class="error"><i
+                    class="material-icons">priority_high</i> Selecione um motorista</span>
             </div>
 
         </section>
+
+
+
+
         <section class="container-destinos">
             <h3>CRIAR DESTINO</h3>
             <section class="container-divs">
@@ -61,8 +74,7 @@
                     <label for="">QTD</label>
                     <input type="number" name="quantidade" [(ngModel)]="interfaceMateriais.quantidade"
                         formControlName="quantidade">
-                    <span *ngIf="quantidade.invalid && formDir.submitted" class="error"><i
-                            class="material-icons">priority_high</i>insira a quantidade</span>
+                    
                 </div>
                 <div>
                     <label for="">Setor Destinatario</label>
@@ -75,6 +87,7 @@
                     <button matTooltip="adicionar material no destino" (click)="addMaterial()">+</button>
                 </div>
             </section>
+            <span class="erroMaterial" *ngIf="materialErro">Selecione um material, sua quantidade e setor de destino</span>
             <div class="table-limit">
 
                 <table class="table table-limit">
@@ -103,6 +116,8 @@
                     </select>
                 </div>
             </section>
+
+            <span class="erroMaterial" *ngIf="destinoErro">Selecione um destino</span>
             <section class="container-divs">
                 <div class="btn-adicionar-parada-div">
                     <button (click)="addDestino()">ADICIONAR DESTINO</button>

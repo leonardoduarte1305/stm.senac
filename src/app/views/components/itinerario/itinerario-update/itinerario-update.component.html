@@ -6,7 +6,7 @@
     </header>
     <form action="" [formGroup]="viagemForm" #formDir="ngForm">
         <h1>Edição de viagem</h1>
-        <div class="box-bt-confirmarViagem" >
+        <div class="box-bt-confirmarViagem">
             <h5 id="statusComCor" matTooltip={{msgConfirmacao}}></h5>
             <button *ngIf="mostrarDados" (click)="confirmarViagem()">confirmar viagem</button>
             <button *ngIf="mostrarDados" (click)="encerrarViagem()">encerrar viagem</button>
@@ -18,16 +18,22 @@
                 <select [(ngModel)]="viagem.sede" name="sede" id="" formControlName="sede">
                     <option *ngFor="let sede of sedes" value="{{sede.id}}">{{sede.nome}}</option>
                 </select>
+                <span *ngIf="this.viagem.sede==0" class="error"><i class="material-icons">priority_high</i> Selecione
+                    uma
+                    origem</span>
             </div>
 
             <div>
                 <label for="">Data de Saida</label>
                 <input id="dtSaida" [value]="dataHoraString ? transformarStringEmData(dataHoraString) : null"
                     name="datetimeSaida" formControlName="datetimeSaida" [(ngModel)]="dtSaida" type="datetime-local">
+                <span *ngIf="this.dtSaida==null" class="error"><i class="material-icons">priority_high</i> Selecione uma
+                    origem</span>
             </div>
             <div>
                 <label for="">Data de Volta</label>
-                <input name="datetimeVolta" formControlName="datetimeVolta" [(ngModel)]="dtVolta" type="datetime-local">
+                <input name="datetimeVolta" formControlName="datetimeVolta" [(ngModel)]="dtVolta" type="datetime-local"
+                    [value]="dataHoraStringVolta ? transformarStringEmData(dataHoraStringVolta) : null">
             </div>
         </section>
         <section class="container-divs">
@@ -36,12 +42,16 @@
                 <select [(ngModel)]="viagem.veiculoId" name="veiculoId" id="" formControlName="veiculoId">
                     <option *ngFor="let veiculo of veiculos" value="{{veiculo.id}}">{{veiculo.modelo}}</option>
                 </select>
+                <span *ngIf="this.viagem.veiculoId==0" class="error"><i class="material-icons">priority_high</i>
+                    Selecione uma origem</span>
             </div>
             <div>
                 <label for="">Motorista</label>
                 <select [(ngModel)]="viagem.motoristaId" name="motoristaId" id="" formControlName="motoristaId">
                     <option *ngFor="let motorista of motoristas" value="{{motorista.id}}">{{motorista.nome}}</option>
                 </select>
+                <span *ngIf="this.viagem.motoristaId==0" class="error"><i class="material-icons">priority_high</i>
+                    Selecione uma origem</span>
             </div>
 
         </section>
@@ -76,6 +86,8 @@
                     <button matTooltip="adicionar material no destino" (click)="addMaterial()">+</button>
                 </div>
             </section>
+            <span class="erroMaterial" *ngIf="materialErro">Selecione um material, sua quantidade e setor de
+                destino</span>
             <div class="table-limit">
 
                 <table class="table table-limit">
@@ -86,9 +98,9 @@
                         <th class="table-bt-remover"></th>
                     </tr>
                     <tr class="listagem-materiais" *ngFor="let s of materiaisDestino">
-                        <td>{{s.materialId}}</td>
+                        <td>{{s.nomeMaterial}}</td>
                         <td>{{s.quantidade}}</td>
-                        <td>{{s.setorDestino}}</td>
+                        <td>{{s.nomeSetor}}</td>
                         <td><button class="bt-removerMaterial-lista"><i id="edit" class="material-icons"
                                     matTooltip="Remover material da lista">delete</i></button></td>
 
@@ -104,6 +116,7 @@
                     </select>
                 </div>
             </section>
+            <span class="erroMaterial" *ngIf="destinoErro">Selecione um destino</span>
             <section class="container-divs">
                 <div class="btn-adicionar-parada-div">
                     <button (click)="addDestino()">ADICIONAR DESTINO</button>
@@ -117,12 +130,12 @@
 
             <div class="header-listagem-destinos">
                 <!--   <h1>{{destinos.id}}</h1> -->
-                <h5 id="corDestino" ></h5>
-               <td>{{destinos.status.confirmacao.replace("_"," ")}}</td> 
-                <button (click)="excluirDestino(destinos.id)">excluir</button>
-                <button (click)="confirmarDestino(destinos.id)">confirmar</button>
-                <button (click)="desconfirmarDestino(destinos.id)">desconfirmar</button>
-                <button (click)="atualizarDestino(destinos.id)" class="bt-edit-destino">EDITAR DESTINO</button>
+                <h5 id="corDestino"></h5>
+                <td>{{destinos.status.confirmacao.replace("_"," ")}}</td>
+                <button *ngIf="mostrarDados" (click)="excluirDestino(destinos.id)">excluir</button>
+                <button *ngIf="mostrarDados" (click)="confirmarDestino(destinos.id)">confirmar</button>
+                <button *ngIf="mostrarDados" (click)="desconfirmarDestino(destinos.id)">desconfirmar</button>
+                <button (click)="atualizarDestino(destinos.id)" class="bt-edit-destino">editar destino</button>
             </div>
             <table>
 
@@ -130,7 +143,7 @@
                 <tr class="box-info-destinos">
                     <td></td>
                     <td class="materiais-destino" *ngFor="let materiais of destinos.materiaisQntdSetor; let i=index">
-                        <p>Idmaterial: {{materiais.materialId}}</p>
+                        <p>Idmaterial: {{materiais.nomeMaterial}}</p>
                         <p>setor destino: {{materiais.nomeSetor}}</p>
                         <p>Quantidade: {{materiais.quantidade}}</p>
 

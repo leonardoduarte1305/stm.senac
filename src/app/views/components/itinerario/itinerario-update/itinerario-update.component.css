@@ -32,6 +32,10 @@ form input::placeholder {
     margin: 0.5em;
 
 }
+.materiais-destino p{
+    width: 33%;
+    text-align: justify;
+}
 
 .box-info-destinos {
     display: flex;
@@ -326,6 +330,23 @@ header button:hover {
     flex-direction: row;
     margin-top: 2em;
 
+}
+.container-listagem-destinos{
+    max-height: 300px;
+    /* Defina a altura máxima desejada */
+    overflow-y: auto;
+    /* Adicione rolagem vertical quando necessário */
+}
+.erroMaterial {
+    width: 99%;
+    text-align: center;
+    color: red;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgba(255, 0, 0, 0.13);
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .box-bt-confirmarViagem button {

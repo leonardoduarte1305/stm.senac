@@ -177,13 +177,14 @@ export class ItinerarioUpdateComponent implements OnInit {
     }
 
     this.servico.update(this.viagem).subscribe(res => {
+      this.router.navigate(['itinerarios']);
       console.log(res);
     })
     console.log(this.viagem)
   }
 
 
-
+  materialErro: boolean = false;
   addMaterial() {
     const novoObjeto: Materiais = {
       materialId: this.interfaceMateriais.materialId,
@@ -192,23 +193,54 @@ export class ItinerarioUpdateComponent implements OnInit {
       nomeMaterial: null!,
       nomeSetor: null!
     };
+    if (novoObjeto.materialId == 0 || novoObjeto.quantidade == 0 || novoObjeto.setorDestino == 0) {
+      this.materialErro = true;
+      return
+    }
+    this.materialErro = false;
 
     this.materiaisDestino.push(novoObjeto);
+
+    for (let i = 0; i < this.materiaisDestino.length; i++) {
+      for (let j = 0; j < this.setores.length; j++) {
+        if (this.materiaisDestino[i].setorDestino == this.setores[j].id) {
+          this.materiaisDestino[i].nomeSetor = this.setores[j].nome;
+        }
+      }
+      for (let j = 0; j < this.materiais.length; j++) {
+        if (this.materiaisDestino[i].materialId == this.materiais[j].id) {
+          this.materiaisDestino[i].nomeMaterial = this.materiais[j].nome;
+        }
+      }
+
+    }
 
     console.log(this.materiaisDestino);
   }
 
-
+  destinoErro: boolean = false;
   addDestino() {
+    if (this.destino.sedeId == 0) {
+      this.destinoErro = true;
+      return
+    }
+
     this.destinoService.create(this.destino).subscribe(res => {
       this.destinosViagem.push(res.id);
       this.viagem.destinos.push(res.id);
       for (let i = 0; i < this.destinosViagem.length; i++) {
+
         console.log("ID :" + this.destinosViagem[i])
       }
+      this.atualizarViagem();
+      setTimeout(() => {
+
+        this.buscarDestinos();
+      }, 200);
       console.log(res);
       console.log(this.viagem);
-      this.materiaisDestino.pop();
+      this.materiaisDestino.splice(0, this.materiaisDestino.length);
+
     })
   }
 
@@ -216,6 +248,7 @@ export class ItinerarioUpdateComponent implements OnInit {
 
 
   dataHoraString: string = "";
+  dataHoraStringVolta: string = ""
   msgIconConfirmDestino: string = "";
   msgConfirmacao: string = "";
 
@@ -239,7 +272,8 @@ export class ItinerarioUpdateComponent implements OnInit {
       }
       */
 
-      this.dataHoraString = this.transformarStringEmData(res.datetimeSaida)
+      this.dataHoraString = this.transformarStringEmData(res.datetimeSaida);
+      this.dataHoraStringVolta = this.transformarStringEmData(res.datetimeVolta);
 
       if (res.status.confirmacao === "CONFIRMADO") {
         let s = document.getElementById("statusComCor");
@@ -263,18 +297,20 @@ export class ItinerarioUpdateComponent implements OnInit {
 
 
   buscarDestinos() {
-
+    this.destinosDaViagem = [];
 
     this.destinoService.buscarDestinoPorIdViagem(this.id_viagem).subscribe(res => {
       console.log(res)
+
 
       const respostaArray = Object.values(res) as Array<any>;
 
       for (const item of respostaArray) {
         this.destinosDaViagem.push(...[item])
-      }
 
+      }
       this.validarStatusConfirmacao();
+
     })
 
 
@@ -284,6 +320,20 @@ export class ItinerarioUpdateComponent implements OnInit {
 
       this.servicoSede.findById(this.destinosDaViagem[i].sedeId).subscribe(resposta => {
         this.destinosDaViagem[i].nomeSede = resposta.nome;
+
+        setTimeout(() => {
+          for (let j = 0; j < this.destinosDaViagem[i].materiaisQntdSetor.length; j++) {
+            for (const item of this.materiais) {
+              if (this.destinosDaViagem[i].materiaisQntdSetor[j].materialId == item.id)
+                this.destinosDaViagem[i].materiaisQntdSetor[j].nomeMaterial = item.nome;
+            }
+            for (const item of this.setores) {
+              if (this.destinosDaViagem[i].materiaisQntdSetor[j].setorDestino == item.id)
+                this.destinosDaViagem[i].materiaisQntdSetor[j].nomeSetor = item.nome;
+            }
+          }
+        }, 100);
+
       })
 
 
@@ -308,25 +358,28 @@ export class ItinerarioUpdateComponent implements OnInit {
       width: '1800px',
       height: '900px',
       data: id
+
     });
 
 
+
+
   }
-
-  buscarSetorPorId(id: any): string {
-    let resultado = ""
-
-    for (let i = 0; this.setores.length > i; i++) {
-      console.log("Nome")
-      if (this.setores[i].id == id) {
-        resultado = this.setores[i].nome
-      } else {
+  /*
+    buscarSetorPorId(id: any): string {
+      let resultado = ""
+  
+      for (let i = 0; this.setores.length > i; i++) {
+        console.log("Nome")
+        if (this.setores[i].id == id) {
+          resultado = this.setores[i].nome
+        } else {
+        }
+  
       }
-
+      return resultado
     }
-    return resultado
-  }
-
+  */
   transformarStringEmData(dataHoraString: string): string {
 
     const dataHora = new Date(dataHoraString);
@@ -334,6 +387,11 @@ export class ItinerarioUpdateComponent implements OnInit {
 
   }
 
+  atualizarDataHora(valor: string) {
+    this.dataHoraString = valor;
+    const dataHora = new Date(valor);
+    console.log('Data e Hora:', dataHora);
+  }
 
 
   buscarTodosVeiculo() {
@@ -377,8 +435,11 @@ export class ItinerarioUpdateComponent implements OnInit {
       this.viagem.destinos.splice(index, 1);
       this.servico.update(this.viagem).subscribe(res => {
 
-        this.ngOnInit();
       })
+      setTimeout(() => {
+
+        this.buscarPorId();
+      }, 100);
     }
     console.log(this.viagem.destinos);
 
@@ -391,15 +452,15 @@ export class ItinerarioUpdateComponent implements OnInit {
   }
 
   confirmarDestino(id: any): void {
-    this.confirmacao.confirmacao="CONFIRMADO";
+    this.confirmacao.confirmacao = "CONFIRMADO";
     this.destinoService.confirmarDestino(id, this.confirmacao).subscribe(res => {
       this.buscarPorId();
     })
   }
   desconfirmarDestino(id: any): void {
-    this.confirmacao.confirmacao="NAO_CONFIRMADO";
-    this.destinoService.desconfirmarDestino(id, this.confirmacao).subscribe(res=>{
-      
+    this.confirmacao.confirmacao = "NAO_CONFIRMADO";
+    this.destinoService.desconfirmarDestino(id, this.confirmacao).subscribe(res => {
+      this.buscarPorId();
     })
   }
 
@@ -418,9 +479,9 @@ export class ItinerarioUpdateComponent implements OnInit {
       this.router.navigate(['itinerarios'])
     })
   }
-  validarDestino(){
-    let b =document.getElementById("corDestino");
-    
+  validarDestino() {
+    let b = document.getElementById("corDestino");
+
   }
 
 }
