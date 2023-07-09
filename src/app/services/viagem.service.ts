@@ -8,7 +8,7 @@ import {LoginService} from "./login.service";
 export class ViagemService {
 
 
-    baseUrl: string = "http://localhost:8080";
+    baseUrl: string = "http://127.0.0.1:8080";
 
     constructor(private http: HttpClient, private service: LoginService) {
     }

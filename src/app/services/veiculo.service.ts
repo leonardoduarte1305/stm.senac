@@ -10,7 +10,7 @@ import {LoginService} from "./login.service";
 })
 export class VeiculoService {
     //Colocar url base
-    baseUrl: String = "http://localhost:8080";
+    baseUrl: String = "http://127.0.0.1:8080";
 
     constructor(private http: HttpClient,
                 private snack: MatSnackBar,

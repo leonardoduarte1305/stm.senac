@@ -10,7 +10,7 @@ import {LoginService} from "./login.service";
     providedIn: 'root'
 })
 export class DestinoService {
-    baseUrl: String = "http://localhost:8080";
+    baseUrl: String = "http://127.0.0.1:8080";
 
     constructor(private http: HttpClient,
                 private service: LoginService) {
@@ -42,7 +42,7 @@ export class DestinoService {
     }
 
     confirmarDestino(id: any, confirmacao: Confirmacao): Observable<Confirmacao> {
-        const url = "http://localhost:8080/destinos/" + id + "/confirmacao";
+        const url = "http://127.0.0.1:8080/destinos/" + id + "/confirmacao";
         const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getToken());
         console.log(confirmacao)
         return this.http.post<Confirmacao>(url, confirmacao, {headers});

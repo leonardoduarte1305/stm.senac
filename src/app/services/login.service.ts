@@ -59,7 +59,7 @@ export class LoginService {
 
   gerarToken(user: string, senha: string): Promise<boolean> {
     const data = `grant_type=password&client_id=api-transportes-client&username=${user}&password=${senha}`;
-    const url = 'http://localhost:80/realms/master/protocol/openid-connect/token';
+    const url = 'http://127.0.0.1:8081/realms/master/protocol/openid-connect/token';
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
     return new Promise<boolean>((resolve) => {
@@ -86,7 +86,7 @@ export class LoginService {
   }
 
   getToke() {
-    const url = 'http://localhost:80/realms/master/protocol/openid-connect/token';
+    const url = 'http://127.0.0.1:8081/realms/master/protocol/openid-connect/token';
     const body = {
       grant_type: 'password',
       client_id: 'api-transportes-client',

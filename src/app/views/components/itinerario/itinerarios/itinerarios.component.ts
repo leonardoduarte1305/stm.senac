@@ -108,7 +108,7 @@ export class ItinerariosComponent implements OnInit {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.serviceLogin.getToken());
 
     for (let i = 0; i < this.itinerarios.length; i++) {
-      this.http.get<RespostaHttp[]>("http://localhost:8080/viagens/" + this.itinerarios[i].id + "/destinos", { headers }).subscribe(
+      this.http.get<RespostaHttp[]>("http://127.0.0.1:8080/viagens/" + this.itinerarios[i].id + "/destinos",{headers}).subscribe(
 
         resposta => {
 
