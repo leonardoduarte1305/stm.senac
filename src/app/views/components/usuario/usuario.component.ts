@@ -69,6 +69,7 @@ export class UsuarioComponent implements OnInit {
     }
     this.service.create(this.usuario).subscribe(res => {
       this.router.navigate(["/home"])
+      this.service.message("Usuário criado com sucesso")
     })
 
   }
