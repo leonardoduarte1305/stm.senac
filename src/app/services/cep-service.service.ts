@@ -12,7 +12,7 @@ export class CepServiceService {
 
   public consultarCep(cep: String): Observable <any> {
     const url = `https://viacep.com.br/ws/${cep}/json/`;
-
     return this.http.get(url);
   }
+
 }

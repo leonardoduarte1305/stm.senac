@@ -14,9 +14,9 @@
     </div>
     <div class="box-input">
         <label for="">Senha</label>
-        <input [(ngModel)]="usuario.password" required type="text" name="password" id="" placeholder=""  formControlName="password" maxlength="10">
+        <input [(ngModel)]="usuario.password" required type="password" name="password" id="" placeholder=""  formControlName="password" maxlength="50">
         <span *ngIf="password.invalid && formDir.submitted" class="error" ><i class="material-icons" >priority_high</i> a senha não pode ser vazia</span>
-    </div>
+    </div>  
     <div class="box-input">
         <label for="">Nome</label>
         <input [(ngModel)]="usuario.nome" required type="text" name="nome" id="" placeholder=""  formControlName="nome" maxlength="30">
