@@ -9,6 +9,7 @@
         <div class="box-bt-confirmarViagem">
             <h5 id="statusComCor" matTooltip={{msgConfirmacao}}></h5>
             <button *ngIf="mostrarDados" (click)="confirmarViagem()">confirmar viagem</button>
+            <button *ngIf="mostrarDados" (click)="desconfirmarViagem()">desconfirmar viagem</button>
             <button *ngIf="mostrarDados" (click)="encerrarViagem()">encerrar viagem</button>
 
         </div>
@@ -25,15 +26,15 @@
 
             <div>
                 <label for="">Data de Saida</label>
-                <input id="dtSaida" [value]="dataHoraString ? transformarStringEmData(dataHoraString) : null"
-                    name="datetimeSaida" formControlName="datetimeSaida" [(ngModel)]="dtSaida" type="datetime-local">
-                <span *ngIf="this.dtSaida==null" class="error"><i class="material-icons">priority_high</i> Selecione uma
+                <input id="dtSaida" 
+                    name="datetimeSaida" formControlName="datetimeSaida" [(ngModel)]="viagem.datetimeSaida" type="datetime-local">
+                <span *ngIf="viagem.datetimeSaida==null" class="error"><i class="material-icons">priority_high</i> Selecione uma
                     origem</span>
             </div>
             <div>
                 <label for="">Data de Volta</label>
-                <input name="datetimeVolta" formControlName="datetimeVolta" [(ngModel)]="dtVolta" type="datetime-local"
-                    [value]="dataHoraStringVolta ? transformarStringEmData(dataHoraStringVolta) : null">
+                <input name="datetimeVolta" formControlName="datetimeVolta" [(ngModel)]="viagem.datetimeVolta" type="datetime-local"
+                   >
             </div>
         </section>
         <section class="container-divs">

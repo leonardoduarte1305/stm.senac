@@ -83,6 +83,7 @@ mat-drawer {
 
 
     width: 15%;
+    min-width: 160px;
 
 
 }

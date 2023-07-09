@@ -61,6 +61,12 @@ export class ItinerarioService {
         console.log(confirmacao)
         return this.http.post<Confirmacao>(url, confirmacao, {headers});
     }
+    desconfirmarViagem(id: any, confirmacao: Confirmacao): Observable<Confirmacao> {
+        const url = "http://localhost:8080/viagens/" + id + "/confirmacao";
+        const headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.service.getToken());
+        console.log(confirmacao)
+        return this.http.post<Confirmacao>(url, confirmacao, {headers});
+    }
 
     encerrarViagem(id: any, encerrado: EncerrarViagem): Observable<EncerrarViagem> {
         const url = "http://127.0.0.1:8080/viagens/" + id + "/encerramento";

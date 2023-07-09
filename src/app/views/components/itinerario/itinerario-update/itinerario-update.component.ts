@@ -170,12 +170,13 @@ export class ItinerarioUpdateComponent implements OnInit {
 
   atualizarViagem() {
     console.log(this.viagem.datetimeSaida)
-    this.viagem.datetimeSaida = this.dtSaida.toLocaleString('pt-br');
+    console.log(this.viagem.datetimeVolta)
+    /*this.viagem.datetimeSaida = this.dtSaida.toLocaleString('pt-br');
     if (this.dtVolta == null) {
     } else {
       this.viagem.datetimeVolta = this.dtVolta.toLocaleString('pt-br');
     }
-
+*/
     this.servico.update(this.viagem).subscribe(res => {
       this.router.navigate(['itinerarios']);
       console.log(res);
@@ -261,6 +262,7 @@ export class ItinerarioUpdateComponent implements OnInit {
   buscarPorId(): void {
 
 
+
     this.servico.findById(this.id_viagem).subscribe(res => {
       this.viagem = res;
       document.getElementById("dtSaida")
@@ -275,11 +277,12 @@ export class ItinerarioUpdateComponent implements OnInit {
       this.dataHoraString = this.transformarStringEmData(res.datetimeSaida);
       this.dataHoraStringVolta = this.transformarStringEmData(res.datetimeVolta);
 
+      let s = document.getElementById("statusComCor");
       if (res.status.confirmacao === "CONFIRMADO") {
-        let s = document.getElementById("statusComCor");
         s!.style.backgroundColor = "green";
         this.msgConfirmacao = "VIAGEM CONFIRMADA"
       } else {
+        s!.style.backgroundColor = "red";
         this.msgConfirmacao = "VIAGEM NÃO CONFIRMADA"
       }
 
@@ -465,11 +468,20 @@ export class ItinerarioUpdateComponent implements OnInit {
   }
 
   confirmarViagem(): void {
+    this.confirmacao.confirmacao = "CONFIRMADO";
     this.servico.status(this.id_viagem, this.confirmacao).subscribe(res => {
       console.log(res)
+      this.buscarPorId();
 
     })
 
+  }
+
+  desconfirmarViagem():void {
+    this.confirmacao.confirmacao='NAO_CONFIRMADO';
+    this.servico.desconfirmarViagem(this.id_viagem, this.confirmacao).subscribe(res => {
+      this.buscarPorId();
+    })
   }
 
   encerrarViagem() {

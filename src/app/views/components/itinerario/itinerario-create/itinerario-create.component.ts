@@ -204,12 +204,8 @@ export class ItinerarioCreateComponent implements OnInit {
 
 
   create(): void {
-    alert(this.dtSaida.getDate());
-    if (this.dtSaida.getDate() > this.dataHoraAtual.getDate()) {
-
-    }
-
-    if (this.dtSaida == null || this.viagem.motoristaId == 0 || this.viagem.veiculoId == 0 || this.viagem.sede == 0 || this.dtSaida > this.dataHoraAtual) {
+    
+    if (this.dtSaida == null || this.viagem.motoristaId == 0 || this.viagem.veiculoId == 0 || this.viagem.sede == 0) {
 
       return
     }
