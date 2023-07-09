@@ -26,7 +26,7 @@
     <section class="container-inputs">
         <div class="box-input">
             <label for="">Placa</label>
-            <input [(ngModel)]="veiculo.placa" type="text" name="placa" id="" placeholder="AAA0000/AAA0A00"
+            <input [(ngModel)]="veiculo.placa" type="text" name="placa" id="" placeholder="AAA-0000/AAA0A00"
                 onkeyup="this.value = this.value.toUpperCase()" maxlength="8" formControlName="placa">
             <span *ngIf="placa.invalid && formDir.submitted" class="error"><i class="material-icons">priority_high</i>
                 Digite uma placa valida nos padrões do mercosul </span>

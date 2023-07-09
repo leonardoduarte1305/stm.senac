@@ -50,7 +50,7 @@ form button {
     margin-right: 60%;
     transition: ease-in-out 0.6s;
     border: none;
-    font-weight: bold;
+
     background-color: chocolate;
     color: black;
 
@@ -133,27 +133,38 @@ header button:hover {
     color: red;
 }
 
-@media (width<1300px) {
+@media (max-width: 1300px) {
     form {
-        display: flex;
+
         flex-direction: column;
-        align-items: center;
+        justify-content: center;
 
     }
 
-    form div {
-        width: 100%;
+    form h1 {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    form .box-input {
+
+
+    form section {
+        flex-direction: column;
         width: 90%;
+
+        margin-left: auto;
+        margin-right: auto;
     }
+
 
     form button {
+        margin-left: auto;
+        margin-right: auto;
         width: 80%;
-        margin: 0%;
-    }
+        margin-top: 1em;
 
+    }
 }
 
 .error {
@@ -166,4 +177,3 @@ header button:hover {
 .error i {
     margin-right: 10px;
 }
-

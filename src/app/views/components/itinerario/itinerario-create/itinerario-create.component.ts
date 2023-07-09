@@ -38,7 +38,7 @@ export class ItinerarioCreateComponent implements OnInit {
   dtVolta!: Date;
 
 
-  dataHoraAtual!: Date;
+
 
   materiais: Material[] = [];
 
@@ -173,7 +173,7 @@ export class ItinerarioCreateComponent implements OnInit {
     private serviceSetor: SetorService,
     private destinoService: DestinoService
   ) {
-    this.dataHoraAtual = new Date();
+
   }
 
 
@@ -201,23 +201,26 @@ export class ItinerarioCreateComponent implements OnInit {
   }
 
 
-
-
+  erroDtVolta: boolean = false;
+  erroDt: boolean = false;
   create(): void {
+    const dataSaida = new Date(this.viagem.datetimeSaida);
+    const dataVolta = new Date(this.viagem.datetimeVolta);
+    const dataAtual = new Date()
     
-    if (this.dtSaida == null || this.viagem.motoristaId == 0 || this.viagem.veiculoId == 0 || this.viagem.sede == 0) {
+    this.erroDt = false
 
+    if (this.viagem.datetimeSaida == "" || this.viagem.motoristaId == 0 || this.viagem.veiculoId == 0 || this.viagem.sede == 0 || dataAtual>dataSaida) {
+      this.erroDt=true;
+      return
+    } else if(dataSaida>dataVolta){
+      this.erroDtVolta=true;
       return
     }
-    console.log(this.viagem)
-    this.viagem.datetimeSaida = this.dtSaida.toLocaleString('pt-br');
-    if (this.viagem.datetimeVolta == "") {
-    } else {
-      this.viagem.datetimeVolta = this.dtVolta.toLocaleString('pt-br');
-    }
+
 
     this.servico.create(this.viagem).subscribe((resposta) => {
-      console.log(resposta);
+
       this.router.navigate(['itinerarios']);
     })
   }

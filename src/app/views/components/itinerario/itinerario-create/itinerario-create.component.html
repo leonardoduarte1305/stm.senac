@@ -6,7 +6,6 @@
     </header>
     <form action="" (ngSubmit)="sibmit()" [formGroup]="viagemForm" #formDir="ngForm">
 
-
         <h1>Cadastro de viagem</h1>
         <section class="container-divs">
             <div>
@@ -22,13 +21,15 @@
 
             <div>
                 <label for="">Data de Saida</label>
-                <input name="datetimeSaida" formControlName="datetimeSaida" [(ngModel)]="dtSaida" type="datetime-local">
-                <span *ngIf="this.dtSaida==null" class="error"><i
-                        class="material-icons">priority_high</i> Selecione uma data de saída</span>
+                <input name="datetimeSaida" formControlName="datetimeSaida" [(ngModel)]="viagem.datetimeSaida" type="datetime-local">
+                <span *ngIf="viagem.datetimeSaida=='' || erroDt" class="error"><i
+                        class="material-icons">priority_high</i> Selecione uma data de saída superior à data atual</span>
             </div>
             <div>
                 <label for="">Data de Volta</label>
-                <input name="datetimeVolta" formControlName="datetimeVolta" [(ngModel)]="dtVolta" type="datetime-local">
+                <input name="datetimeVolta" formControlName="datetimeVolta" [(ngModel)]="viagem.datetimeVolta" type="datetime-local">
+                <span *ngIf="erroDtVolta" class="error"><i
+                    class="material-icons">priority_high</i> A data de volta não pode ser menor que a data de saída</span>
                 
             </div>
         </section>

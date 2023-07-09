@@ -169,8 +169,18 @@ export class ItinerarioUpdateComponent implements OnInit {
   }
 
   atualizarViagem() {
-    console.log(this.viagem.datetimeSaida)
-    console.log(this.viagem.datetimeVolta)
+    const dataSaida = new Date(this.viagem.datetimeSaida);
+    const dataVolta = new Date(this.viagem.datetimeVolta);
+    const dataAtual = new Date();
+
+    if (dataSaida > dataVolta) {
+      this.servico.mensagem("A data de volta não pode ser menor do que a data de saida")
+      return
+    } else if(dataAtual>dataSaida){
+      this.servico.mensagem("A data de saída não pode ser menor que a data atual")
+      return
+      // A validação passou, as datas estão corretas
+    }
     /*this.viagem.datetimeSaida = this.dtSaida.toLocaleString('pt-br');
     if (this.dtVolta == null) {
     } else {
@@ -178,7 +188,8 @@ export class ItinerarioUpdateComponent implements OnInit {
     }
 */
     this.servico.update(this.viagem).subscribe(res => {
-      this.router.navigate(['itinerarios']);
+    //  this.router.navigate(['itinerarios']);
+    this.servico.mensagem("Viagem atualizada com sucesso");
       console.log(res);
     })
     console.log(this.viagem)
